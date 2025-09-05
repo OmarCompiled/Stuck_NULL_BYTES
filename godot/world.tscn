@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://caslnr2cd6agv"]
+
+[ext_resource type="PackedScene" uid="uid://m4rj1a3kqqef" path="res://wall.tscn" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://f8mp43vqb13f" path="res://player.tscn" id="2_tlwt5"]
+[ext_resource type="Script" uid="uid://dnayske5ek28m" path="res://player.gd" id="3_tlwt5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aqk2v"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_036b0"]
+sky_material = SubResource("ProceduralSkyMaterial_aqk2v")
+
+[sub_resource type="Environment" id="Environment_dwbse"]
+background_mode = 2
+sky = SubResource("Sky_036b0")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f3sb7"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
+albedo_color = Color(0.179932, 0.127889, 0.231569, 1)
+
+[node name="World" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.987688, 0.156434, 6.83797e-09, 0, -4.37114e-08, 1, 0.156434, -0.987688, -4.31732e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dwbse")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_gv5m4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_f3sb7")
+surface_material_override/0 = SubResource("StandardMaterial3D_fj7yv")
+
+[node name="StaticBody3D2" parent="." instance=ExtResource("1_fj7yv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0692238, 2.70195, -49.7203)
+
+[node name="Player" parent="." instance=ExtResource("2_tlwt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.91333, 1.25, 0.88092)
+script = ExtResource("3_tlwt5")
+
+[node name="StaticBody3D3" parent="." instance=ExtResource("1_fj7yv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49.7789, 2.60995, -0.0404152)

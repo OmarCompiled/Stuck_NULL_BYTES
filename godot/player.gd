@@ -124,6 +124,6 @@ func _headbob(time) -> Vector3:
 	return pos
 	
 func _fov(delta) -> void: 
-	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
+	var velocity_clamped = clamp(velocity.length(), 0.5, DASH_SPEED)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)

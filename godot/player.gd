@@ -18,6 +18,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		cam.rotate_x(-event.relative.y * SENSETIVITY)
 		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
+func _process(delta: float) -> void:
+	$SanityBar.value -= 0.01
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -34,6 +37,4 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0.0
 		velocity.z = 0.0
 	
-	
-		
 	move_and_slide()

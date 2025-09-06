@@ -10,11 +10,12 @@ script = ExtResource("1_h3kvc")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3, 3, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.23753, 0.269774, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.565672, 0.269774, 0)
 light_energy = 0.0
-spot_range = 10.0
+spot_range = 20.0
+spot_angle = 17.05
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="CoolDownBar" type="ProgressBar" parent="."]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.949
@@ -22,10 +23,11 @@ anchor_right = 0.5
 anchor_bottom = 0.949
 offset_left = -133.0
 offset_top = -44.952
-offset_right = 132.0
-offset_bottom = -6.95203
+offset_right = 137.0
+offset_bottom = -4.95203
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 value = 100.0
+show_percentage = false

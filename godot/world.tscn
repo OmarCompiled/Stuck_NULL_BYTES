@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://caslnr2cd6agv"]
+[gd_scene load_steps=9 format=3 uid="uid://caslnr2cd6agv"]
 
-[ext_resource type="PackedScene" uid="uid://8qo2242qctxj" path="res://room.tscn" id="1_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://f8mp43vqb13f" path="res://player.tscn" id="2_tlwt5"]
+[ext_resource type="Script" uid="uid://dscn6gir8k4fy" path="res://addons/SimpleDungeons/DungeonGenerator3D.gd" id="3_gbfbk"]
+[ext_resource type="PackedScene" uid="uid://bkfmmoy8akomw" path="res://prefabs/entrance_room.tscn" id="4_ioo17"]
+[ext_resource type="PackedScene" uid="uid://cm2xm3asvprnh" path="res://prefabs/stair_room.tscn" id="5_wse8f"]
+[ext_resource type="PackedScene" uid="uid://cosd0okx85u28" path="res://prefabs/big_room.tscn" id="6_ic0uy"]
+[ext_resource type="PackedScene" uid="uid://mo4d62qc6mn6" path="res://prefabs/corridor.tscn" id="7_k3n1d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -12,6 +15,7 @@ sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
 
 [sub_resource type="Environment" id="Environment_aqk2v"]
 background_mode = 2
+background_energy_multiplier = 0.32
 sky = SubResource("Sky_tlwt5")
 tonemap_mode = 2
 glow_enabled = true
@@ -21,8 +25,11 @@ glow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aqk2v")
 
-[node name="Room" parent="." instance=ExtResource("1_fj7yv")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-
-[node name="Player" parent="." instance=ExtResource("2_tlwt5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347036, -2.96919, 0.111664)
+[node name="DungeonGenerator3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, 74.01, 9)
+script = ExtResource("3_gbfbk")
+room_scenes = Array[PackedScene]([ExtResource("4_ioo17"), ExtResource("5_wse8f"), ExtResource("6_ic0uy")])
+corridor_room_scene = ExtResource("7_k3n1d")
+dungeon_size = Vector3i(20, 3, 20)
+max_retries = 3
+metadata/_custom_type_script = "uid://dscn6gir8k4fy"

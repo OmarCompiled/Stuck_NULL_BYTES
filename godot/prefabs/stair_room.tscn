@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm2xm3asvprnh"]
+
+[ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_taa7g"]
+[ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://remove_unused_doors.gd" id="2_1xu0a"]
+
+[node name="StairRoom" type="Node3D"]
+script = ExtResource("1_taa7g")
+size_in_voxels = Vector3i(2, 2, 1)
+max_count = 10
+is_stair_room = true
+metadata/_custom_type_script = "uid://dg0fdhchjs2xg"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.15256e-07, 0, 0)
+use_collision = true
+size = Vector3(20, 20, 10)
+
+[node name="RoomCut" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1)
+operation = 2
+size = Vector3(19.5, 19.5, 9.5)
+
+[node name="DOOR_RIGHT" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-1, 0, 3.49691e-08, 0, 1, 0, -8.74228e-08, 0, -0.4, 9.751, 3.32237, 0)
+operation = 2
+size = Vector3(0.9, 6.59378, 9)
+
+[node name="DOOR_LEFT" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-0.917356, 0, 3.20791e-08, 0, 0.917356, 0, -8.01978e-08, 0, -0.366942, -10.0587, -6.82863, 0.000444253)
+operation = 2
+size = Vector3(0.9, 6.1555, 9)
+
+[node name="RemoveUnusedDoors" type="Node" parent="."]
+script = ExtResource("2_1xu0a")
+
+[node name="Ramp" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-10.5381, 9.21269e-07, 0, -9.21269e-07, -10.5381, 0, 0, 0, 9.17959, 9.95541, 0.31447, 4.5)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.418, 6.5157, 0)
+light_color = Color(0.345098, 0.403922, 0.580392, 1)
+light_energy = 16.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 9.62
+light_size = 1.0
+light_specular = 7.959
+omni_range = 3.08
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3728, -3.00725, 0)
+light_color = Color(0.345098, 0.403922, 0.580392, 1)
+light_energy = 16.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 9.62
+light_size = 1.0
+light_specular = 7.959
+omni_range = 3.08

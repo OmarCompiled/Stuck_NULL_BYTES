@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cosd0okx85u28"]
+
+[ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_jh716"]
+[ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://remove_unused_doors.gd" id="2_stqen"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stqen"]
+
+[node name="BigRoom" type="Node3D"]
+script = ExtResource("1_jh716")
+size_in_voxels = Vector3i(5, 3, 3)
+min_count = 3
+metadata/_custom_type_script = "uid://dg0fdhchjs2xg"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_stqen")
+use_collision = true
+size = Vector3(50, 30, 30)
+
+[node name="RoomCut" type="CSGBox3D" parent="CSGBox3D"]
+operation = 2
+size = Vector3(49.5, 29.5, 29.5)
+
+[node name="DOOR_FRONT" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 0, -0.4, 0, 1, 0, 1, 0, -1.74846e-08, -0.049, -10.25, -15.138)
+operation = 2
+size = Vector3(0.9, 8.989, 18)
+
+[node name="DOOR?_BACK" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 0, -0.4, 0, 1, 0, 1, 0, -1.74846e-08, 0.0218532, -10.2504, 14.9589)
+operation = 2
+size = Vector3(0.9, 8.98877, 18)
+
+[node name="RemoveUnusedDoors" type="Node" parent="."]
+script = ExtResource("2_stqen")
+
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 2.77556e-17, 6.5567e-08, -4.3142e-10, 0.999978, 0.00657984, -6.55655e-08, -0.00657984, 0.999978, 0, -8.43966, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+light_indirect_energy = 8.825
+light_volumetric_fog_energy = 12.115
+light_size = 1.0
+omni_range = 9.28647

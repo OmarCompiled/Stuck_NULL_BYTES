@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkfmmoy8akomw"]
+
+[ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_khs4t"]
+[ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://remove_unused_doors.gd" id="2_st7u1"]
+[ext_resource type="PackedScene" uid="uid://f8mp43vqb13f" path="res://player.tscn" id="3_3r8h8"]
+
+[node name="EntranceRoom" type="Node3D"]
+script = ExtResource("1_khs4t")
+min_count = 1
+max_count = 1
+metadata/_custom_type_script = "uid://dg0fdhchjs2xg"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(10, 10, 10)
+
+[node name="RoomCut" type="CSGBox3D" parent="CSGBox3D"]
+operation = 2
+size = Vector3(9.5, 9.5, 9.5)
+
+[node name="DOOR_FRONT" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 0, -0.4, 0, 1, 0, 1, 0, -1.74846e-08, 0.00991999, -1.64144, -4.82347)
+operation = 2
+size = Vector3(0.9, 6.22, 9)
+
+[node name="Light" type="OmniLight3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.49143, -2.18557e-08)
+light_color = Color(2.69532e-06, 0.666768, 0.959582, 1)
+light_energy = 2.195
+shadow_enabled = true
+omni_range = 9.29275
+
+[node name="RemoveUnusedDoors" type="Node" parent="."]
+script = ExtResource("2_st7u1")
+
+[node name="Player" parent="." instance=ExtResource("3_3r8h8")]

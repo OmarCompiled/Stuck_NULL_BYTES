@@ -1,40 +1,129 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4
-const SENSETIVITY = 0.03
+# Movement
+var speed = 0;
+var is_sprinting = true;
+const WALK_SPEED = 8.0
+const SPRINT_SPEED = 15.0
+const JUMP_VELOCITY = 12
 
-var gravity = 9.8
+# Dash
+const DASH_SPEED = SPRINT_SPEED * 1.7
+const DASH_DURATION = 0.3
+const DASH_COOLDOWN = 2.0
+var is_dashing = false
+var dash_timer = 0.0 # TODO: replace with get_tree().create_timer()
+var dash_cooldown_timer = 0.0
+var dash_direction = Vector3.ZERO
+
+# Camera
+const SENSITIVITY = 0.0023
+
+# Head bob
+const BOB_FREQ = 1.5
+const BOB_AMP = 0.08
+var t_bob = 0;
+
+# FOV
+const BASE_FOV = 75.0
+const FOV_CHANGE = 1.5
 
 @onready var head = $Head
-@onready var cam  = $Head/Camera3D
+@onready var camera = $Head/Camera3D
 
-func _ready() -> void:
+func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSETIVITY)
-		cam.rotate_x(-event.relative.y * SENSETIVITY)
-		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		head.rotate_y(-event.relative.x * SENSITIVITY)
+		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+		
+	if event.is_action_pressed("ui_cancel"): # Esc
+		get_tree().quit()
+		
+	if event.is_action_pressed("Sprint"): # Shift
+		is_sprinting  = not is_sprinting
+		
+	if event.is_action_pressed("Dash") and dash_cooldown_timer <= 0 and not is_dashing: # E
+		start_dash()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$SanityBar.value -= 0.01
+	
+	if is_dashing:
+		dash_timer -= _delta
+		if dash_timer <= 0:
+			end_dash()
+	
+	if dash_cooldown_timer > 0:
+		dash_cooldown_timer -= _delta
+		$DashCooldownBar.value = (DASH_COOLDOWN - dash_cooldown_timer) / DASH_COOLDOWN * 100
+	else:
+		$DashCooldownBar.value = 100
 
 func _physics_process(delta: float) -> void:
+	if is_dashing:
+		velocity = dash_direction * DASH_SPEED
+		_fov(delta)
+		move_and_slide()
+		return
+	
+	speed = SPRINT_SPEED if is_sprinting else WALK_SPEED
+	
 	if not is_on_floor():
-		velocity.y -= gravity * delta
-	
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		velocity += get_gravity() * 2.5 * delta
+
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
-	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
+	var direction = (camera.global_transform.basis.z * input_dir.y + camera.global_transform.basis.x * input_dir.x).normalized()
+	direction.y = 0
+
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
+
+	# Head bob
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(t_bob)
 	
+	# FOV
+	_fov(delta)
+
 	move_and_slide()
+	
+func start_dash():
+	is_dashing = true
+	dash_timer = DASH_DURATION
+	dash_cooldown_timer = DASH_COOLDOWN
+
+	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
+
+	if input_dir.length() > 0:
+		dash_direction = (camera.global_transform.basis.z * input_dir.y + camera.global_transform.basis.x * input_dir.x).normalized()
+	else:
+		if is_on_floor():
+			dash_direction = -camera.global_transform.basis.z
+			dash_direction.y = 0
+			dash_direction = dash_direction.normalized()
+		else:
+			dash_direction = -camera.global_transform.basis.z.normalized()
+
+	
+func end_dash() -> void:
+	is_dashing = false
+	velocity.x = dash_direction.x * speed
+	velocity.z = dash_direction.z * speed
+	
+func _headbob(time) -> Vector3:
+	var pos = Vector3.ZERO
+	pos.y = sin(time * BOB_FREQ) * BOB_AMP
+	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	return pos
+	
+func _fov(delta) -> void: 
+	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
+	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
+	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)

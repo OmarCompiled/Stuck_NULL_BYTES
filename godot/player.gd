@@ -1,6 +1,11 @@
 extends CharacterBody3D
 
-@export var sanity_bar: Node
+@onready var sanity_bar: Node = $SanityBar
+
+# Sanity
+const MAX_SANITY = 100.0
+const SANITY_LOSS_RATE = 0.01
+var sanity = MAX_SANITY
 
 # Movement
 var speed = 0;
@@ -35,10 +40,8 @@ const FOV_CHANGE = 1.5
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	sanity_bar = $SanityBar
 
-func _unhandled_input(event: InputEvent) -> void:  # Yusuf, this function is only for unhandeled input(e.g. mouse motion)
-													# You're looking for _process()
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -48,10 +51,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("Quit"): # Esc 
 		get_tree().quit()
 	
-	sanity_bar.value -= 0.01
-	
-	if sanity_bar.value == 0:
-		get_tree().quit()
+	take_damage(SANITY_LOSS_RATE)
 	
 	if is_dashing:
 		dash_timer -= _delta
@@ -80,8 +80,7 @@ func start_dash():
 			dash_direction = dash_direction.normalized()
 		else:
 			dash_direction = -camera.global_transform.basis.z.normalized()
-
-	
+			
 func end_dash() -> void:
 	is_dashing = false
 	velocity.x = dash_direction.x * speed
@@ -136,3 +135,16 @@ func _physics_process(delta: float) -> void:
 	_fov(delta)
 
 	move_and_slide()
+	
+func take_damage(damage: float):
+	sanity = max(0, sanity - damage)
+	sanity_bar.value = sanity
+	if sanity == 0:
+		die()
+		
+func heal(health: float = ):
+	sanity = min(sanity + health, MAX_SANITY)
+	sanity_bar.value = sanity
+	
+func die():
+	get_tree().quit()

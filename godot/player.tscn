@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://f8mp43vqb13f"]
+[gd_scene load_steps=6 format=3 uid="uid://f8mp43vqb13f"]
 
 [ext_resource type="Script" uid="uid://dnayske5ek28m" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://fg0xg2wcui3q" path="res://flashlight.tscn" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://ci7kfw5q5qn2k" path="res://enemy_counter.gd" id="3_i3pqv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -42,7 +43,7 @@ show_percentage = false
 [node name="RichTextLabel" type="RichTextLabel" parent="SanityBar"]
 layout_mode = 0
 offset_top = -42.0
-offset_right = 289.0
+offset_right = 269.0
 offset_bottom = -2.0
 text = "Sanity"
 horizontal_alignment = 1
@@ -60,10 +61,21 @@ show_percentage = false
 [node name="RichTextLabel" type="RichTextLabel" parent="DashCooldownBar"]
 layout_mode = 0
 offset_top = -42.0
-offset_right = 289.0
+offset_right = 269.0
 offset_bottom = -2.0
 text = "Dash"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="EnemyCounter" type="RichTextLabel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -289.0
+offset_top = 5.0
+offset_bottom = 45.0
+grow_horizontal = 0
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_i3pqv")

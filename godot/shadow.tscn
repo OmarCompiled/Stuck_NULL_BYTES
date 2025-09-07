@@ -1,21 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqagwekx7o53h"]
+[gd_scene load_steps=6 format=3 uid="uid://cqagwekx7o53h"]
 
-[ext_resource type="Texture2D" uid="uid://c5w12ettvu2vj" path="res://assets/shadow.png" id="1_6pqxc"]
 [ext_resource type="Script" uid="uid://b5x3d1pweoiom" path="res://shadow.gd" id="1_n2o5g"]
+[ext_resource type="PackedScene" uid="uid://bkjsh3itjc877" path="res://DamageParticles.tscn" id="2_n2o5g"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n2o5g"]
-height = 3.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_n2o5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n2o5g"]
+albedo_color = Color(0.17, 0.17, 0.17, 1)
+metallic = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_icb2k"]
 
 [node name="Shadow" type="CharacterBody3D"]
 script = ExtResource("1_n2o5g")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.05, 0, 0, 0, 0.15, 0, 0, 0, 0.1, 0, 0, 0)
-texture = ExtResource("1_6pqxc")
-
-[node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(-2.18557e-09, 0, 0.1, 0, 0.15, 0, -0.05, 0, -4.37114e-09, 0, 0, 0)
-texture = ExtResource("1_6pqxc")
+damage_particles = ExtResource("2_n2o5g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_n2o5g")
+transform = Transform3D(1.45644, 0, 0, 0, 1.45644, 0, 0, 0, 1.45644, 0, 0, 0)
+shape = SubResource("SphereShape3D_n2o5g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.46441, 0, 0, 0, 1.46441, 0, 0, 0, 1.46441, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_n2o5g")
+mesh = SubResource("SphereMesh_icb2k")

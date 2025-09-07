@@ -16,6 +16,7 @@ var max_speed: float = 10.0
 var speed: float
 
 func _ready() -> void:
+	GameManager.total_enemies += 1
 	speed = randf_range(min_speed, max_speed)
 
 func _physics_process(_delta: float) -> void:

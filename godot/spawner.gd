@@ -8,7 +8,6 @@ func _ready() -> void:
 
 func _spawn_entity():
 	if randf() < spawn_probability and entity_scene:
-		GameManager.total_enemies += 1
 		var entity = entity_scene.instantiate()
 		get_parent().add_child(entity)
 		if entity is Node3D:

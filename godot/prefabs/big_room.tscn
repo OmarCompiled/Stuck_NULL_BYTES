@@ -28,7 +28,7 @@ transform = Transform3D(-4.37114e-08, 0, -0.4, 0, 1, 0, 1, 0, -1.74846e-08, -0.0
 operation = 2
 size = Vector3(0.253, 8.975, 18)
 
-[node name="DOOR?_BACK" type="CSGBox3D" parent="CSGBox3D"]
+[node name="DOOR_BACK" type="CSGBox3D" parent="CSGBox3D"]
 transform = Transform3D(-4.37114e-08, 0, -0.4, 0, 1, 0, 1, 0, -1.74846e-08, 0.00308443, -10.2753, 14.8767)
 operation = 2
 size = Vector3(0.256, 9.049, 18)

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var sanity_level: float
+@export var sanity_bar: Node
 
 # Movement
 var speed = 0;
@@ -35,7 +35,7 @@ const FOV_CHANGE = 1.5
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	sanity_level = $SanityBar.value
+	sanity_bar = $SanityBar
 
 func _unhandled_input(event: InputEvent) -> void:  # Yusuf, this function is only for unhandeled input(e.g. mouse motion)
 													# You're looking for _process()
@@ -47,8 +47,11 @@ func _unhandled_input(event: InputEvent) -> void:  # Yusuf, this function is onl
 func _process(_delta: float) -> void:	
 	if Input.is_action_pressed("Quit"): # Esc 
 		get_tree().quit()
-		
-	$SanityBar.value -= 0.01
+	
+	sanity_bar.value -= 0.01
+	
+	if sanity_bar.value == 0:
+		get_tree().quit()
 	
 	if is_dashing:
 		dash_timer -= _delta
@@ -61,8 +64,6 @@ func _process(_delta: float) -> void:
 	else:
 		$DashCooldownBar.value = 100
 
-
-	
 func start_dash():
 	is_dashing = true
 	dash_timer = DASH_DURATION

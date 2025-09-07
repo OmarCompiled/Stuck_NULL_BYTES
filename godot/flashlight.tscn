@@ -32,3 +32,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 value = 100.0
 show_percentage = false
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.566, 0, 0)
+target_position = Vector3(44.7, -1, 0)

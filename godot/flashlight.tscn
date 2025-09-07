@@ -1,19 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://fg0xg2wcui3q"]
+[gd_scene load_steps=3 format=3 uid="uid://fg0xg2wcui3q"]
 
 [ext_resource type="Script" uid="uid://d238qiy1febyl" path="res://flashlight.gd" id="1_h3kvc"]
 [ext_resource type="PackedScene" uid="uid://c12urfrjbllcp" path="res://assets/scene.gltf" id="1_nnxok"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_h3kvc"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3kvc"]
-texture = SubResource("CanvasTexture_h3kvc")
-modulate_color = Color(0.47, 0.455117, 0.3807, 1)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_wm4p2"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btnnp"]
-texture = SubResource("CanvasTexture_wm4p2")
-modulate_color = Color(1, 0.968627, 0.807843, 1)
 
 [node name="Flashlight" type="Node3D"]
 script = ExtResource("1_h3kvc")
@@ -42,7 +30,5 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_styles/background = SubResource("StyleBoxTexture_h3kvc")
-theme_override_styles/fill = SubResource("StyleBoxTexture_btnnp")
 value = 100.0
 show_percentage = false

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # Movement
 var speed = 0;
-var is_sprinting = true;
+var is_sprinting = false;
 const WALK_SPEED = 8.0
 const SPRINT_SPEED = 15.0
 const JUMP_VELOCITY = 12
@@ -34,22 +34,17 @@ const FOV_CHANGE = 1.5
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:  # Yusuf, this function is only for unhandeled input(e.g. mouse motion)
+													# You're looking for _process()
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-		
-	if event.is_action_pressed("ui_cancel"): # Esc
-		get_tree().quit()
-		
-	if event.is_action_pressed("Sprint"): # Shift
-		is_sprinting  = not is_sprinting
-		
-	if event.is_action_pressed("Dash") and dash_cooldown_timer <= 0 and not is_dashing: # E
-		start_dash()
 
 func _process(_delta: float) -> void:
+	if Input.is_action_pressed("Quit"): # Esc 
+		get_tree().quit()
+		
 	$SanityBar.value -= 0.01
 	
 	if is_dashing:
@@ -63,36 +58,7 @@ func _process(_delta: float) -> void:
 	else:
 		$DashCooldownBar.value = 100
 
-func _physics_process(delta: float) -> void:
-	if is_dashing:
-		velocity = dash_direction * DASH_SPEED
-		_fov(delta)
-		move_and_slide()
-		return
-	
-	speed = SPRINT_SPEED if is_sprinting else WALK_SPEED
-	
-	if not is_on_floor():
-		velocity += get_gravity() * 2.5 * delta
 
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
-	var direction = (camera.global_transform.basis.z * input_dir.y + camera.global_transform.basis.x * input_dir.x).normalized()
-	direction.y = 0
-
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
-
-	# Head bob
-	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = _headbob(t_bob)
-	
-	# FOV
-	_fov(delta)
-
-	move_and_slide()
 	
 func start_dash():
 	is_dashing = true
@@ -127,3 +93,42 @@ func _fov(delta) -> void:
 	var velocity_clamped = clamp(velocity.length(), 0.5, DASH_SPEED)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+
+func _physics_process(delta: float) -> void:
+	if is_dashing:
+		velocity = dash_direction * DASH_SPEED
+		_fov(delta)
+		move_and_slide()
+		return
+	
+	speed = SPRINT_SPEED if is_sprinting else WALK_SPEED
+	
+	if not is_on_floor():
+		velocity += get_gravity() * 2.5 * delta
+
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		
+	if Input.is_action_pressed("Sprint"):
+		is_sprinting = true
+	else:
+		is_sprinting = false
+	
+	if Input.is_action_pressed("Dash") and dash_cooldown_timer <= 0 and not is_dashing: # E
+		start_dash()
+
+	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
+	var direction = (camera.global_transform.basis.z * input_dir.y + camera.global_transform.basis.x * input_dir.x).normalized()
+	direction.y = 0
+
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
+
+	# Head bob
+	t_bob += delta * velocity.length() * float(is_on_floor()) # only bobs when walking, not jumping
+	camera.transform.origin = _headbob(t_bob)
+	
+	# FOV
+	_fov(delta)
+
+	move_and_slide()

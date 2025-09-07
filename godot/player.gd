@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var sanity_level: float
+
 # Movement
 var speed = 0;
 var is_sprinting = false;
@@ -33,6 +35,7 @@ const FOV_CHANGE = 1.5
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	sanity_level = $SanityBar.value
 
 func _unhandled_input(event: InputEvent) -> void:  # Yusuf, this function is only for unhandeled input(e.g. mouse motion)
 													# You're looking for _process()
@@ -41,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:  # Yusuf, this function is onl
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
-func _process(_delta: float) -> void:
+func _process(_delta: float) -> void:	
 	if Input.is_action_pressed("Quit"): # Esc 
 		get_tree().quit()
 		

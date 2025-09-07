@@ -24,6 +24,7 @@ shape = SubResource("ConvexPolygonShape3D_4flbx")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.636829, 0.00576949)
+cull_mask = 1048573
 current = true
 
 [node name="Flashlight" parent="Head/Camera3D" instance=ExtResource("2_onrkg")]

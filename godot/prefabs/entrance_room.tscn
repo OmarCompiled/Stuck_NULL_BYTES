@@ -33,4 +33,5 @@ omni_range = 9.29275
 [node name="RemoveUnusedDoors" type="Node" parent="."]
 script = ExtResource("2_st7u1")
 
-[node name="Player" parent="." instance=ExtResource("3_3r8h8")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_3r8h8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.38186, 0)

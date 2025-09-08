@@ -1,0 +1,18 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd2sht8icfr86"]
+
+[ext_resource type="Script" uid="uid://dscn6gir8k4fy" path="res://addons/SimpleDungeons/DungeonGenerator3D.gd" id="1_0m81q"]
+[ext_resource type="PackedScene" uid="uid://cosd0okx85u28" path="res://prefabs/big_room.tscn" id="2_h7uww"]
+[ext_resource type="PackedScene" uid="uid://dfykysdqk34bh" path="res://prefabs/chest_room.tscn" id="3_p364u"]
+[ext_resource type="PackedScene" uid="uid://bkfmmoy8akomw" path="res://prefabs/entrance_room.tscn" id="4_leyr2"]
+[ext_resource type="PackedScene" uid="uid://d3dglyqlcv3ns" path="res://prefabs/item_room.tscn" id="5_waf00"]
+[ext_resource type="PackedScene" uid="uid://cm2xm3asvprnh" path="res://prefabs/stair_room.tscn" id="6_k38dv"]
+[ext_resource type="PackedScene" uid="uid://mo4d62qc6mn6" path="res://prefabs/corridor.tscn" id="7_amu1j"]
+
+[node name="PrototypeLevelGenerator" type="Node3D"]
+script = ExtResource("1_0m81q")
+room_scenes = Array[PackedScene]([ExtResource("2_h7uww"), ExtResource("3_p364u"), ExtResource("4_leyr2"), ExtResource("5_waf00"), ExtResource("6_k38dv")])
+corridor_room_scene = ExtResource("7_amu1j")
+dungeon_size = Vector3i(20, 3, 20)
+generate_on_ready = false
+max_retries = 5
+metadata/_custom_type_script = "uid://dscn6gir8k4fy"

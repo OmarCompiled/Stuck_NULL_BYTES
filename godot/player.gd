@@ -145,7 +145,7 @@ func _physics_process(delta: float) -> void:
 			#body.apply_knockback(-collision.get_normal() * knockback_force)
 			
 func die():
-	get_tree().quit()
+	GameManager.end_game()
 
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	if area.name == "Hitbox":

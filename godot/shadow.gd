@@ -1,9 +1,9 @@
 extends CharacterBody3D
 class_name Shadow
 
-@export var health_component: Node
+@export var health_component: HealthComponent
 @export var damage_particles: PackedScene
-@export var sanity_reward = 20
+@export var sanity_reward = 10
 @export var knockback_decay: float = 0.95
 @export var dmg = 10
 @export var min_speed: float = 7.0
@@ -24,18 +24,16 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:	
 	if is_knocked_back:
-		velocity.x *= knockback_decay
-		velocity.y *= knockback_decay
-		velocity.z *= knockback_decay
-		
+		velocity *= knockback_decay
 		knockback_timer -= delta
-		if knockback_timer <= 0:
-			is_knocked_back = false
+		is_knocked_back = knockback_timer > 0
 			
 	elif player:
+		# If the player is inside the detection area
 		if look_for_player:
 			check_line_of_sight(player)
 			
+		# If the raycast reached the player
 		if can_see_player:
 			var to_player = player.global_position - global_position
 			var dir = to_player.normalized()
@@ -56,12 +54,14 @@ func _on_damage_taken(_damage: float):
 func _on_health_depleted():
 	if player:
 		player.health_component.heal(sanity_reward)
-		GameManager.enemies_killed += 1
-		queue_free()
+		
+	GameManager.enemies_killed += 1
+	queue_free()
 
 func _spawn_particles():
 	if damage_particles:
 		var p = damage_particles.instantiate()
+		# NOTE: Particles are added to the parent so they aren't freed when the monster dies.
 		get_parent().add_child(p)
 		p.global_position = global_position
 		p.emitting = true
@@ -87,4 +87,3 @@ func check_line_of_sight(target):
 	
 	# Hit nothing or hit the player => can see the player
 	can_see_player = result.is_empty() or result.collider == target
-	player = target

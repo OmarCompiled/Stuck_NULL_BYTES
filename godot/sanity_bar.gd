@@ -12,5 +12,5 @@ func _on_invincibility_started():
 func _on_invincibility_ended():
 	self_modulate = normal_color
 	
-func _on_health_changed(new_health: Variant) -> void:
+func _on_health_changed(new_health: float)-> void:
 	value = new_health

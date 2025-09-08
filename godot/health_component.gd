@@ -3,9 +3,9 @@ class_name HealthComponent
 
 signal invincibility_started()
 signal invincibility_ended()
-signal health_changed(new_health)
+signal health_changed(new_health : float)
 signal health_depleted()
-signal damage_taken(amount)
+signal damage_taken(amount : float)
 
 @export var max_health: float = 100
 @export var invincibility_time: float = 0.5
@@ -18,7 +18,7 @@ func _ready():
 	health_changed.emit(current_health)
 
 # NOTE: ignore_invincibility is for the constant sanity loss
-# and other potential additions in the future
+# and potentially similar additions in the future (e.g. poison damage)
 func take_damage(amount: float, ignore_invincibility: bool = false):
 	if is_invincible and not ignore_invincibility:
 		return

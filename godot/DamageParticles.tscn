@@ -5,16 +5,18 @@ albedo_color = Color(0, 0, 0, 1)
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_1r40i"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.472906, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.960591, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_jw7w8"]
 curve = SubResource("Curve_1r40i")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jw7w8"]
 spread = 180.0
-initial_velocity_min = 2.0
-initial_velocity_max = 4.0
+initial_velocity_min = 5.0
+initial_velocity_max = 7.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.2
 scale_max = 0.4
@@ -25,10 +27,10 @@ scale_curve = SubResource("CurveTexture_jw7w8")
 [node name="DamageParticles" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_1r40i")
 emitting = false
-amount = 20
-lifetime = 0.8
+amount = 3
+lifetime = 0.65
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.5
 visibility_aabb = AABB(-2.6174, -2.51297, -2.09504, 5.43032, 5.49715, 4.97637)
 process_material = SubResource("ParticleProcessMaterial_jw7w8")
 draw_pass_1 = SubResource("SphereMesh_1r40i")

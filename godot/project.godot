@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GameManager="*res://game_manager.gd"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SimpleDungeons/plugin.cfg")

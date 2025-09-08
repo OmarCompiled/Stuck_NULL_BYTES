@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var sanity_bar: Node = $SanityBar
-@export var health_component: Node
+@export var health_component: HealthComponent
 
 # Sanity
 const SANITY_LOSS_RATE = 0.01
@@ -17,9 +17,9 @@ const JUMP_VELOCITY = 12
 const DASH_SPEED = SPRINT_SPEED * 1.7
 const DASH_DURATION = 0.3
 const DASH_COOLDOWN = 2.0
+var can_dash = true
 var is_dashing = false
-var dash_timer = 0.0 # TODO: replace with get_tree().create_timer()
-var dash_cooldown_timer = 0.0
+var dash_cooldown_timer: SceneTreeTimer
 var dash_direction = Vector3.ZERO
 
 # Camera
@@ -49,27 +49,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _process(_delta: float) -> void:	
-	if Input.is_action_pressed("Quit"): # Esc 
-		get_tree().quit()
-	
 	health_component.take_damage(SANITY_LOSS_RATE, true)
-	
-	if is_dashing:
-		dash_timer -= _delta
-		if dash_timer <= 0:
-			end_dash()
-	
-	if dash_cooldown_timer > 0:
-		dash_cooldown_timer -= _delta
-		$DashCooldownBar.value = (DASH_COOLDOWN - dash_cooldown_timer) / DASH_COOLDOWN * 100
+		
+	if dash_cooldown_timer:
+		$DashCooldownBar.value = 100 - (dash_cooldown_timer.time_left / DASH_COOLDOWN) * 100
 	else:
 		$DashCooldownBar.value = 100
 
 func start_dash():
+	dash_cooldown_timer = get_tree().create_timer(DASH_COOLDOWN)
+	can_dash = false
 	is_dashing = true
-	dash_timer = DASH_DURATION
-	dash_cooldown_timer = DASH_COOLDOWN
-
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
 
 	if input_dir.length() > 0:
@@ -82,10 +72,16 @@ func start_dash():
 		else:
 			dash_direction = -camera.global_transform.basis.z.normalized()
 			
+	await get_tree().create_timer(DASH_DURATION).timeout
+	end_dash()
+			
 func end_dash() -> void:
 	is_dashing = false
+	# NOTE: velocity.y is unchanged for smoother movement
 	velocity.x = dash_direction.x * speed
 	velocity.z = dash_direction.z * speed
+	await dash_cooldown_timer.timeout
+	can_dash = true
 	
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
@@ -118,7 +114,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		is_sprinting = false
 	
-	if Input.is_action_pressed("Dash") and dash_cooldown_timer <= 0 and not is_dashing: # E
+	if Input.is_action_pressed("Dash") and can_dash: # E
 		start_dash()
 
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
@@ -137,13 +133,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	#for index in get_slide_collision_count():
-		#var collision := get_slide_collision(index)
-		#var body := collision.get_collider()
-		#if body is Shadow:
-			#health_component.take_damage(body.dmg)
-			#body.apply_knockback(-collision.get_normal() * knockback_force)
-			
 func die():
 	GameManager.end_game()
 

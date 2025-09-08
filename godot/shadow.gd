@@ -43,13 +43,6 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	look_at(player.global_transform.origin, Vector3.UP)
 	
-	for index in get_slide_collision_count():
-		var collision := get_slide_collision(index)
-		var body := collision.get_collider()
-		if body and body.is_in_group("Player"):
-			body.take_damage(DMG)
-
-
 func take_damage(damage: float):
 	health = max(0, health - damage)
 	_spawn_particles()

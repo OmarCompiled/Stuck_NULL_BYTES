@@ -136,6 +136,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var body := collision.get_collider()
+		if body.name == "Shadow":
+			take_damage(body.DMG)
+	
 func take_damage(damage: float):
 	sanity = max(0, sanity - damage)
 	sanity_bar.value = sanity

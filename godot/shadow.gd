@@ -3,9 +3,9 @@ class_name Shadow
 
 @export var health_component: HealthComponent
 @export var damage_particles: PackedScene
-@export var sanity_reward = 10
+@export var sanity_reward = 15
 @export var knockback_decay: float = 0.95
-@export var dmg = 10
+@export var dmg = 20
 @export var min_speed: float = 7.0
 @export var max_speed: float = 10.0
 

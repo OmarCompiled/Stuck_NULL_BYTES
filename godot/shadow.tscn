@@ -44,6 +44,7 @@ monitoring = false
 shape = SubResource("SphereShape3D_ov1mx")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_icb2k")]
+max_health = 150.0
 invincibility_time = 0.0
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_3d_body_entered"]

@@ -1,11 +1,10 @@
 extends CharacterBody3D
 
 @onready var sanity_bar: Node = $SanityBar
+@export var health_component: Node
 
 # Sanity
-const MAX_SANITY = 100.0
 const SANITY_LOSS_RATE = 0.01
-var sanity = MAX_SANITY
 
 # Movement
 var speed = 0;
@@ -35,6 +34,8 @@ var t_bob = 0;
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 
+var knockback_force = 17
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
@@ -51,7 +52,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("Quit"): # Esc 
 		get_tree().quit()
 	
-	take_damage(SANITY_LOSS_RATE)
+	health_component.take_damage(SANITY_LOSS_RATE, true)
 	
 	if is_dashing:
 		dash_timer -= _delta
@@ -136,21 +137,20 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	for index in get_slide_collision_count():
-		var collision := get_slide_collision(index)
-		var body := collision.get_collider()
-		if body.name == "Shadow":
-			take_damage(body.DMG)
-	
-func take_damage(damage: float):
-	sanity = max(0, sanity - damage)
-	sanity_bar.value = sanity
-	if sanity == 0:
-		die()
-		
-func heal(health: float = ):
-	sanity = min(sanity + health, MAX_SANITY)
-	sanity_bar.value = sanity
-	
+	#for index in get_slide_collision_count():
+		#var collision := get_slide_collision(index)
+		#var body := collision.get_collider()
+		#if body is Shadow:
+			#health_component.take_damage(body.dmg)
+			#body.apply_knockback(-collision.get_normal() * knockback_force)
+			
 func die():
 	get_tree().quit()
+
+func _on_hitbox_area_entered(area: Area3D) -> void:
+	if area.name == "Hitbox":
+		var enemy = area.get_parent()
+		var knockback_dir = enemy.global_position - global_position
+		health_component.take_damage(enemy.dmg)
+		enemy.apply_knockback(knockback_dir * knockback_force)
+		

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqagwekx7o53h"]
+[gd_scene load_steps=9 format=3 uid="uid://cqagwekx7o53h"]
 
 [ext_resource type="Script" uid="uid://b5x3d1pweoiom" path="res://shadow.gd" id="1_n2o5g"]
 [ext_resource type="PackedScene" uid="uid://bkjsh3itjc877" path="res://DamageParticles.tscn" id="2_n2o5g"]
+[ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://health_component.tscn" id="3_icb2k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n2o5g"]
 
@@ -11,8 +12,15 @@ metallic = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_icb2k"]
 
-[node name="Shadow" type="CharacterBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_icb2k"]
+radius = 30.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ov1mx"]
+radius = 0.825561
+
+[node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_n2o5g")
+health_component = NodePath("HealthComponent")
 damage_particles = ExtResource("2_n2o5g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -23,3 +31,22 @@ shape = SubResource("SphereShape3D_n2o5g")
 transform = Transform3D(1.46441, 0, 0, 0, 1.46441, 0, 0, 0, 1.46441, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_n2o5g")
 mesh = SubResource("SphereMesh_icb2k")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_icb2k")
+
+[node name="Hitbox" type="Area3D" parent="."]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_ov1mx")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_icb2k")]
+invincibility_time = 0.0
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_area_3d_body_exited"]
+[connection signal="damage_taken" from="HealthComponent" to="." method="_on_damage_taken"]
+[connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_depleted"]

@@ -1,53 +1,61 @@
 extends CharacterBody3D
 class_name Shadow
 
-# NOTE: this works now because shadows are only instanced after dungeon generation
-# is done (check the spawner script for details)
-@onready var player = get_tree().get_first_node_in_group("Player")
+@export var health_component: Node
 @export var damage_particles: PackedScene
-@export var health = 100
 @export var sanity_reward = 20
+@export var knockback_decay: float = 0.95
+@export var dmg = 10
+@export var min_speed: float = 7.0
+@export var max_speed: float = 10.0
 
-const STOP_DIST = 2
-const DMG = 0.4
-
-var min_speed: float = 7.0
-var max_speed: float = 10.0
 var speed: float
+var can_see_player: bool = false
+var is_knocked_back: bool = false
+var knockback_timer = 0.0
+var knockback_duration = 0.7
+
+var player
+var look_for_player = false
 
 func _ready() -> void:
 	GameManager.total_enemies += 1
 	speed = randf_range(min_speed, max_speed)
 
-func _physics_process(_delta: float) -> void:
-	if not player:
-		return
-
-	var pos = global_transform.origin
-	var target = player.global_transform.origin
-	var to_player = target - pos
-	var dist = to_player.length()
-	
-	if dist > 0.1:
-		var dir = to_player / dist
-		var move_speed = speed
-		if dist < STOP_DIST:
-			move_speed *= dist / STOP_DIST
-		velocity = dir * move_speed
-	else:
-		velocity = Vector3.ZERO
-	
-	if dist < STOP_DIST:
-		player.take_damage(0.05)
+func _physics_process(delta: float) -> void:	
+	if is_knocked_back:
+		velocity.x *= knockback_decay
+		velocity.y *= knockback_decay
+		velocity.z *= knockback_decay
+		
+		knockback_timer -= delta
+		if knockback_timer <= 0:
+			is_knocked_back = false
+			
+	elif player:
+		if look_for_player:
+			check_line_of_sight(player)
+			
+		if can_see_player:
+			var to_player = player.global_position - global_position
+			var dir = to_player.normalized()
+			velocity = dir * speed
+				
+		look_at(player.global_position, Vector3.UP)
 	
 	move_and_slide()
-	look_at(player.global_transform.origin, Vector3.UP)
 	
-func take_damage(damage: float):
-	health = max(0, health - damage)
+func apply_knockback(force):
+	knockback_timer = knockback_duration
+	is_knocked_back = true
+	velocity += force
+
+func _on_damage_taken(_damage: float):
 	_spawn_particles()
-	if health == 0:
-		player.heal(sanity_reward)
+		
+func _on_health_depleted():
+	if player:
+		player.health_component.heal(sanity_reward)
 		GameManager.enemies_killed += 1
 		queue_free()
 
@@ -57,3 +65,26 @@ func _spawn_particles():
 		get_parent().add_child(p)
 		p.global_position = global_position
 		p.emitting = true
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.name != "Player": return
+	look_for_player = true
+	player = body
+	
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.name != "Player": return
+	look_for_player = false
+
+func check_line_of_sight(target):
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(
+		global_position,
+		target.global_position
+	)
+	query.exclude = [self]
+	
+	var result = space_state.intersect_ray(query)
+	
+	# Hit nothing or hit the player => can see the player
+	can_see_player = result.is_empty() or result.collider == target
+	player = target

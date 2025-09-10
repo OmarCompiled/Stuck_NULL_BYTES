@@ -5,6 +5,7 @@ extends CharacterBody3D
 
 # Sanity
 const SANITY_LOSS_RATE = 0.01
+var is_losing_sanity = true
 
 # Movement
 var speed = 0;
@@ -49,7 +50,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _process(_delta: float) -> void:	
-	health_component.take_damage(SANITY_LOSS_RATE, true)
+	if is_losing_sanity: 
+		health_component.take_damage(SANITY_LOSS_RATE, true)
 		
 	if dash_cooldown_timer:
 		$DashCooldownBar.value = 100 - (dash_cooldown_timer.time_left / DASH_COOLDOWN) * 100

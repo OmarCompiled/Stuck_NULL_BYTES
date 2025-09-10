@@ -48,4 +48,4 @@ shape = SubResource("BoxShape3D_wkgr2")
 
 [connection signal="body_entered" from="HealingArea" to="HealingArea" method="_on_body_entered"]
 [connection signal="body_exited" from="HealingArea" to="HealingArea" method="_on_body_exited"]
-[connection signal="health_depleted" from="HealingArea" to="OmniLight3D" method="_on_healing_area_health_depleted"]
+[connection signal="room_health_depleted" from="HealingArea" to="OmniLight3D" method="_on_healing_area_room_health_depleted"]

@@ -77,12 +77,12 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func check_line_of_sight(target):
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(
-		global_position,
-		target.global_position
-	)
-	query.exclude = [self]
+	var query = PhysicsRayQueryParameters3D.new()
 	
+	query.from = global_position
+	query.to = target.global_position
+	query.exclude = [self]
+
 	var result = space_state.intersect_ray(query)
 	
 	# Hit nothing or hit the player => can see the player

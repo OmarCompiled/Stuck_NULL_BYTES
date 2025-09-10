@@ -41,5 +41,4 @@ omni_range = 9.28647
 
 [node name="Spawner" parent="." instance=ExtResource("3_th8mx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.70567, 0)
-spawn_probability = 1.0
 entity_scene = ExtResource("4_fy8ru")

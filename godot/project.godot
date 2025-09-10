@@ -23,10 +23,6 @@ GameManager="*res://game_manager.gd"
 
 gdscript/warnings/integer_division=0
 
-[display]
-
-window/size/mode=3
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SimpleDungeons/plugin.cfg")

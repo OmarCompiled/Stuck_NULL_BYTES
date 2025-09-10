@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3dglyqlcv3ns"]
+[gd_scene load_steps=6 format=3 uid="uid://d3dglyqlcv3ns"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_wkgr2"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://remove_unused_doors.gd" id="2_vjcru"]
+[ext_resource type="Script" uid="uid://jxx8suhd7ebh" path="res://prefabs/healing_area.gd" id="3_vjcru"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anrrp"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wkgr2"]
+
 [node name="ItemRoom" type="Node3D"]
 script = ExtResource("1_wkgr2")
-min_count = 0
-max_count = 1
+min_count = 3
 metadata/_custom_type_script = "uid://dg0fdhchjs2xg"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -33,3 +35,13 @@ light_color = Color(0.1875, 1, 0, 1)
 light_energy = 3.054
 shadow_enabled = true
 omni_range = 15.7367
+
+[node name="HealingArea" type="Area3D" parent="."]
+script = ExtResource("3_vjcru")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealingArea"]
+transform = Transform3D(9.26314, 0, 0, 0, 9.26314, 0, 0, 0, 9.26314, 0, 0, 0)
+shape = SubResource("BoxShape3D_wkgr2")
+
+[connection signal="body_entered" from="HealingArea" to="HealingArea" method="_on_body_entered"]
+[connection signal="body_exited" from="HealingArea" to="HealingArea" method="_on_body_exited"]

@@ -11,6 +11,7 @@
 [node name="ItemRoom" type="Node3D"]
 script = ExtResource("1_wkgr2")
 min_count = 3
+max_count = 3
 metadata/_custom_type_script = "uid://dg0fdhchjs2xg"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]

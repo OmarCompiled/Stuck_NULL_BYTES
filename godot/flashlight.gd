@@ -3,7 +3,7 @@ extends Node3D
 @onready var spot_light = $DetectionArea/SpotLight3D
 @onready var cooldown = $CoolDownBar
 @onready var detection_area = $DetectionArea
-@export var damage_per_second: float = 120.0
+@export var damage_per_second: float = 150.0
 @export var drain_per_second: float = 50
 @export var recharge_per_second: float = 100/3
 

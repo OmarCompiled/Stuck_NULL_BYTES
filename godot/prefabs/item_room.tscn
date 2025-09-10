@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3dglyqlcv3ns"]
+[gd_scene load_steps=7 format=3 uid="uid://d3dglyqlcv3ns"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_wkgr2"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://remove_unused_doors.gd" id="2_vjcru"]
 [ext_resource type="Script" uid="uid://jxx8suhd7ebh" path="res://prefabs/healing_area.gd" id="3_vjcru"]
+[ext_resource type="Script" uid="uid://c7k7nrhp3yjhd" path="res://prefabs/omni_light_3d.gd" id="3_xmq27"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anrrp"]
 
@@ -33,9 +34,10 @@ script = ExtResource("2_vjcru")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0.1875, 1, 0, 1)
-light_energy = 3.054
+light_energy = 3.0
 shadow_enabled = true
 omni_range = 15.7367
+script = ExtResource("3_xmq27")
 
 [node name="HealingArea" type="Area3D" parent="."]
 script = ExtResource("3_vjcru")
@@ -46,3 +48,4 @@ shape = SubResource("BoxShape3D_wkgr2")
 
 [connection signal="body_entered" from="HealingArea" to="HealingArea" method="_on_body_entered"]
 [connection signal="body_exited" from="HealingArea" to="HealingArea" method="_on_body_exited"]
+[connection signal="health_depleted" from="HealingArea" to="OmniLight3D" method="_on_healing_area_health_depleted"]

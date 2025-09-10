@@ -47,20 +47,16 @@ omni_range = 9.28647
 
 [node name="Spawner" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9647, -13.3259, 8.41283)
-spawn_probability = 1.0
 entity_scene = ExtResource("3_x4dnl")
 
 [node name="Spawner2" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9647, -13.3259, -9.67047)
-spawn_probability = 1.0
 entity_scene = ExtResource("3_x4dnl")
 
 [node name="Spawner3" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1784, -13.3259, -9.67047)
-spawn_probability = 1.0
 entity_scene = ExtResource("3_x4dnl")
 
 [node name="Spawner4" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1784, -13.3259, 10.6858)
-spawn_probability = 1.0
 entity_scene = ExtResource("3_x4dnl")

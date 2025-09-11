@@ -18,12 +18,10 @@ health_component = NodePath("HealthComponent")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.05135, 0, 0, 0, 1.05135, 0, 0, 0, 1.05135, 0, 0, 0)
-visible = false
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_sh265")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-visible = false
 shape = SubResource("ConvexPolygonShape3D_4flbx")
 
 [node name="Head" type="Node3D" parent="."]
@@ -35,6 +33,7 @@ current = true
 
 [node name="Flashlight" parent="Head/Camera3D" instance=ExtResource("2_onrkg")]
 transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 0.645148, -0.425091, -0.551973)
+damage_per_second = 200.0
 
 [node name="Hitbox" type="Area3D" parent="."]
 

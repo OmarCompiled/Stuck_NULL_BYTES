@@ -2,8 +2,6 @@ extends Area3D
 
 signal room_health_depleted()
 
-@onready var light = $"../OmniLight3D"
-
 var player;
 
 var is_healing = false

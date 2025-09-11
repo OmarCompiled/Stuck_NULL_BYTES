@@ -6,6 +6,12 @@ var total_enemies: int = 0
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("Quit"): # Esc 
 		get_tree().quit()
+		
+	# NOTE: Will remove later
+	if Input.is_action_pressed("Pause"):
+		get_tree().paused = true
+		await get_tree().create_timer(10).timeout
+		get_tree().paused = false
 
 func reset():
 	enemies_killed = 0

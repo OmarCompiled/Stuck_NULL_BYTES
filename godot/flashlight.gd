@@ -10,6 +10,9 @@ extends Node3D
 var is_flashlight_on = false
 var enemies_in_area = []
 
+func _ready():
+	spot_light.light_energy = 0
+
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Flash") and cooldown.value > 0 and not is_flashlight_on:
 		_turn_flashlight_on()

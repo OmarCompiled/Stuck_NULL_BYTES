@@ -36,14 +36,11 @@ size = Vector3(0.256, 9.049, 18)
 [node name="RemoveUnusedDoors" type="Node" parent="."]
 script = ExtResource("2_stqen")
 
-[node name="Light" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 2.77556e-17, 6.5567e-08, -4.3142e-10, 0.999978, 0.00657984, -6.55655e-08, -0.00657984, 0.999978, 0, -8.43966, 0)
+[node name="Light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.5665, 0)
 light_color = Color(1, 0, 0, 1)
-light_energy = 16.0
-light_indirect_energy = 8.825
-light_volumetric_fog_energy = 12.115
-light_size = 1.0
-omni_range = 9.28647
+spot_range = 25.515
+spot_angle = 25.96
 
 [node name="Spawner" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9647, -13.3259, 8.41283)

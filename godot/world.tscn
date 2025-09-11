@@ -16,6 +16,8 @@ background_energy_multiplier = 0.32
 sky = SubResource("Sky_tlwt5")
 tonemap_mode = 2
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
 
 [node name="World" type="Node"]
 script = ExtResource("1_f3sb7")

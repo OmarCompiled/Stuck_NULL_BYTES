@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cosd0okx85u28" path="res://prefabs/big_room.tscn" id="2_h7uww"]
 [ext_resource type="PackedScene" uid="uid://dfykysdqk34bh" path="res://prefabs/chest_room.tscn" id="3_p364u"]
 [ext_resource type="PackedScene" uid="uid://bkfmmoy8akomw" path="res://prefabs/entrance_room.tscn" id="4_leyr2"]
-[ext_resource type="PackedScene" uid="uid://d3dglyqlcv3ns" path="res://prefabs/item_room.tscn" id="5_waf00"]
+[ext_resource type="PackedScene" uid="uid://d3dglyqlcv3ns" path="res://prefabs/healing_room.tscn" id="5_waf00"]
 [ext_resource type="PackedScene" uid="uid://cm2xm3asvprnh" path="res://prefabs/stair_room.tscn" id="6_k38dv"]
 [ext_resource type="PackedScene" uid="uid://mo4d62qc6mn6" path="res://prefabs/corridor.tscn" id="7_amu1j"]
 

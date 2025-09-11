@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_fy8ru"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://remove_unused_doors.gd" id="2_iopjx"]
 [ext_resource type="PackedScene" uid="uid://cudookqy5hwk7" path="res://spawner.tscn" id="3_th8mx"]
-[ext_resource type="PackedScene" uid="uid://c12urfrjbllcp" path="res://assets/scene.gltf" id="4_fy8ru"]
+[ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://shadow.tscn" id="4_fy8ru"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stqen"]
 
@@ -11,6 +11,7 @@
 script = ExtResource("1_fy8ru")
 size_in_voxels = Vector3i(3, 1, 2)
 min_count = 0
+max_count = 1
 metadata/_custom_type_script = "uid://dg0fdhchjs2xg"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -30,15 +31,10 @@ size = Vector3(0.9, 5.278, 3)
 [node name="RemoveUnusedDoors" type="Node" parent="."]
 script = ExtResource("2_iopjx")
 
-[node name="Light" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 2.77556e-17, 6.5567e-08, -4.3142e-10, 0.999978, 0.00657984, -6.55655e-08, -0.00657984, 0.999978, 0, -8.43966, 0)
-light_color = Color(1, 0, 0, 1)
-light_energy = 16.0
-light_indirect_energy = 8.825
-light_volumetric_fog_energy = 12.115
-light_size = 1.0
-omni_range = 9.28647
+[node name="Spawner2" parent="." instance=ExtResource("3_th8mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.24986, -1.70567, 0)
+entity_scene = ExtResource("4_fy8ru")
 
-[node name="Spawner" parent="." instance=ExtResource("3_th8mx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.70567, 0)
+[node name="Spawner3" parent="." instance=ExtResource("3_th8mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22212, -1.70567, 0)
 entity_scene = ExtResource("4_fy8ru")

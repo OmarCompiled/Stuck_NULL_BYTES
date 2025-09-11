@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://3vso5rhc2486" path="res://detection_area.gd" id="3_wm4p2"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wm4p2"]
-points = PackedVector3Array(0, 0, 0, 21.0644, 0, -160, 18.2423, 10.5322, -160, 10.5322, 18.2423, -160, 1.28978e-15, 21.0644, -160, -10.5322, 18.2423, -160, -18.2423, 10.5322, -160, -21.0644, 2.57956e-15, -160, -18.2423, -10.5322, -160, -10.5322, -18.2423, -160, -3.86934e-15, -21.0644, -160, 10.5322, -18.2423, -160, 18.2423, -10.5322, -160)
+points = PackedVector3Array(0, 0, 0, 17.5229, 0, -160, 15.1752, 8.76143, -160, 8.76143, 15.1752, -160, 1.07293e-15, 17.5229, -160, -8.76143, 15.1752, -160, -15.1752, 8.76143, -160, -17.5229, 2.14586e-15, -160, -15.1752, -8.76143, -160, -8.76143, -15.1752, -160, -3.21879e-15, -17.5229, -160, 8.76143, -15.1752, -160, 15.1752, -8.76143, -160)
 
 [node name="Flashlight" type="Node3D"]
 script = ExtResource("1_h3kvc")
@@ -33,7 +33,7 @@ show_percentage = false
 [node name="DetectionArea" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.173648, -0.984808, 0, 0.984808, -0.173648, 1, -7.5904e-09, -4.30473e-08, 0, 0, 0)
 script = ExtResource("3_wm4p2")
-angle = 15.0
+angle = 12.5
 range = 160.0
 
 [node name="Cone" type="CollisionShape3D" parent="DetectionArea"]
@@ -43,4 +43,4 @@ shape = SubResource("ConvexPolygonShape3D_wm4p2")
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
 spot_range = 13.3333
-spot_angle = 7.5
+spot_angle = 6.25

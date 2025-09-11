@@ -22,6 +22,7 @@ radius = 0.825561
 script = ExtResource("1_n2o5g")
 health_component = NodePath("HealthComponent")
 damage_particles = ExtResource("2_n2o5g")
+sanity_reward = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.45644, 0, 0, 0, 1.45644, 0, 0, 0, 1.45644, 0, 0, 0)
@@ -51,8 +52,8 @@ invincibility_time = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00469041, -4.76837e-07, -0.000295401)
 light_color = Color(0.163965, 0.0280897, 0.283854, 1)
 light_energy = 16.0
-light_volumetric_fog_energy = 4.0
-omni_range = 0.874718
+light_volumetric_fog_energy = 5.0
+omni_range = 0.949455
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_area_3d_body_exited"]

@@ -6,8 +6,8 @@ class_name Shadow
 @export var sanity_reward = 15
 @export var knockback_decay: float = 0.95
 @export var dmg = 20
-@export var min_speed: float = 8.0
-@export var max_speed: float = 10.0
+@export var min_speed: float = 10.0
+@export var max_speed: float = 12.0
 
 var speed: float
 var can_see_player: bool = false

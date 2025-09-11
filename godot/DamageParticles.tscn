@@ -1,8 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkjsh3itjc877"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r40i"]
-albedo_color = Color(0, 0, 0, 1)
-emission = Color(1, 1, 1, 1)
+albedo_color = Color(0.06, 0.06, 0.06, 1)
 
 [sub_resource type="Curve" id="Curve_1r40i"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.472906, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.960591, 0), 0.0, 0.0, 0, 0]

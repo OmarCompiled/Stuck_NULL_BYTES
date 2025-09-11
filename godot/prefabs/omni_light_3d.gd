@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 func _dim_light(delta: float) -> void:
 	light_energy = max(0, light_energy - dimming_rate * delta);
 	if light_energy == 0:
-		is_dimming = false
+		queue_free()
 
 
 func _on_healing_area_room_health_depleted() -> void:

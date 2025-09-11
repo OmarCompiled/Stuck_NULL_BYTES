@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @onready var sanity_bar: Node = $SanityBar
 @export var health_component: HealthComponent
@@ -18,8 +19,8 @@ const JUMP_VELOCITY = 12
 const DASH_SPEED = SPRINT_SPEED * 1.7
 const DASH_DURATION = 0.3
 const DASH_COOLDOWN = 2.0
-var can_dash = true
-var is_dashing = false
+var can_dash: bool = true
+var is_dashing: bool = false
 var dash_cooldown_timer: SceneTreeTimer
 var dash_direction = Vector3.ZERO
 
@@ -42,6 +43,7 @@ var knockback_force = 17
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GameManager.player = self
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

@@ -2,6 +2,7 @@ extends Node
 
 var enemies_killed: int = 0
 var total_enemies: int = 0
+var player: Player
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("Quit"): # Esc 
@@ -16,6 +17,7 @@ func _process(_delta: float) -> void:
 func reset():
 	enemies_killed = 0
 	total_enemies = 0
+	player = null
 
 func end_game():
 	# Manually reset singleton data since it doesn't reload on changing scenes

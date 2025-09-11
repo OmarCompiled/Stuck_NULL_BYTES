@@ -15,7 +15,7 @@ var is_knocked_back: bool = false
 var knockback_timer = 0.0
 var knockback_duration = 0.7
 
-var player
+var player: Player
 var look_for_player = false
 
 func _ready() -> void:
@@ -67,12 +67,12 @@ func _spawn_particles():
 		p.emitting = true
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.name != "Player": return
+	if body is not Player: return
 	look_for_player = true
 	player = body
 	
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	if body.name != "Player": return
+	if body is not Player: return
 	look_for_player = false
 
 func check_line_of_sight(target):

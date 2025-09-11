@@ -26,12 +26,9 @@ extends Area3D
 @onready var spot_light: SpotLight3D = $SpotLight3D
 
 func _ready():
-	if Engine.is_editor_hint():
-		update_cone()
-	else:
-		update_cone()
-
-
+	update_cone()
+	
+	
 func _get_configuration_warnings():
 	var warnings = []
 	if not col_shape:

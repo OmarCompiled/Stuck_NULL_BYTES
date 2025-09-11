@@ -45,12 +45,12 @@ script = ExtResource("2_anrrp")
 
 [node name="Spawner" parent="." instance=ExtResource("3_hr28d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-spawn_probability = 0.1
+spawn_probability = 0.17
 spawn_offset_range = Vector3(1, 3, 3)
 entity_scene = ExtResource("4_e2gtu")
 
 [node name="Spawner2" parent="." instance=ExtResource("3_hr28d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-spawn_probability = 0.1
+spawn_probability = 0.17
 spawn_offset_range = Vector3(1, 3, 3)
 entity_scene = ExtResource("4_e2gtu")

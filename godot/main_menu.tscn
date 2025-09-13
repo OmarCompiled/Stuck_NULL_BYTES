@@ -63,6 +63,6 @@ layout_mode = 1
 
 [node name="fade_timer" type="Timer" parent="FadeTransition"]
 
-[connection signal="pressed" from="MarginContainers/HBoxContainer/VBoxContainer/Start" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="MarginContainers/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainers/HBoxContainer/VBoxContainer/Start" to="." method="_on_menu_button_pressed"]
 [connection signal="timeout" from="FadeTransition/fade_timer" to="." method="_on_fade_timer_timeout"]

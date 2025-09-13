@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://3vso5rhc2486" path="res://detection_area.gd" id="3_wm4p2"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wm4p2"]
-points = PackedVector3Array(0, 0, 0, 17.5229, 0, -160, 15.1752, 8.76143, -160, 8.76143, 15.1752, -160, 1.07297e-15, 17.5229, -160, -8.76143, 15.1752, -160, -15.1752, 8.76143, -160, -17.5229, 2.14593e-15, -160, -15.1752, -8.76143, -160, -8.76143, -15.1752, -160, -3.2189e-15, -17.5229, -160, 8.76143, -15.1752, -160, 15.1752, -8.76143, -160)
+points = PackedVector3Array(0, 0, 0, 17.5229, 0, -160, 15.1752, 8.76143, -160, 8.76143, 15.1752, -160, 1.07293e-15, 17.5229, -160, -8.76143, 15.1752, -160, -15.1752, 8.76143, -160, -17.5229, 2.14586e-15, -160, -15.1752, -8.76143, -160, -8.76143, -15.1752, -160, -3.21879e-15, -17.5229, -160, 8.76143, -15.1752, -160, 15.1752, -8.76143, -160)
 
 [node name="Flashlight" type="Node3D"]
 script = ExtResource("1_h3kvc")
@@ -42,5 +42,5 @@ shape = SubResource("ConvexPolygonShape3D_wm4p2")
 [node name="SpotLight3D" type="SpotLight3D" parent="DetectionArea"]
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
-spot_range = 30.0
-spot_angle = 15.0
+spot_range = 13.3333
+spot_angle = 6.25

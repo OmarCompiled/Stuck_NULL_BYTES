@@ -2,6 +2,8 @@ extends CharacterBody3D
 class_name Player
 
 @onready var sanity_bar: Node = $SanityBar
+
+@onready var sfxWalk = $sfxWalk
 @export var health_component: HealthComponent
 
 # Sanity
@@ -109,24 +111,37 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity += get_gravity() * 2.5 * delta
+		sfxWalk.stop()
 
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
 	if Input.is_action_pressed("Sprint"):
 		is_sprinting = true
+		sfxWalk.pitch_scale = 0.8
 	else:
 		is_sprinting = false
+		sfxWalk.pitch_scale = 0.6
 	
 	if Input.is_action_pressed("Dash") and can_dash: # E
 		start_dash()
-
+		
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
 	var direction = (camera.global_transform.basis.z * input_dir.y + camera.global_transform.basis.x * input_dir.x).normalized()
 	direction.y = 0
 
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	if direction:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+		# walking sound logic
+		if is_on_floor() and not sfxWalk.playing: # have to prevent it from playing while jumping
+			sfxWalk.play()
+	else:
+		velocity.x = 0
+		velocity.z = 0
+		# 
+		if sfxWalk.playing:
+			sfxWalk.stop()
 
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor()) # only bobs when walking, not jumping

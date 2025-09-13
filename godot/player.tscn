@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://f8mp43vqb13f"]
+[gd_scene load_steps=9 format=3 uid="uid://f8mp43vqb13f"]
 
 [ext_resource type="Script" uid="uid://dnayske5ek28m" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://fg0xg2wcui3q" path="res://flashlight.tscn" id="2_onrkg"]
 [ext_resource type="Script" uid="uid://ci7kfw5q5qn2k" path="res://enemy_counter.gd" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://health_component.tscn" id="3_sweqy"]
 [ext_resource type="Script" uid="uid://xws3v0ou7h4d" path="res://sanity_bar.gd" id="4_2hs0m"]
+[ext_resource type="AudioStream" uid="uid://drx8tsfyjehx" path="res://assets/sfx/Audio/footstep02.ogg" id="6_2hs0m"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -93,6 +94,10 @@ text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_i3pqv")
+
+[node name="sfxWalk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_2hs0m")
+volume_db = -50.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="health_changed" from="HealthComponent" to="SanityBar" method="_on_health_changed"]

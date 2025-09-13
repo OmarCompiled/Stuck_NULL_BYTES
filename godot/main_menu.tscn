@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dijywxr5vrrpq"]
+[gd_scene load_steps=3 format=3 uid="uid://dijywxr5vrrpq"]
 
-[ext_resource type="Script" uid="uid://b004xknhfy13j" path="res://main_menu.gd" id="1_i26rj"]
+[ext_resource type="Script" uid="uid://b004xknhfy13j" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://fade_scene.tscn" id="2_fu7sn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i26rj")
+script = ExtResource("1_7vrkn")
 
 [node name="MarginContainers" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -41,22 +42,27 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = 24
 
-[node name="MenuButton" type="MenuButton" parent="MarginContainers/HBoxContainer/VBoxContainer"]
+[node name="Start" type="MenuButton" parent="MarginContainers/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 60
 toggle_mode = false
-action_mode = 1
 text = "Play"
-flat = false
 
-[node name="MenuButton2" type="MenuButton" parent="MarginContainers/HBoxContainer/VBoxContainer"]
+[node name="Options" type="MenuButton" parent="MarginContainers/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 60
 toggle_mode = false
 action_mode = 1
 text = "Options"
-flat = false
 
-[connection signal="pressed" from="MarginContainers/HBoxContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[node name="FadeTransition" parent="." instance=ExtResource("2_fu7sn")]
+visible = false
+layout_mode = 1
+
+[node name="fade_timer" type="Timer" parent="FadeTransition"]
+
+[connection signal="pressed" from="MarginContainers/HBoxContainer/VBoxContainer/Start" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainers/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="timeout" from="FadeTransition/fade_timer" to="." method="_on_fade_timer_timeout"]

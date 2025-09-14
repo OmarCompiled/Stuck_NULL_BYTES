@@ -11,7 +11,8 @@ func _ready() -> void:
 	$FadeTransition/FadeTimer.start()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+
 	if button == buttons[1]:
 		get_tree().change_scene_to_file("res://upgrades_menu.tscn")
 	elif button == buttons[2]:

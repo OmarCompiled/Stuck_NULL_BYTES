@@ -1,27 +1,72 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv8swrx0043i6"]
+[gd_scene load_steps=7 format=4 uid="uid://dv8swrx0043i6"]
 
-[ext_resource type="PackedScene" uid="uid://d0gwhblrbxo85" path="res://assets/shard/scene.gltf" id="1_67ejk"]
 [ext_resource type="Script" uid="uid://bilgjsayxkkwx" path="res://memory_fragment.gd" id="1_aj08t"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_aj08t"]
-size = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67ejk"]
+albedo_color = Color(0.372867, 0.1786, 0.47, 1)
+emission_enabled = true
+emission = Color(0, 0, 0.137255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xflt"]
+resource_name = "shiny_light"
+cull_mode = 2
+albedo_color = Color(0.0495994, 0.898425, 0.365246, 1)
+roughness = 0.533842
+emission_enabled = true
+emission = Color(0.495877, 0.022026, 0.995575, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_aj08t"]
+_surfaces = [{
+"aabb": AABB(-1.94118, -1.94118, -5.96, 3.88236, 3.88236, 11.92),
+"attribute_data": PackedByteArray("rYjogfLALrqsiOiBLboLPzn5Fn6siOeB88AuuvLALrq4xwo/88DPRf//UHetiOiB///DBvPALrrywEY4OPnogeiBUXesiAAAOPnngR+jTn6uiBZ+OfnogeiBxQbH3k5+OfnogcfepUI4+QAAHqOlQvPALrrzwC6688AuuvPALrrzwC66er4LP/PAkjzzwINB88ALP2zDCj8="),
+"format": 34896613399,
+"index_count": 216,
+"index_data": PackedByteArray("EgAAABMAAAAUABMAEgATABAAFAAQABMAAQAAABIAEAAUAAkAFAAAABUAFgASABAAAQANAAAAAAANABUAFAAVAAQABAAJABQAFQAXAAQACwAXABUACwAVAA0ABAAXAAoACgAXAAsABAAKAAgABAAIAAkACgALABgACwANAAYACwAGABgACgAYAAwADAAIAAoAGAAZAAwADAAOAAgAAgAZABgAAgAYAAYADAAZABoAGgAZAAIADAAaAA4AAgAGAAcAGgACAA8AAgAHAA8AGgAPABEAEQAOABoADwAbABEAAwAOABEABQAbAA8ABQAPAAcAEQAbABYAFgAbAAUAAwARABYAFgAFABIAEAADABYABQABABIABQAHAAEAEAAJAAMABwAcAAEAAQAcAB0AAQAdAA0ABwAeABwABgAeAAcAHAAfAB0AHgAfABwADQAdACAAHQAfACAADQAgAAYAIAAfAB4ABgAgAB4ACQAhAAMAAwAhACIAAwAiAA4ACQAjACEACAAjAAkAIQAkACIAIwAkACEADgAiACUAIgAkACUADgAlAAgAJQAkACMACAAlACMA"),
+"lods": [0.134965, PackedByteArray("CgAEAAsACgALAAwABAAKAAgADAAIAAoACwAEAA0ACwAGAAwACwANAAYAAAANAAQABAAIAAkABAAJAAAADAAOAAgADgAJAAgAAgAMAAYADAACAA4ADQAHAAYAAgAGAAcAAQANAAAAAQAHAA0AAgAHAA8AAQAAABAAEAAAAAkABQAHAAEABQABABAABQAPAAcAEAAJAAMAEAADAAUAAwAJAA4ADwAFABEAAwARAAUAAgAPABEAAwAOABEAEQAOAAIA"), 0.219487, PackedByteArray("AAAGAAQABAAGAAIAAgAGAAcAAQAHAAYAAQAGAAAABQAHAAEAAgAHAAUABQABAAAAAgAIAAQABQAIAAIABAAIAAkABAAJAAAAAwAIAAUAAwAJAAgAAAADAAUAAAAJAAMA"), 0.277079, PackedByteArray("AAABAAQABAABAAIABQABAAAAAgABAAUABAADAAAAAgADAAQAAAADAAUABQADAAIA"), 2.48661, PackedByteArray("AAABAAIAAgABAAAAAAADAAIAAgADAAAA")],
+"material": SubResource("StandardMaterial3D_8xflt"),
+"name": "shiny_light",
+"primitive": 3,
+"uv_scale": Vector4(0.78825, 0.788222, 0, 0),
+"vertex_count": 38,
+"vertex_data": PackedByteArray("vg3///F7izRAcv9/OAMlIEDyAADxe5HKQHL/f8b8m1hA8v//DYSySQAAvg3xe3nWvo3/fzgDVxX/f0ByOAMF2r6N/3/G/JtY/3++jcb8m1j//0DyDYQ7Sf//QPLxe0/i//++DQ2EeEn/f76NOAOVJv9/QHLG/JtYvg0AAPF7zsoAAEDyDYR3Sb4NAAANhPdIAABA8vF7zOi3Akf9/38b+b4N//8NhOpJQPL///F70/0AAL4NDYR3SRX9S/3Nfwr5//++DfF7FdZH/bcC/39+xkDyAAANhPhItwK3Av9/fsb6ev9/pAB8E/9/BIWkAK0K/3/6eqQA3Q3/f/9/AAAAAASF/3+kAIoR+nr/f1r/zmn/f/p6Wv/Oaf9/BIVa/85p/3//f////n8Ehf9/Wv/Oaf7ynZ0mwUXVxhS/YAaA/P9f3CpY30UOpUq65FgfGMik9n8DAPv/9n/bo6cXGzTFI5VojCNi4mqTAwAIgLoeR5Jol3LcLSchtqNWdKwEX/+pGtiIoxg84RJyXJfoWCrpIMkl0TmwGzpGHzbSWMQ5sJsutDTXwabBxV1OvULGtzfIrEB/MRKA+v8GAB2A+f/lf//////lfwUA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_67ejk"]
+radius = 7.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aj08t"]
-radius = 0.25
-height = 0.5
+radius = 0.120534
+height = 0.461605
 
 [node name="MemoryFragment" type="CharacterBody3D"]
+collision_layer = 4
 script = ExtResource("1_aj08t")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_67ejk")]
-transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)
+[node name="ShardMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.045, 0, 0, 0, -1.96701e-09, 0.045, 0, -0.045, -1.96701e-09, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_67ejk")
+mesh = SubResource("ArrayMesh_aj08t")
+skeleton = NodePath("")
 
-[node name="ShardHitbox" type="Area3D" parent="."]
+[node name="DetectionArea" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ShardHitbox"]
-shape = SubResource("BoxShape3D_aj08t")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_67ejk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.17349, 0, 0, 0, 1.17349, 0, 0, 0, 1.17349, 0, 0, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_aj08t")
 
+<<<<<<< HEAD
 [connection signal="area_entered" from="ShardHitbox" to="." method="_on_shard_hitbox_area_entered"]
+=======
+[node name="FragmentLight" type="OmniLight3D" parent="."]
+light_color = Color(0.164706, 0.027451, 0.282353, 1)
+light_energy = 14.0
+shadow_enabled = true
+omni_range = 0.826853
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+>>>>>>> 83067c5cabc576b5dcc2af6bcd92ab67812dd6ef

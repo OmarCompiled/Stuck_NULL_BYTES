@@ -58,7 +58,7 @@ func _on_health_depleted():
 	var shard = memory_fragment.instantiate()
 	shard.global_position = global_position
 	get_tree().get_current_scene().add_child(shard)
-	
+
 	_die()
 
 func _die():
@@ -68,6 +68,8 @@ func _die():
 		player.health_component.heal(sanity_reward)
 		
 	_spawn_death_light()
+	_spawn_shard()
+	
 	queue_free()
 
 func _spawn_particles():
@@ -85,7 +87,11 @@ func _spawn_death_light():
 		death_light.global_position = global_position
 		death_light.base_y = global_position.y
 
-	
+func _spawn_shard():
+	var shard = memory_fragment.instantiate()
+	get_parent().add_child(shard)
+	shard.global_position = global_position
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is not Player: return
 	look_for_player = true

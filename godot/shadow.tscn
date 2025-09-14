@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqagwekx7o53h"]
+[gd_scene load_steps=11 format=3 uid="uid://cqagwekx7o53h"]
 
 [ext_resource type="Script" uid="uid://b5x3d1pweoiom" path="res://shadow.gd" id="1_n2o5g"]
 [ext_resource type="PackedScene" uid="uid://bkjsh3itjc877" path="res://DamageParticles.tscn" id="2_n2o5g"]
 [ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://health_component.tscn" id="3_icb2k"]
 [ext_resource type="PackedScene" uid="uid://cgyspg16rbl4q" path="res://death_light.tscn" id="3_ov1mx"]
+[ext_resource type="PackedScene" uid="uid://dv8swrx0043i6" path="res://memory_fragment.tscn" id="4_eeawa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n2o5g"]
 
@@ -24,6 +25,7 @@ script = ExtResource("1_n2o5g")
 health_component = NodePath("HealthComponent")
 damage_particles = ExtResource("2_n2o5g")
 death_light_scene = ExtResource("3_ov1mx")
+memory_fragment = ExtResource("4_eeawa")
 sanity_reward = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

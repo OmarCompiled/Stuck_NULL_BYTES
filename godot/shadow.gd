@@ -4,13 +4,14 @@ class_name Shadow
 @export var health_component: HealthComponent
 @export var damage_particles: PackedScene
 @export var death_light_scene: PackedScene
+@export var memory_fragment: PackedScene
 @export var sanity_reward = 5
 @export var knockback_decay: float = 0.95
 @export var dmg = 15
 @export var min_speed: float = 10.0
 @export var max_speed: float = 12.0
 
-var memory_fragment: PackedScene = preload("res://memory_fragment.tscn")
+
 
 var speed: float
 var can_see_player: bool = false
@@ -55,10 +56,6 @@ func _on_damage_taken(_damage: float):
 	_spawn_particles()
 		
 func _on_health_depleted():
-	var shard = memory_fragment.instantiate()
-	shard.global_position = global_position
-	get_tree().get_current_scene().add_child(shard)
-
 	_die()
 
 func _die():

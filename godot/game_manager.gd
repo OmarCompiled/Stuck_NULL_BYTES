@@ -23,6 +23,9 @@ func reset():
 	player = null
 
 func end_game():
+	# Show cursor
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	# Manually reset singleton data since it doesn't reload on changing scenes
 	reset()
 	

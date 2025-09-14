@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cosd0okx85u28"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_jh716"]
-[ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://remove_unused_doors.gd" id="2_stqen"]
-[ext_resource type="PackedScene" uid="uid://cudookqy5hwk7" path="res://spawner.tscn" id="3_a6ukv"]
-[ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://shadow.tscn" id="3_x4dnl"]
+[ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_stqen"]
+[ext_resource type="PackedScene" uid="uid://cudookqy5hwk7" path="res://scenes/other/spawner.tscn" id="3_a6ukv"]
+[ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://scenes/entity/shadow.tscn" id="3_x4dnl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stqen"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cgyspg16rbl4q"]
 
-[ext_resource type="Script" uid="uid://ccskdykjm7ttq" path="res://death_light.gd" id="1_nlv6m"]
+[ext_resource type="Script" uid="uid://ccskdykjm7ttq" path="res://scripts/death_light.gd" id="1_nlv6m"]
 
 [node name="DeathLight" type="OmniLight3D"]
 light_energy = 3.0

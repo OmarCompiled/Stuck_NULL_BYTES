@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 
 	if button == buttons[1]:
-		get_tree().change_scene_to_file("res://upgrades_menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/menu/upgrades_menu.tscn")
 	elif button == buttons[2]:
 		pass
 
@@ -33,5 +33,5 @@ func _on_quit_pressed() -> void:
 func _on_fade_timer_timeout() -> void:
 	$FadeTransition.hide()
 	if button == buttons[0]:
-		get_tree().change_scene_to_file("res://world.tscn")
+		get_tree().change_scene_to_file("res://scenes/other/world.tscn")
 	

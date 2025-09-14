@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 	# NOTE: no need to remove now,
 	# will be useful for the pause menu
 	# Although we need to change it to something other than 'Q' 
-	if Input.is_action_just_pressed("Pause") and get_tree().current_scene.scene_file_path == "res://world.tscn":
+	if Input.is_action_just_pressed("Pause") and get_tree().current_scene.scene_file_path == "res://scenes/other/world.tscn":
 		get_tree().paused = true if !get_tree().paused else false
 
 func reset():
@@ -35,5 +35,5 @@ func end_game():
 	# Waiting for the physics frame to end prevents an error thrown on dying
 	# when freeing the scene before physics calculations are complete
 	await get_tree().physics_frame
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 	

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkfmmoy8akomw"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_khs4t"]
-[ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://remove_unused_doors.gd" id="2_st7u1"]
-[ext_resource type="PackedScene" uid="uid://f8mp43vqb13f" path="res://player.tscn" id="3_3r8h8"]
+[ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_st7u1"]
+[ext_resource type="PackedScene" uid="uid://f8mp43vqb13f" path="res://scenes/entity/player.tscn" id="3_3r8h8"]
 
 [node name="EntranceRoom" type="Node3D"]
 script = ExtResource("1_khs4t")

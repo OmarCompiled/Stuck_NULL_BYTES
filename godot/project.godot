@@ -95,6 +95,13 @@ Pause={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="environment"
+3d_physics/layer_2="collectables"
+3d_physics/layer_3="player"
+3d_physics/layer_4="enemies"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

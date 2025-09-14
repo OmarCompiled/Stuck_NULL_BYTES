@@ -8,8 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$MarginContainer/VBoxContainer/BarsContainer/RichTextLabel.text = "Currency: " + var_to_str(GameManager.currency)
-
+	$MarginContainer/VBoxContainer/BarsContainer/RichTextLabel.text = "Memory Fragments: " + var_to_str(GameManager.currency)
 
 func _on_back_to_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://main_menu.tscn")

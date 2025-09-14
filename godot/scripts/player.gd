@@ -38,7 +38,7 @@ var last_bob_cycle_pos = 0.0
 
 # FOV
 const BASE_FOV = 75.0
-const FOV_CHANGE = 1.5
+const FOV_CHANGE = 2
 
 var knockback_force = 17
 

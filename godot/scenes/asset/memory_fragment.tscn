@@ -40,7 +40,7 @@ radius = 0.120534
 height = 0.461605
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aj08t"]
-albedo_color = Color(0.531533, 0.2546, 0.67, 1)
+albedo_color = Color(0.600767, 0.4623, 0.67, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rn8pk"]
 direction = Vector3(0, 1, 0)

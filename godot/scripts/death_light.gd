@@ -17,4 +17,4 @@ func _process(delta: float):
 
 	var height_offset = sin(time * float_speed) * float_height
 	global_position.y = base_y + height_offset
-	light_energy = base_energy + (height_offset / float_height) * pulse_strength
+	light_energy = clamp(base_energy + (height_offset / float_height) * pulse_strength, 0, 16)

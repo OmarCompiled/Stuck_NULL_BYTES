@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ccskdykjm7ttq" path="res://scripts/death_light.gd" id="1_nlv6m"]
 
 [node name="DeathLight" type="OmniLight3D"]
-light_energy = 14.0
-light_volumetric_fog_energy = 0.1
-omni_range = 0.263398
+light_energy = 4.0
+omni_range = 0.379581
 script = ExtResource("1_nlv6m")

@@ -2,7 +2,7 @@ extends OmniLight3D
 
 @export var float_height: float = 0.5   
 @export var float_speed: float = 2.0    
-@export var pulse_strength: float = 0.5 
+@export var pulse_strength: float = 2
 
 var base_y: float
 var base_energy: float

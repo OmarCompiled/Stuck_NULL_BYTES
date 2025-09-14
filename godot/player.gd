@@ -2,7 +2,6 @@ extends CharacterBody3D
 class_name Player
 
 @onready var sanity_bar: Node = $SanityBar
-
 @onready var sfxWalk = $sfxWalk
 @export var health_component: HealthComponent
 
@@ -31,8 +30,11 @@ const SENSITIVITY = 0.0023
 
 # Head bob
 const BOB_FREQ = 1.5
-const BOB_AMP = 0.08
+const BOB_AMP = 0.2
 var t_bob = 0;
+
+# Footstep sync
+var last_bob_cycle_pos = 0.0
 
 # FOV
 const BASE_FOV = 75.0
@@ -53,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
-func _process(delta: float) -> void:
+func _process(delta: float) -> void:	
 	if is_losing_sanity: 
 		health_component.take_damage(SANITY_LOST_PER_SECOND * delta, true)
 		
@@ -133,19 +135,27 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		# walking sound logic
-		if is_on_floor() and not sfxWalk.playing: # have to prevent it from playing while jumping
-			sfxWalk.play()
 	else:
 		velocity.x = 0
 		velocity.z = 0
-		# 
 		if sfxWalk.playing:
 			sfxWalk.stop()
 
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor()) # only bobs when walking, not jumping
 	camera.transform.origin = _headbob(t_bob)
+	
+	# Sync footsteps with head bob
+	if direction and is_on_floor():
+		var bob_cycle_pos = sin(t_bob * BOB_FREQ)	
+		if bob_cycle_pos < -0.9 and last_bob_cycle_pos >= -0.9:
+			sfxWalk.stop()
+			sfxWalk.play()
+		last_bob_cycle_pos = bob_cycle_pos
+	else:
+		last_bob_cycle_pos = 0
+		if sfxWalk.playing:
+			sfxWalk.stop()
 	
 	# FOV
 	_fov(delta)
@@ -161,4 +171,3 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 		var knockback_dir = enemy.global_position - global_position
 		health_component.take_damage(enemy.dmg)
 		enemy.apply_knockback(knockback_dir * knockback_force)
-		

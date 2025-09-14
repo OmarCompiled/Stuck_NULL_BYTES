@@ -5,7 +5,7 @@ class_name Shadow
 @export var damage_particles: PackedScene
 @export var sanity_reward = 5
 @export var knockback_decay: float = 0.95
-@export var dmg = 7
+@export var dmg = 15
 @export var min_speed: float = 10.0
 @export var max_speed: float = 12.0
 

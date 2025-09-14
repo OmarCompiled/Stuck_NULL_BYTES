@@ -32,6 +32,7 @@ show_percentage = false
 
 [node name="DetectionArea" type="Area3D" parent="."]
 transform = Transform3D(-4.33066e-08, -0.0383179, -0.999266, 5.93534e-09, 0.999266, -0.0383179, 1, -7.5904e-09, -4.30473e-08, 0, 0, 0)
+collision_mask = 8
 script = ExtResource("3_wm4p2")
 angle = 12.5
 range = 160.0

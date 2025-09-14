@@ -10,21 +10,21 @@ class_name Shadow
 @export var dmg = 15
 @export var min_speed: float = 10.0
 @export var max_speed: float = 12.0
+@export var min_shards: int = 1
+@export var max_shards: int = 3
 
-
-
-var speed: float
+var speed: float = randf_range(min_speed, max_speed)
 var can_see_player: bool = false
 var is_knocked_back: bool = false
 var knockback_timer = 0.0
 var knockback_duration = 0.7
+var shard_count: int = randi_range(min_shards, max_shards)
 
 var player: Player
 var look_for_player = false
 
 func _ready() -> void:
 	GameManager.total_enemies += 1
-	speed = randf_range(min_speed, max_speed)
 
 func _physics_process(delta: float) -> void:	
 	if is_knocked_back:
@@ -65,7 +65,9 @@ func _die():
 		player.health_component.heal(sanity_reward)
 		
 	_spawn_death_light()
-	_spawn_shard()
+	
+	for i in range(shard_count):
+		_spawn_shard()
 	
 	queue_free()
 
@@ -87,7 +89,13 @@ func _spawn_death_light():
 func _spawn_shard():
 	var shard = memory_fragment.instantiate()
 	get_parent().add_child(shard)
-	shard.global_position = global_position
+	
+	var offset = Vector3(
+		randf_range(-0.5, 0.5),
+		0.2,
+		randf_range(-0.5, 0.5)
+	)
+	shard.global_position = global_position + offset
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is not Player: return

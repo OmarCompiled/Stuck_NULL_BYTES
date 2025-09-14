@@ -26,10 +26,6 @@ GameManager="*res://scripts/game_manager.gd"
 
 gdscript/warnings/integer_division=0
 
-[display]
-
-window/size/mode=3
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SimpleDungeons/plugin.cfg")
@@ -98,7 +94,7 @@ Pause={
 [layer_names]
 
 3d_physics/layer_1="environment"
-3d_physics/layer_2="collectables"
+3d_physics/layer_2="collectibles"
 3d_physics/layer_3="player"
 3d_physics/layer_4="enemies"
 

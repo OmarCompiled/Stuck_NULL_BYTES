@@ -21,6 +21,7 @@ radius = 30.0
 radius = 0.825561
 
 [node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
+collision_layer = 8
 script = ExtResource("1_n2o5g")
 health_component = NodePath("HealthComponent")
 damage_particles = ExtResource("2_n2o5g")

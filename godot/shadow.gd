@@ -55,16 +55,10 @@ func _on_damage_taken(_damage: float):
 	_spawn_particles()
 		
 func _on_health_depleted():
-<<<<<<< HEAD
 	var shard = memory_fragment.instantiate()
 	shard.global_position = global_position
 	get_tree().get_current_scene().add_child(shard)
-	if player:
-		player.health_component.heal(sanity_reward)
-		
-	GameManager.enemies_killed += 1
 	
-=======
 	_die()
 
 func _die():
@@ -74,9 +68,7 @@ func _die():
 		player.health_component.heal(sanity_reward)
 		
 	_spawn_death_light()
->>>>>>> a160474f91bcb1ae93dcf9b38083d99e3c0f7230
 	queue_free()
-	
 
 func _spawn_particles():
 	if damage_particles:

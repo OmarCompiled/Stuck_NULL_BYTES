@@ -40,10 +40,10 @@ mesh = SubResource("SphereMesh_icb2k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
 shape = SubResource("SphereShape3D_icb2k")
 
-[node name="Hitbox" type="Area3D" parent="."]
+[node name="ShadowHitbox" type="Area3D" parent="."]
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShadowHitbox"]
 shape = SubResource("SphereShape3D_ov1mx")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_icb2k")]

@@ -23,3 +23,5 @@ shape = SubResource("BoxShape3D_aj08t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_aj08t")
+
+[connection signal="area_entered" from="ShardHitbox" to="." method="_on_shard_hitbox_area_entered"]

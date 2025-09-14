@@ -167,7 +167,7 @@ func die():
 	GameManager.end_game()
 
 func _on_hitbox_area_entered(area: Area3D) -> void:
-	if area.name == "Hitbox":
+	if area.name == "ShadowHitbox":
 		var enemy = area.get_parent()
 		var knockback_dir = enemy.global_position - global_position
 		health_component.take_damage(enemy.dmg)

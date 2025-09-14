@@ -9,11 +9,16 @@ func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+<<<<<<< HEAD
 func _process(delta: float) -> void:
 	if button == buttons[1]:
 		get_tree().change_scene_to_file("res://upgrades_menu.tscn")
 	elif button == buttons[2]:
 		pass
+=======
+func _process(_delta: float) -> void:
+	pass
+>>>>>>> a160474f91bcb1ae93dcf9b38083d99e3c0f7230
 
 func _on_start_pressed() -> void:
 	button = buttons[0]

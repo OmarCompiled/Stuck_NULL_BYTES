@@ -53,7 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
 	if is_losing_sanity: 
 		health_component.take_damage(SANITY_LOST_PER_SECOND * delta, true)
 		

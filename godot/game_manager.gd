@@ -13,10 +13,8 @@ func _process(_delta: float) -> void:
 	# NOTE: no need to remove now,
 	# will be useful for the pause menu
 	# Although we need to change it to something other than 'Q' 
-	if Input.is_action_just_pressed("Pause"):
+	if Input.is_action_just_pressed("Pause") and get_tree().current_scene.scene_file_path != "res://main_menu.tscn":
 		get_tree().paused = true if !get_tree().paused else false
-		
-	
 
 func reset():
 	enemies_killed = 0

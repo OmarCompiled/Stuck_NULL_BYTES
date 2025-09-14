@@ -15,9 +15,9 @@ func _on_start_pressed() -> void:
 	button = "start"
 	$FadeTransition.show()
 	$FadeTransition/AnimationPlayer.play("fade_in")
-	$FadeTransition/fade_timer.start()
+	$FadeTransition/FadeTimer.start()
 	
-	$MarginContainers/HBoxContainer/VBoxContainer.hide()
+	$MarginContainer/VBoxContainer/ButtonContainer.hide()
 	
 
 func _on_fade_timer_timeout() -> void:

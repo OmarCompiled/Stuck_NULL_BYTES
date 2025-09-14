@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b004xknhfy13j" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://dn2rqrne2orfx" path="res://assets/textures/Gemini_Generated_Image_52qkus52qkus52qk.png" id="2_7vrkn"]
-[ext_resource type="FontFile" uid="uid://c0oyqefkkiukm" path="res://assets/fonts/static/Roboto-Thin.ttf" id="2_fu7sn"]
-[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="3_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://fade_scene.tscn" id="5_glbon"]
+
+[sub_resource type="SystemFont" id="SystemFont_fu7sn"]
+
+[sub_resource type="SystemFont" id="SystemFont_jix8l"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]
 
@@ -49,7 +51,7 @@ theme_override_constants/separation = 100
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_fu7sn")
+theme_override_fonts/normal_font = SubResource("SystemFont_fu7sn")
 theme_override_font_sizes/normal_font_size = 100
 text = "STUCK"
 fit_content = true
@@ -57,18 +59,62 @@ horizontal_alignment = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 24
 
 [node name="Start" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("3_fu7sn")
+theme_override_fonts/font = SubResource("SystemFont_jix8l")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jix8l")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_nlkkf")
 toggle_mode = false
 text = "Start"
+flat = false
+
+[node name="Upgrades" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = SubResource("SystemFont_jix8l")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nlkkf")
+toggle_mode = false
+text = "Upgrades"
+flat = false
+
+[node name="Options" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = SubResource("SystemFont_jix8l")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nlkkf")
+toggle_mode = false
+text = "Options"
+flat = false
+
+[node name="Quit" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = SubResource("SystemFont_jix8l")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nlkkf")
+toggle_mode = false
+text = "Quit"
 flat = false
 
 [node name="FadeTransition" parent="." instance=ExtResource("5_glbon")]
@@ -78,4 +124,6 @@ layout_mode = 1
 [node name="FadeTimer" type="Timer" parent="FadeTransition"]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Upgrades" to="." method="_on_upgrades_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="FadeTransition/FadeTimer" to="." method="_on_fade_timer_timeout"]

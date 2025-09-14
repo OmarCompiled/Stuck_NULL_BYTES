@@ -153,6 +153,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func die():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	GameManager.end_game()
 
 func _on_hitbox_area_entered(area: Area3D) -> void:
@@ -161,4 +162,3 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 		var knockback_dir = enemy.global_position - global_position
 		health_component.take_damage(enemy.dmg)
 		enemy.apply_knockback(knockback_dir * knockback_force)
-		

@@ -13,8 +13,10 @@ config_version=5
 config/name="Stuck"
 run/main_scene="uid://dijywxr5vrrpq"
 config/features=PackedStringArray("4.4", "Forward Plus")
-boot_splash/show_image=false
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://cdovoqwvdistc"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 

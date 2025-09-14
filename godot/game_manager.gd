@@ -2,6 +2,7 @@ extends Node
 
 var enemies_killed: int = 0
 var total_enemies: int = 0
+var currency: int = 0
 var player: Player
 
 func _process(_delta: float) -> void:
@@ -13,7 +14,7 @@ func _process(_delta: float) -> void:
 	# NOTE: no need to remove now,
 	# will be useful for the pause menu
 	# Although we need to change it to something other than 'Q' 
-	if Input.is_action_just_pressed("Pause") and get_tree().current_scene.scene_file_path != "res://main_menu.tscn":
+	if Input.is_action_just_pressed("Pause") and get_tree().current_scene.scene_file_path == "res://world.tscn":
 		get_tree().paused = true if !get_tree().paused else false
 
 func reset():
@@ -31,5 +32,5 @@ func end_game():
 	# Waiting for the physics frame to end prevents an error thrown on dying
 	# when freeing the scene before physics calculations are complete
 	await get_tree().physics_frame
-	get_tree().change_scene_to_file("res://world.tscn")
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 	

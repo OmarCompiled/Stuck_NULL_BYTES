@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv8swrx0043i6"]
+
+[ext_resource type="PackedScene" uid="uid://d0gwhblrbxo85" path="res://assets/shard/scene.gltf" id="1_67ejk"]
+[ext_resource type="Script" uid="uid://bilgjsayxkkwx" path="res://memory_fragment.gd" id="1_aj08t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aj08t"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aj08t"]
+radius = 0.25
+height = 0.5
+
+[node name="MemoryFragment" type="CharacterBody3D"]
+script = ExtResource("1_aj08t")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_67ejk")]
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)
+
+[node name="ShardHitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShardHitbox"]
+shape = SubResource("BoxShape3D_aj08t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_aj08t")

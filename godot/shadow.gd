@@ -9,6 +9,8 @@ class_name Shadow
 @export var min_speed: float = 10.0
 @export var max_speed: float = 12.0
 
+var memory_fragment: PackedScene = preload("res://memory_fragment.tscn")
+
 var speed: float
 var can_see_player: bool = false
 var is_knocked_back: bool = false
@@ -52,10 +54,14 @@ func _on_damage_taken(_damage: float):
 	_spawn_particles()
 		
 func _on_health_depleted():
+	var shard = memory_fragment.instantiate()
+	shard.global_position = global_position
+	get_tree().get_current_scene().add_child(shard)
 	if player:
 		player.health_component.heal(sanity_reward)
 		
 	GameManager.enemies_killed += 1
+	
 	queue_free()
 
 func _spawn_particles():

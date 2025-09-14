@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b004xknhfy13j" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://dn2rqrne2orfx" path="res://assets/textures/Gemini_Generated_Image_52qkus52qkus52qk.png" id="2_7vrkn"]
-[ext_resource type="FontFile" uid="uid://c0cr2tk6is67c" path="res://assets/fonts/static/Roboto-Thin.ttf" id="2_fu7sn"]
-[ext_resource type="FontFile" uid="uid://b803vqt3aif4m" path="res://assets/fonts/static/Roboto-Light.ttf" id="3_fu7sn"]
+[ext_resource type="FontFile" uid="uid://c0oyqefkkiukm" path="res://assets/fonts/static/Roboto-Thin.ttf" id="2_fu7sn"]
+[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="3_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://fade_scene.tscn" id="5_glbon"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]

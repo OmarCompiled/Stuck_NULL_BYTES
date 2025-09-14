@@ -3,6 +3,7 @@ class_name Shadow
 
 @export var health_component: HealthComponent
 @export var damage_particles: PackedScene
+@export var death_light_scene: PackedScene
 @export var sanity_reward = 5
 @export var knockback_decay: float = 0.95
 @export var dmg = 15
@@ -52,11 +53,17 @@ func _on_damage_taken(_damage: float):
 	_spawn_particles()
 		
 func _on_health_depleted():
+	_die()
+
+func _die():
+	GameManager.enemies_killed += 1
+	
 	if player:
 		player.health_component.heal(sanity_reward)
 		
-	GameManager.enemies_killed += 1
+	_spawn_death_light()
 	queue_free()
+	
 
 func _spawn_particles():
 	if damage_particles:
@@ -66,6 +73,14 @@ func _spawn_particles():
 		p.global_position = global_position
 		p.emitting = true
 
+func _spawn_death_light():
+	if death_light_scene:
+		var death_light = death_light_scene.instantiate()
+		get_parent().add_child(death_light)
+		death_light.global_position = global_position
+		death_light.base_y = global_position.y
+
+	
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is not Player: return
 	look_for_player = true

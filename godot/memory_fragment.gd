@@ -25,6 +25,7 @@ func _on_detection_area_body_entered(body: Node3D) -> void:
 		collision_mask = 12
 		chasing = true
 
+>>>>>>> 83067c5cabc576b5dcc2af6bcd92ab67812dd6ef
 func _physics_process(delta: float) -> void:
 	_update_light(delta)
 	if chasing and player:
@@ -43,6 +44,11 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func _on_shard_hitbox_area_entered(area: Area3D) -> void:
+	if area.get_parent() is Player:
+		GameManager.currency += 1
+		queue_free()
+		
 func _update_light(delta: float) -> void:
 	t += delta
 	light.light_energy = base_light + sin(t * freq) * energy_pulse

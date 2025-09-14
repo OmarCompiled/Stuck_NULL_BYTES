@@ -6,3 +6,7 @@
 light_energy = 3.0
 omni_range = 0.398924
 script = ExtResource("1_nlv6m")
+
+[node name="death_light_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="death_light_timer" to="." method="_on_death_light_timer_timeout"]

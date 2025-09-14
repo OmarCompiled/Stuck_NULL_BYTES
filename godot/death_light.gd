@@ -11,6 +11,7 @@ var time: float = 0.0
 func _ready():
 	base_y = global_position.y
 	base_energy = light_energy
+	$death_light_timer.start(10)
 
 func _process(delta: float):
 	time += delta
@@ -18,3 +19,6 @@ func _process(delta: float):
 	var height_offset = sin(time * float_speed) * float_height
 	global_position.y = base_y + height_offset
 	light_energy = base_energy + (height_offset / float_height) * pulse_strength
+
+func _on_death_light_timer_timeout() -> void:
+	queue_free()

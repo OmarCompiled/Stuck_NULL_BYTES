@@ -59,6 +59,9 @@ transform = Transform3D(1.17349, 0, 0, 0, 1.17349, 0, 0, 0, 1.17349, 0, 0, 0)
 visible = false
 shape = SubResource("CapsuleShape3D_aj08t")
 
+<<<<<<< HEAD
+[connection signal="area_entered" from="ShardHitbox" to="." method="_on_shard_hitbox_area_entered"]
+=======
 [node name="FragmentLight" type="OmniLight3D" parent="."]
 light_color = Color(0.164706, 0.027451, 0.282353, 1)
 light_energy = 14.0
@@ -66,3 +69,4 @@ shadow_enabled = true
 omni_range = 0.826853
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+>>>>>>> 83067c5cabc576b5dcc2af6bcd92ab67812dd6ef

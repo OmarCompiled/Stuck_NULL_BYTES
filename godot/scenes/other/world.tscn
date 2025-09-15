@@ -22,7 +22,8 @@ tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.15
-volumetric_fog_emission = Color(0.03, 0.03, 0.03, 1)
+volumetric_fog_emission = Color(0.0313726, 0.0313726, 0.0313726, 1)
+volumetric_fog_emission_energy = 8.0
 volumetric_fog_length = 160.0
 
 [node name="World" type="Node"]

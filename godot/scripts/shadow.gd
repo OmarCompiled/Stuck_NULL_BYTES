@@ -2,8 +2,9 @@ extends CharacterBody3D
 class_name Shadow
 
 @export var health_component: HealthComponent
-@export var whoosh_player: AudioStreamPlayer3D
-@export var hit_player: AudioStreamPlayer3D
+@export var whoosh_sound_component: SoundComponent
+@export var hit_sound_component: SoundComponent
+
 @export var damage_particles: PackedScene
 @export var death_light_scene: PackedScene
 @export var memory_fragment: PackedScene
@@ -24,12 +25,8 @@ class_name Shadow
 @export var max_whoosh_interval: float = 5.0
 @export_range(0.0, 1.0) var whoosh_probability: float = 1
 
-@export var min_chase_pitch: float = 0.5
-@export var max_chase_pitch: float = 0.8
 @export var min_death_pitch: float = 1.4
 @export var max_death_pitch: float = 1.6
-@export var min_volume: float = -20.0
-@export var max_volume: float = -15.0
 
 @onready var chase_timer = $ChaseTimer
 
@@ -94,10 +91,11 @@ func _die():
 		_spawn_shard()
 		
 	_play_death_woosh()
-	_reparent_player(whoosh_player)
-	_reparent_player(hit_player)
+	whoosh_sound_component.kill()
+	hit_sound_component.kill()
 	
 	queue_free()
+
 
 func _spawn_particles():
 	if damage_particles:
@@ -107,12 +105,14 @@ func _spawn_particles():
 		p.global_position = global_position
 		p.emitting = true
 
+
 func _spawn_death_light():
 	if death_light_scene:
 		var death_light = death_light_scene.instantiate()
 		get_parent().add_child(death_light)
 		death_light.global_position = global_position
 		death_light.base_y = global_position.y
+
 
 func _spawn_shard():
 	var shard = memory_fragment.instantiate()
@@ -125,10 +125,12 @@ func _spawn_shard():
 	)
 	shard.global_position = global_position + offset
 
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is not Player: return
 	look_for_player = true
 	player = body
+	
 	
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body is not Player: return
@@ -156,24 +158,17 @@ func _on_chase_timer_timeout() -> void:
 	_reset_whoosh_timer()
 	
 	
-func _play_random_whoosh():
-	if whoosh_player.playing:
-		whoosh_player.stop()
+func _play_random_whoosh():		
+	whoosh_sound_component.play()
 		
-	whoosh_player.pitch_scale = randf_range(min_chase_pitch, max_chase_pitch)
-	whoosh_player.volume_db = randf_range(min_volume, max_volume)
-	whoosh_player.play()
 		
 func _play_death_woosh():
-	var death_player = AudioStreamPlayer3D.new()
-	get_tree().current_scene.add_child(death_player)
-	death_player.global_position = global_position
-	death_player.max_distance = 35.0
-	death_player.stream = whoosh_player.stream
-	death_player.pitch_scale = randf_range(min_death_pitch, max_death_pitch)
-	death_player.volume_db = randf_range(min_volume, max_volume) + 25
-	death_player.play()
-	death_player.connect("finished", death_player.queue_free)
+	whoosh_sound_component.play(
+		min_death_pitch,
+		max_death_pitch,
+		whoosh_sound_component.min_volume + 25,
+		whoosh_sound_component.max_volume + 25
+	)
 
 
 func _reset_whoosh_timer():
@@ -181,14 +176,6 @@ func _reset_whoosh_timer():
 	chase_timer.start()
 
 
-func _reparent_player(sound_player: AudioStreamPlayer3D):
-	if sound_player.playing:
-		var world = get_tree().current_scene
-		sound_player.reparent(world)
-		sound_player.finished.connect(sound_player.queue_free)
-		
-
 func hit():
-	hit_player.pitch_scale = randf_range(0.7, 1.3)
-	hit_player.play()
+	hit_sound_component.play()
 	_reset_whoosh_timer()

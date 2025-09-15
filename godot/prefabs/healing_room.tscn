@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3dglyqlcv3ns"]
+[gd_scene load_steps=10 format=3 uid="uid://d3dglyqlcv3ns"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_so222"]
 [ext_resource type="Texture2D" uid="uid://ded3kvbcp2s6c" path="res://assets/textures/rock_gray/Rock002_1K-JPG_Roughness.jpg" id="2_dpx2w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c7k7nrhp3yjhd" path="res://scripts/omni_light_3d.gd" id="3_dpx2w"]
 [ext_resource type="Script" uid="uid://jxx8suhd7ebh" path="res://scripts/healing_area.gd" id="4_0l74w"]
 [ext_resource type="AudioStream" uid="uid://bun75tc667bq3" path="res://assets/sfx/healing/sparkle.mp3" id="5_j0a7j"]
+[ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_0l74w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anrrp"]
 albedo_color = Color(0.67, 0.67, 0.67, 1)
@@ -43,14 +44,18 @@ shadow_enabled = true
 omni_range = 5.78384
 script = ExtResource("3_dpx2w")
 
-[node name="HealingArea" type="Area3D" parent="."]
+[node name="HealingArea" type="Area3D" parent="." node_paths=PackedStringArray("heal_sound_component")]
 script = ExtResource("4_0l74w")
+heal_sound_component = NodePath("../HealSoundComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HealingArea"]
 transform = Transform3D(9.26314, 0, 0, 0, 9.26314, 0, 0, 0, 9.26314, 0, 0, 0)
 shape = SubResource("BoxShape3D_wkgr2")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="HealSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_0l74w")]
+player = NodePath("HealPlayer")
+
+[node name="HealPlayer" type="AudioStreamPlayer3D" parent="HealSoundComponent"]
 stream = ExtResource("5_j0a7j")
 volume_db = -6.0
 

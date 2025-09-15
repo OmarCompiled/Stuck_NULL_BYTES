@@ -2,7 +2,7 @@ extends Area3D
 
 signal room_health_depleted()
 
-@onready var healing_player = $"../AudioStreamPlayer3D"
+@export var heal_sound_component: SoundComponent
 
 var player: Player
 var enemies: Array[Shadow] = []
@@ -37,7 +37,7 @@ func _handle_player_entered(player_body: Player) -> void:
 	player.is_losing_sanity = false
 	is_healing = true
 	if can_play_sound:
-		healing_player.play()
+		heal_sound_component.play()
 		can_play_sound = false
 		await get_tree().create_timer(30.0).timeout
 		can_play_sound = true
@@ -76,8 +76,6 @@ func _consume_room_health(amount: float) -> void:
 		
 func _deplete_room_health() -> void:
 	room_health_depleted.emit()
-	healing_player.stop()
-	healing_player.pitch_scale = 0.45
-	healing_player.play()
+	heal_sound_component.play(0.45, 0.45)
 	queue_free()
 	

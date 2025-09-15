@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://fg0xg2wcui3q"]
+[gd_scene load_steps=8 format=3 uid="uid://fg0xg2wcui3q"]
 
 [ext_resource type="Script" uid="uid://d238qiy1febyl" path="res://scripts/flashlight.gd" id="1_h3kvc"]
 [ext_resource type="PackedScene" uid="uid://c12urfrjbllcp" path="res://assets/scene.gltf" id="1_nnxok"]
 [ext_resource type="Script" uid="uid://3vso5rhc2486" path="res://scripts/detection_area.gd" id="3_wm4p2"]
+[ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="4_ablfv"]
 [ext_resource type="AudioStream" uid="uid://qia5sctjov80" path="res://assets/sfx/flashlight/flashlight-on.wav" id="4_w5iwk"]
 [ext_resource type="AudioStream" uid="uid://b1dh1ge2nog5l" path="res://assets/sfx/flashlight/flashlight-off.wav" id="5_v6d2i"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v6d2i"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ablfv"]
 points = PackedVector3Array(0, 0, 0, 17.5229, 0, -160, 15.1752, 8.76143, -160, 8.76143, 15.1752, -160, 1.07293e-15, 17.5229, -160, -8.76143, 15.1752, -160, -15.1752, 8.76143, -160, -17.5229, 2.14586e-15, -160, -15.1752, -8.76143, -160, -8.76143, -15.1752, -160, -3.21879e-15, -17.5229, -160, 8.76143, -15.1752, -160, 15.1752, -8.76143, -160)
 
-[node name="Flashlight" type="Node3D"]
+[node name="Flashlight" type="Node3D" node_paths=PackedStringArray("on_sound_component", "off_sound_component")]
 script = ExtResource("1_h3kvc")
+on_sound_component = NodePath("OnSoundComponent")
+off_sound_component = NodePath("OffSoundComponent")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_nnxok")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3, 3, 0)
@@ -40,7 +43,7 @@ angle = 12.5
 range = 160.0
 
 [node name="Cone" type="CollisionShape3D" parent="DetectionArea"]
-shape = SubResource("ConvexPolygonShape3D_v6d2i")
+shape = SubResource("ConvexPolygonShape3D_ablfv")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="DetectionArea"]
 light_energy = 0.0
@@ -48,10 +51,16 @@ light_volumetric_fog_energy = 0.5
 spot_range = 13.3333
 spot_angle = 6.25
 
-[node name="OnPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="OnSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ablfv")]
+player = NodePath("OnPlayer")
+
+[node name="OnPlayer" type="AudioStreamPlayer3D" parent="OnSoundComponent"]
 stream = ExtResource("4_w5iwk")
 volume_db = 80.0
 
-[node name="OffPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="OffSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ablfv")]
+player = NodePath("OffPlayer")
+
+[node name="OffPlayer" type="AudioStreamPlayer3D" parent="OffSoundComponent"]
 stream = ExtResource("5_v6d2i")
 volume_db = 80.0

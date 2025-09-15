@@ -3,12 +3,12 @@ class_name Player
 
 @export var health_component: HealthComponent
 
-@onready var sanity_bar: Node = $SanityBar
-@onready var sfxWalk = $sfxWalk
-@onready var dash_player: AudioStreamPlayer3D = $DashPlayer
-@onready var land_player: AudioStreamPlayer3D = $LandPlayer
-@onready var jump_player: AudioStreamPlayer3D = $JumpPlayer
+@export var walk_sound_component: SoundComponent 
+@export var dash_sound_component: SoundComponent
+@export var land_sound_component: SoundComponent
+@export var jump_sound_component: SoundComponent
 
+@onready var sanity_bar: Node = $SanityBar
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
@@ -77,8 +77,7 @@ func _process(delta: float) -> void:
 		$DashCooldownBar.value = 100
 
 func start_dash():
-	dash_player.stop()
-	dash_player.play()
+	dash_sound_component.play()
 	dash_cooldown_timer = get_tree().create_timer(DASH_COOLDOWN)
 	can_dash = false
 	is_dashing = true
@@ -129,18 +128,18 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity += get_gravity() * 2.5 * delta
-		sfxWalk.stop()
+		walk_sound_component.player.stop()
 
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		jump_player.play()
+		jump_sound_component.play()
 		
 	if Input.is_action_pressed("Sprint"):
 		is_sprinting = true
-		sfxWalk.pitch_scale = 0.8
+		walk_sound_component.player.pitch_scale = 0.8
 	else:
 		is_sprinting = false
-		sfxWalk.pitch_scale = 0.6
+		walk_sound_component.player.pitch_scale = 0.6
 	
 	if Input.is_action_pressed("Dash") and can_dash: # E
 		start_dash()
@@ -155,8 +154,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 		velocity.z = 0
-		if sfxWalk.playing:
-			sfxWalk.stop()
+		walk_sound_component.stop()
 
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor()) # only bobs when walking, not jumping
@@ -166,13 +164,11 @@ func _physics_process(delta: float) -> void:
 	if direction and is_on_floor():
 		var bob_cycle_pos = sin(t_bob * BOB_FREQ)	
 		if bob_cycle_pos < -0.9 and last_bob_cycle_pos >= -0.9:
-			sfxWalk.stop()
-			sfxWalk.play()
+			walk_sound_component.play()
 		last_bob_cycle_pos = bob_cycle_pos
 	else:
 		last_bob_cycle_pos = 0
-		if sfxWalk.playing:
-			sfxWalk.stop()
+		walk_sound_component.stop()
 	
 	# FOV
 	_fov(delta)
@@ -204,8 +200,9 @@ func _play_land_sound():
 	var target_pitch = lerp(1.2, 0.8, fall_strength / 2.0)
 	var target_volume = lerp(-50.0, -30.0, fall_strength / 2.0)
 	
-	land_player.pitch_scale = target_pitch * randf_range(0.9, 1.1)
-	land_player.volume_db = target_volume * randf_range(0.9, 1.1)
-	
-	land_player.stop()
-	land_player.play()
+	land_sound_component.play(
+		target_pitch * 0.9,
+		target_pitch * 1.1,
+		target_volume * 0.9,
+		target_volume * 1.1
+	)

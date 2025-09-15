@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://dv8swrx0043i6"]
+[gd_scene load_steps=12 format=4 uid="uid://dv8swrx0043i6"]
 
 [ext_resource type="Script" uid="uid://bilgjsayxkkwx" path="res://scripts/memory_fragment.gd" id="1_aj08t"]
 [ext_resource type="AudioStream" uid="uid://beyffel64cllr" path="res://assets/sfx/shard/ting.mp3" id="2_il870"]
+[ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="3_vrk4c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67ejk"]
 albedo_color = Color(0.372867, 0.1786, 0.47, 1)
@@ -54,10 +55,10 @@ gravity = Vector3(0, 1, 0)
 radius = 0.02
 height = 0.04
 
-[node name="MemoryFragment" type="CharacterBody3D"]
+[node name="MemoryFragment" type="CharacterBody3D" node_paths=PackedStringArray("collect_sound_component")]
 collision_layer = 2
 script = ExtResource("1_aj08t")
-collect_audio_stream = ExtResource("2_il870")
+collect_sound_component = NodePath("CollectSoundComponent")
 
 [node name="ShardMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.045, 0, 0, 0, -1.96701e-09, 0.045, 0, -0.045, -1.96701e-09, 0, 0, 0)
@@ -88,5 +89,12 @@ amount = 15
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_rn8pk")
 draw_pass_1 = SubResource("SphereMesh_jtv2d")
+
+[node name="CollectSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_vrk4c")]
+player = NodePath("CollectPlayer")
+
+[node name="CollectPlayer" type="AudioStreamPlayer3D" parent="CollectSoundComponent"]
+stream = ExtResource("2_il870")
+max_distance = 10.0
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

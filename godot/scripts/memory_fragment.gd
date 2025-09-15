@@ -1,12 +1,11 @@
-extends CharacterBody3D
 class_name Collectible
+extends CharacterBody3D
 
 @export var acceleration: float = 45.0
 @export var max_speed: float = 200.0
 @export var collect_distance: float = 1.0
 @export var idle_rotation_speed: float = 1.3  # radians per second
-@export var collect_audio_stream: AudioStream
-
+@export var collect_sound_component: SoundComponent
 @onready var light = $FragmentLight
 @onready var base_light = light.light_energy
 @onready var base_range = light.omni_range
@@ -72,6 +71,7 @@ func _idle(delta: float) -> void:
 func _get_collected() -> void:
 	GameManager.currency += 1
 	_play_sound()
+	collect_sound_component.kill()
 	queue_free()
 	
 func _update_light(delta: float) -> void:
@@ -81,12 +81,4 @@ func _update_light(delta: float) -> void:
 
 
 func _play_sound():
-	var collect_player = AudioStreamPlayer3D.new()
-	get_tree().current_scene.add_child(collect_player)
-	collect_player.global_position = global_position
-	collect_player.max_distance = 35.0
-	collect_player.stream = collect_audio_stream
-	collect_player.pitch_scale = randf_range(1.3, 1.5)
-	collect_player.play()
-	collect_player.connect("finished", collect_player.queue_free)
-	
+	collect_sound_component.play(1.3, 1.5)	

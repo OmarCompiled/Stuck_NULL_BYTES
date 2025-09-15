@@ -3,8 +3,8 @@ extends Node3D
 @onready var spot_light = $DetectionArea/SpotLight3D
 @onready var cooldown = $CoolDownBar
 @onready var detection_area = $DetectionArea
-@onready var on_player: AudioStreamPlayer3D = $OnPlayer
-@onready var off_player: AudioStreamPlayer3D = $OffPlayer
+@export var on_sound_component: SoundComponent
+@export var off_sound_component: SoundComponent
 @export var damage_per_second: float = 150.0
 @export var drain_per_second: float = 50
 @export var recharge_per_second: float = 100/3
@@ -32,9 +32,8 @@ func _process(delta: float) -> void:
 		_turn_flashlight_off()
 		
 func _turn_flashlight_on():
-	off_player.stop()
-	on_player.stop()
-	on_player.play()
+	off_sound_component.stop()
+	on_sound_component.play()
 	
 	is_flashlight_on = true
 	spot_light.light_energy = 16
@@ -47,9 +46,8 @@ func _turn_flashlight_on():
 			enemies_in_area.append(body)
 	
 func _turn_flashlight_off():
-	off_player.stop()
-	on_player.stop()
-	off_player.play()
+	on_sound_component.stop()
+	off_sound_component.play()
 	
 	is_flashlight_on = false
 	spot_light.light_energy = 0

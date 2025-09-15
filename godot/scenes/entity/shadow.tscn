@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqagwekx7o53h"]
+[gd_scene load_steps=14 format=3 uid="uid://cqagwekx7o53h"]
 
 [ext_resource type="Script" uid="uid://b5x3d1pweoiom" path="res://scripts/shadow.gd" id="1_n2o5g"]
 [ext_resource type="PackedScene" uid="uid://bkjsh3itjc877" path="res://scenes/other/DamageParticles.tscn" id="2_n2o5g"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgyspg16rbl4q" path="res://scenes/other/death_light.tscn" id="3_ov1mx"]
 [ext_resource type="PackedScene" uid="uid://dv8swrx0043i6" path="res://scenes/asset/memory_fragment.tscn" id="4_eeawa"]
 [ext_resource type="AudioStream" uid="uid://n1dxrlknm13u" path="res://assets/sfx/enemy/whoosh.wav" id="6_61amk"]
+[ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_mk1n8"]
 [ext_resource type="AudioStream" uid="uid://dmuomtawumhik" path="res://assets/sfx/enemy/boom.mp3" id="7_61amk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n2o5g"]
@@ -22,12 +23,12 @@ radius = 30.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_ov1mx"]
 radius = 0.825561
 
-[node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "whoosh_player", "hit_player")]
+[node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "whoosh_sound_component", "hit_sound_component")]
 collision_layer = 8
 script = ExtResource("1_n2o5g")
 health_component = NodePath("HealthComponent")
-whoosh_player = NodePath("WooshPlayer")
-hit_player = NodePath("HitPlayer")
+whoosh_sound_component = NodePath("WooshSoundComponent")
+hit_sound_component = NodePath("HitSoundComponent")
 damage_particles = ExtResource("2_n2o5g")
 death_light_scene = ExtResource("3_ov1mx")
 memory_fragment = ExtResource("4_eeawa")
@@ -64,17 +65,29 @@ light_energy = 13.0
 light_volumetric_fog_energy = 3.0
 omni_range = 0.949455
 
-[node name="WooshPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="ChaseTimer" type="Timer" parent="."]
+
+[node name="WooshSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
+player = NodePath("WooshPlayer")
+min_pitch = 0.5
+max_pitch = 0.8
+min_volume = -20.0
+max_volume = -15.0
+
+[node name="WooshPlayer" type="AudioStreamPlayer3D" parent="WooshSoundComponent"]
 stream = ExtResource("6_61amk")
 max_distance = 35.0
 
-[node name="HitPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="HitSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
+player = NodePath("HitPlayer")
+min_pitch = 0.7
+max_pitch = 1.3
+
+[node name="HitPlayer" type="AudioStreamPlayer3D" parent="HitSoundComponent"]
 stream = ExtResource("7_61amk")
 volume_db = 80.0
 max_db = 6.0
 max_distance = 35.0
-
-[node name="ChaseTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_area_3d_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqagwekx7o53h"]
+[gd_scene load_steps=15 format=3 uid="uid://cqagwekx7o53h"]
 
 [ext_resource type="Script" uid="uid://b5x3d1pweoiom" path="res://scripts/shadow.gd" id="1_n2o5g"]
 [ext_resource type="PackedScene" uid="uid://bkjsh3itjc877" path="res://scenes/other/DamageParticles.tscn" id="2_n2o5g"]
@@ -20,14 +20,19 @@ metallic = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_icb2k"]
 radius = 30.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_mk1n8"]
+radius = 4.97867
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_ov1mx"]
 radius = 0.825561
 
-[node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "whoosh_sound_component", "hit_sound_component")]
+[node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "chase_sound_component", "close_sound_component", "death_sound_component", "hit_sound_component")]
 collision_layer = 8
 script = ExtResource("1_n2o5g")
 health_component = NodePath("HealthComponent")
-whoosh_sound_component = NodePath("WooshSoundComponent")
+chase_sound_component = NodePath("ChaseSoundComponent")
+close_sound_component = NodePath("CloseSoundComponent2")
+death_sound_component = NodePath("DeathSoundComponent")
 hit_sound_component = NodePath("HitSoundComponent")
 damage_particles = ExtResource("2_n2o5g")
 death_light_scene = ExtResource("3_ov1mx")
@@ -48,6 +53,11 @@ mesh = SubResource("SphereMesh_icb2k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
 shape = SubResource("SphereShape3D_icb2k")
 
+[node name="CloseDetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CloseDetectionArea"]
+shape = SubResource("SphereShape3D_mk1n8")
+
 [node name="ShadowHitbox" type="Area3D" parent="."]
 monitoring = false
 
@@ -67,14 +77,34 @@ omni_range = 0.949455
 
 [node name="ChaseTimer" type="Timer" parent="."]
 
-[node name="WooshSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
-player = NodePath("WooshPlayer")
+[node name="ChaseSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
+player = NodePath("ChasePlayer")
 min_pitch = 0.5
 max_pitch = 0.8
 min_volume = -20.0
 max_volume = -15.0
 
-[node name="WooshPlayer" type="AudioStreamPlayer3D" parent="WooshSoundComponent"]
+[node name="ChasePlayer" type="AudioStreamPlayer3D" parent="ChaseSoundComponent"]
+stream = ExtResource("6_61amk")
+max_distance = 35.0
+
+[node name="CloseSoundComponent2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
+player = NodePath("ClosePlayer")
+max_pitch = 1.2
+max_volume = 10.0
+
+[node name="ClosePlayer" type="AudioStreamPlayer3D" parent="CloseSoundComponent2"]
+stream = ExtResource("6_61amk")
+max_distance = 35.0
+
+[node name="DeathSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
+player = NodePath("DeathPlayer")
+min_pitch = 1.4
+max_pitch = 1.6
+min_volume = 5.0
+max_volume = 15.0
+
+[node name="DeathPlayer" type="AudioStreamPlayer3D" parent="DeathSoundComponent"]
 stream = ExtResource("6_61amk")
 max_distance = 35.0
 
@@ -91,6 +121,7 @@ max_distance = 35.0
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="CloseDetectionArea" to="." method="_on_close_detection_area_body_entered"]
 [connection signal="damage_taken" from="HealthComponent" to="." method="_on_damage_taken"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_depleted"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]

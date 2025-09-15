@@ -13,7 +13,7 @@ class_name Player
 @onready var camera = $Head/Camera3D
 
 # Sanity
-const SANITY_LOST_PER_SECOND = 1 # 2 was unplayable
+const SANITY_LOST_PER_SECOND = 1
 var is_losing_sanity = true
 
 # Movement
@@ -177,8 +177,7 @@ func _physics_process(delta: float) -> void:
 	
 func die():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	await get_tree().physics_frame
-	get_tree().change_scene_to_file("res://scenes/menu/death_screen.tscn")
+	get_tree().change_scene_to_file.bind("res://scenes/menu/death_screen.tscn").call_deferred()
 	
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	if area.name == "ShadowHitbox":

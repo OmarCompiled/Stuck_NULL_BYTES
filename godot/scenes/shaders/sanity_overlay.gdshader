@@ -11,7 +11,7 @@ void fragment() {
     // 1. Fisheye lens warp
     vec2 center_vec = base_uv - 0.5;
     float dist = length(center_vec);
-    float bubble_warp = pow(dist, 1.5) * 0.25 * sanity_intensity;
+    float bubble_warp = pow(dist, 1.5) * 0.4 * sanity_intensity;
     vec2 warped_uv = base_uv + center_vec * bubble_warp;
     vec3 warped_color = texture(SCREEN_TEXTURE, warped_uv).rgb;
     color = mix(color, warped_color, sanity_intensity);
@@ -35,6 +35,8 @@ void fragment() {
 
     // Boost red channel
     color.r *= (1.0 + sanity_intensity * 0.7);
+	
+	color = (color - 0.5) * (1.0 + sanity_intensity * 0.025) + 0.5;
 
     COLOR = vec4(color, screen_color.a);
 }

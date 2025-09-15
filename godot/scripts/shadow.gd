@@ -95,6 +95,7 @@ func _die():
 		
 	_play_death_woosh()
 	_reparent_player(whoosh_player)
+	_reparent_player(hit_player)
 	
 	queue_free()
 
@@ -189,5 +190,6 @@ func _reparent_player(sound_player: AudioStreamPlayer3D):
 		
 
 func hit():
+	hit_player.pitch_scale = randf_range(0.7, 1.3)
 	hit_player.play()
 	_reset_whoosh_timer()

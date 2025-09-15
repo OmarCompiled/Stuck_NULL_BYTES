@@ -16,7 +16,7 @@ sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
 
 [sub_resource type="Environment" id="Environment_aqk2v"]
 background_mode = 2
-background_energy_multiplier = 0.4
+background_energy_multiplier = 0.45
 sky = SubResource("Sky_tlwt5")
 tonemap_mode = 2
 glow_enabled = true
@@ -30,7 +30,8 @@ generator_scene = ExtResource("2_fj7yv")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.997916, 0.0645323, 2.8208e-09, 0, -4.37114e-08, 1, 0.0645323, 0.997916, 4.36203e-08, 0, 0, 0)
 light_color = Color(0.338777, 0.0584485, 0.865758, 1)
-light_energy = 0.06
+light_energy = 0.19
+light_volumetric_fog_energy = 0.8
 directional_shadow_max_distance = 1.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

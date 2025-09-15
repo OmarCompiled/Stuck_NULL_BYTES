@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Stuck"
-run/main_scene="uid://caslnr2cd6agv"
+run/main_scene="uid://dijywxr5vrrpq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://cdovoqwvdistc"

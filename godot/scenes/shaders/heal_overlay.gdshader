@@ -16,8 +16,8 @@ void fragment() {
     float dynamic_intensity = heal_intensity * pulse;
     
 
-    vec3 heal_color = vec3(0.3, 0.6, 0.5);
-    float heal_strength = corner_mask * dynamic_intensity * 0.4;
+    vec3 heal_color = vec3(0.25, 0.8, 0.4);
+    float heal_strength = corner_mask * dynamic_intensity * 0.7;
     
 
     color = mix(color, heal_color, heal_strength);

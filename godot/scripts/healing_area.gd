@@ -77,7 +77,7 @@ func _consume_room_health(amount: float) -> void:
 func _deplete_room_health() -> void:
 	room_health_depleted.emit()
 	healing_player.stop()
-	healing_player.pitch_scale = 0.6
+	healing_player.pitch_scale = 0.45
 	healing_player.play()
 	queue_free()
 	

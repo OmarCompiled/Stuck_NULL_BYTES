@@ -59,6 +59,7 @@ alignment = 1
 
 [node name="Start" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
@@ -81,6 +82,7 @@ flat = false
 
 [node name="Start2" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
@@ -103,6 +105,7 @@ flat = false
 
 [node name="Options" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
@@ -125,6 +128,7 @@ flat = false
 
 [node name="Quit" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2

@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://5jofxdw2r7jg"]
+
+[ext_resource type="Script" uid="uid://bq3oor2d2vx5g" path="res://scenes/menu/death_screen.gd" id="1_0vcrs"]
+
+[sub_resource type="SystemFont" id="SystemFont_rmncr"]
+
+[sub_resource type="SystemFont" id="SystemFont_51ls8"]
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0vcrs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="YouDied" type="RichTextLabel" parent="ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_rmncr")
+theme_override_font_sizes/normal_font_size = 60
+text = "You Died...
+or did you?"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Shadows" type="RichTextLabel" parent="ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_51ls8")
+theme_override_font_sizes/normal_font_size = 45
+text = "Shadows Killed: 0
+"
+fit_content = true
+
+[node name="MemoryFragments" type="RichTextLabel" parent="ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 45
+text = "Memory Shards Collected: 0"
+fit_content = true
+
+[node name="MenuButton" type="MenuButton" parent="ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 60
+text = "End Run"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

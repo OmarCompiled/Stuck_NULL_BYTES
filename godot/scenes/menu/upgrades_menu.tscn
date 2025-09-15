@@ -59,6 +59,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 60
 toggle_mode = false
 action_mode = 1
 text = "Back"

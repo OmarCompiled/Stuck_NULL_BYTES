@@ -8,7 +8,7 @@ class_name Shadow
 @export var death_light_scene: PackedScene
 @export var memory_fragment: PackedScene
 
-@export var sanity_reward = 5
+@export var sanity_reward = 8 # 5 was too low
 
 @export var knockback_decay: float = 0.95
 
@@ -122,6 +122,7 @@ func _spawn_shard():
 		0.2,
 		randf_range(-0.5, 0.5)
 	)
+	
 	shard.global_position = global_position + offset
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

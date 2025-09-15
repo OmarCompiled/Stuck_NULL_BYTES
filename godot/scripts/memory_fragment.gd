@@ -4,7 +4,7 @@ class_name Collectible
 @export var acceleration: float = 45.0
 @export var max_speed: float = 200.0
 @export var collect_distance: float = 1.0
-@export var idle_rotation_speed: float = 1.3  # radians per second
+@export var idle_rotation_speed: float = 1.3  # radians per second # yes, wanted to add this
 @export var collect_audio_stream: AudioStream
 
 @onready var light = $FragmentLight

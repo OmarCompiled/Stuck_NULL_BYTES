@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cta32glpb8jih"]
+[gd_scene load_steps=3 format=3 uid="uid://cta32glpb8jih"]
 
 [ext_resource type="Script" uid="uid://c0p7gh47x30c8" path="res://scripts/upgrades_menu.gd" id="1_mc1nf"]
-
-[sub_resource type="SystemFont" id="SystemFont_mc1nf"]
-
-[sub_resource type="SystemFont" id="SystemFont_ni86e"]
+[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="2_7kd37"]
 
 [node name="UpgradesMenu" type="Control"]
 layout_mode = 3
@@ -37,7 +34,7 @@ size_flags_vertical = 2
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/BarsContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_mc1nf")
+theme_override_fonts/font = ExtResource("2_7kd37")
 placeholder_text = "Enter Cheat Code"
 max_length = 100
 
@@ -45,7 +42,7 @@ max_length = 100
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/normal_font = SubResource("SystemFont_ni86e")
+theme_override_fonts/normal_font = ExtResource("2_7kd37")
 text = "Currency"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -59,6 +56,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_7kd37")
 theme_override_font_sizes/font_size = 60
 toggle_mode = false
 action_mode = 1

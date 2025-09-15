@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://f8mp43vqb13f"]
+[gd_scene load_steps=13 format=3 uid="uid://f8mp43vqb13f"]
 
 [ext_resource type="Script" uid="uid://dnayske5ek28m" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://fg0xg2wcui3q" path="res://scenes/asset/flashlight.tscn" id="2_onrkg"]
 [ext_resource type="Script" uid="uid://ci7kfw5q5qn2k" path="res://scripts/enemy_counter.gd" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://scenes/other/health_component.tscn" id="3_sweqy"]
 [ext_resource type="Script" uid="uid://xws3v0ou7h4d" path="res://scripts/sanity_bar.gd" id="4_2hs0m"]
+[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="5_ksla3"]
 [ext_resource type="AudioStream" uid="uid://drx8tsfyjehx" path="res://assets/sfx/Audio/footstep02.ogg" id="6_2hs0m"]
 [ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_bee8u"]
 [ext_resource type="AudioStream" uid="uid://cgpo6tvpujy6b" path="res://assets/sfx/player/dash.wav" id="7_j8jve"]
@@ -67,6 +68,7 @@ layout_mode = 0
 offset_top = -42.0
 offset_right = 269.0
 offset_bottom = -2.0
+theme_override_fonts/normal_font = ExtResource("5_ksla3")
 text = "Sanity"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -85,6 +87,7 @@ layout_mode = 0
 offset_top = -42.0
 offset_right = 269.0
 offset_bottom = -2.0
+theme_override_fonts/normal_font = ExtResource("5_ksla3")
 text = "Dash"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -97,6 +100,7 @@ offset_left = -289.0
 offset_top = 5.0
 offset_bottom = 45.0
 grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("5_ksla3")
 text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1

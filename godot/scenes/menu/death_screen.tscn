@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo2km6eyjm3nk"]
+[gd_scene load_steps=3 format=3 uid="uid://bo2km6eyjm3nk"]
 
 [ext_resource type="Script" uid="uid://bq3oor2d2vx5g" path="res://scenes/menu/death_screen.gd" id="1_0vcrs"]
-
-[sub_resource type="SystemFont" id="SystemFont_rmncr"]
-
-[sub_resource type="SystemFont" id="SystemFont_51ls8"]
+[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="2_51ls8"]
 
 [node name="DeathScreen" type="Control"]
 layout_mode = 3
@@ -42,7 +39,7 @@ theme_override_constants/separation = 36
 
 [node name="YouDied" type="RichTextLabel" parent="ColorRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/normal_font = SubResource("SystemFont_rmncr")
+theme_override_fonts/normal_font = ExtResource("2_51ls8")
 theme_override_font_sizes/normal_font_size = 60
 text = "You Died...
 or did you?"
@@ -51,7 +48,7 @@ horizontal_alignment = 1
 
 [node name="Shadows" type="RichTextLabel" parent="ColorRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/normal_font = SubResource("SystemFont_51ls8")
+theme_override_fonts/normal_font = ExtResource("2_51ls8")
 theme_override_font_sizes/normal_font_size = 45
 text = "Shadows Killed: 0
 "
@@ -59,6 +56,7 @@ fit_content = true
 
 [node name="MemoryFragments" type="RichTextLabel" parent="ColorRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_51ls8")
 theme_override_font_sizes/normal_font_size = 45
 text = "Memory Shards Collected: 0"
 fit_content = true
@@ -68,6 +66,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_51ls8")
 theme_override_font_sizes/font_size = 60
 text = "End Run"
 

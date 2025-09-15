@@ -2,12 +2,15 @@ extends Node
 
 var hit_overlay: ColorRect
 var trauma: float = 0.0
-var max_shake: float = 10.0
+var max_shake: float = 15.0
 var player_health_component: HealthComponent
 
 var current_hit_intensity: float = 0.0
 var hit_intensity_target: float = 0.0
 var hit_effect_timer: float = 0.0
+
+const TRAUMA_LOST_PER_SECOND: float = 1.0
+
 
 func find_hit_overlay():
 	var hit_canvas = get_tree().get_first_node_in_group("hit_canvas")
@@ -58,7 +61,7 @@ func _process(delta):
 		hit_overlay.material.set_shader_parameter("hit_time", hit_effect_timer)
 	
 	if trauma > 0:
-		trauma = max(trauma - delta * 1.5, 0.0)
+		trauma = max(trauma - delta * TRAUMA_LOST_PER_SECOND, 0.0)
 		if GameManager.player:
 			apply_screen_shake()
 

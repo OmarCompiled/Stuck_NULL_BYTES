@@ -5,7 +5,8 @@ func _ready() -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Quit"):
-		get_tree().quit()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
 	if Input.is_action_just_pressed("Pause"):
 		var current_scene := get_tree().current_scene

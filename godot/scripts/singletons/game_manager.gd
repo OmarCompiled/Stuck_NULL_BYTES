@@ -29,7 +29,6 @@ func end_game():
 
 	# Waiting for the physics frame to end prevents an error thrown on dying
 	# when freeing the scene before physics calculations are complete
-	await get_tree().physics_frame
-	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
+	get_tree().change_scene_to_file.bind("res://scenes/menu/main_menu.tscn").call_deferred()
 	
 	

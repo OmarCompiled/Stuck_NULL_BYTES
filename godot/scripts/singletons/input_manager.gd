@@ -6,6 +6,7 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Quit"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		GameManager.end_game()
 		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
 	if Input.is_action_just_pressed("Pause"):

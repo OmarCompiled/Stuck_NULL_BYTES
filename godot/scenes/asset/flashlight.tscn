@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://b1dh1ge2nog5l" path="res://assets/sfx/flashlight/flashlight-off.wav" id="5_v6d2i"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ablfv"]
-points = PackedVector3Array(0, 0, 0, 17.5229, 0, -160, 15.1752, 8.76143, -160, 8.76143, 15.1752, -160, 1.07293e-15, 17.5229, -160, -8.76143, 15.1752, -160, -15.1752, 8.76143, -160, -17.5229, 2.14586e-15, -160, -15.1752, -8.76143, -160, -8.76143, -15.1752, -160, -3.21879e-15, -17.5229, -160, 8.76143, -15.1752, -160, 15.1752, -8.76143, -160)
+points = PackedVector3Array(0, 0, 0, 17.5229, 0, -160, 15.1752, 8.76143, -160, 8.76143, 15.1752, -160, 1.07297e-15, 17.5229, -160, -8.76143, 15.1752, -160, -15.1752, 8.76143, -160, -17.5229, 2.14593e-15, -160, -15.1752, -8.76143, -160, -8.76143, -15.1752, -160, -3.2189e-15, -17.5229, -160, 8.76143, -15.1752, -160, 15.1752, -8.76143, -160)
 
 [node name="Flashlight" type="Node3D" node_paths=PackedStringArray("on_sound_component", "off_sound_component")]
 script = ExtResource("1_h3kvc")
@@ -48,8 +48,8 @@ shape = SubResource("ConvexPolygonShape3D_ablfv")
 [node name="SpotLight3D" type="SpotLight3D" parent="DetectionArea"]
 light_energy = 0.0
 light_volumetric_fog_energy = 0.5
-spot_range = 13.3333
-spot_angle = 6.25
+spot_range = 13.8714
+spot_angle = 12.7453
 
 [node name="OnSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ablfv")]
 player = NodePath("OnPlayer")

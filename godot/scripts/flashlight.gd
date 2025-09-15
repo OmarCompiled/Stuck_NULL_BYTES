@@ -3,6 +3,8 @@ extends Node3D
 @onready var spot_light = $DetectionArea/SpotLight3D
 @onready var cooldown = $CoolDownBar
 @onready var detection_area = $DetectionArea
+@onready var on_player: AudioStreamPlayer3D = $OnPlayer
+@onready var off_player: AudioStreamPlayer3D = $OffPlayer
 @export var damage_per_second: float = 150.0
 @export var drain_per_second: float = 50
 @export var recharge_per_second: float = 100/3
@@ -30,19 +32,28 @@ func _process(delta: float) -> void:
 		_turn_flashlight_off()
 		
 func _turn_flashlight_on():
+	off_player.stop()
+	on_player.stop()
+	on_player.play()
+	
 	is_flashlight_on = true
 	spot_light.light_energy = 16
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
-	
+		
 	# Add any enemies already in the area
 	for body in detection_area.get_overlapping_bodies():
 		if body is Shadow:
 			enemies_in_area.append(body)
 	
 func _turn_flashlight_off():
+	off_player.stop()
+	on_player.stop()
+	off_player.play()
+	
 	is_flashlight_on = false
 	spot_light.light_energy = 0
+	
 	detection_area.body_entered.disconnect(_on_body_entered)
 	detection_area.body_exited.disconnect(_on_body_exited)
 	enemies_in_area.clear()

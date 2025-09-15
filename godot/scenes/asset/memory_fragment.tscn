@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://dv8swrx0043i6"]
+[gd_scene load_steps=11 format=4 uid="uid://dv8swrx0043i6"]
 
 [ext_resource type="Script" uid="uid://bilgjsayxkkwx" path="res://scripts/memory_fragment.gd" id="1_aj08t"]
+[ext_resource type="AudioStream" uid="uid://beyffel64cllr" path="res://assets/sfx/shard/ting.mp3" id="2_il870"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67ejk"]
 albedo_color = Color(0.372867, 0.1786, 0.47, 1)
@@ -56,6 +57,7 @@ height = 0.04
 [node name="MemoryFragment" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_aj08t")
+collect_audio_stream = ExtResource("2_il870")
 
 [node name="ShardMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.045, 0, 0, 0, -1.96701e-09, 0.045, 0, -0.045, -1.96701e-09, 0, 0, 0)
@@ -76,9 +78,9 @@ shape = SubResource("CapsuleShape3D_aj08t")
 
 [node name="FragmentLight" type="OmniLight3D" parent="."]
 light_color = Color(0.164706, 0.027451, 0.282353, 1)
-light_energy = 14.0
+light_energy = 3.0
 shadow_enabled = true
-omni_range = 0.5
+omni_range = 0.8
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_aj08t")

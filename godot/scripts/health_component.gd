@@ -3,9 +3,11 @@ class_name HealthComponent
 
 signal invincibility_started()
 signal invincibility_ended()
-signal health_changed(new_health : float)
+signal health_changed(new_health: float)
 signal health_depleted()
-signal damage_taken(amount : float)
+signal damage_taken(amount: float)
+signal healing_received(amount: float)
+
 
 @export var max_health: float = 100
 @export var invincibility_time: float = 0.5
@@ -41,12 +43,15 @@ func take_damage(amount: float, ignore_invincibility: bool = false):
 		is_invincible = false
 		invincibility_ended.emit()
 
+
 func heal(amount: float):
-	if amount <= 0:
-		return
+	if amount <= 0 or current_health >= max_health:
+		return false
 	
-	current_health = min(max_health, current_health + amount)
+	current_health = min(current_health + amount, max_health)
 	health_changed.emit(current_health)
+	healing_received.emit(amount)
+	return true
 
 func get_health_percentage() -> float:
 	return current_health / max_health

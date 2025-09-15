@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://da2g1rbpceyls"]
+
+[ext_resource type="Shader" uid="uid://qq1pgus2ri3g" path="res://scenes/shaders/heal_overlay.gdshader" id="1_j5ij8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ndit"]
+shader = ExtResource("1_j5ij8")
+shader_parameter/heal_intensity = 0.0
+shader_parameter/heal_time = 0.0
+
+[node name="HealCanvasLayer" type="CanvasLayer"]
+
+[node name="HealOverlay" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 4096
+material = SubResource("ShaderMaterial_3ndit")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

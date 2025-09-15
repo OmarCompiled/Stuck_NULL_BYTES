@@ -1,18 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://mo4d62qc6mn6"]
+[gd_scene load_steps=7 format=3 uid="uid://mo4d62qc6mn6"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_jm2rx"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_anrrp"]
+[ext_resource type="Texture2D" uid="uid://jni04jas62t0" path="res://assets/textures/rock_gray/Rock002_1K-JPG_Color.jpg" id="2_e2gtu"]
 [ext_resource type="PackedScene" uid="uid://cudookqy5hwk7" path="res://scenes/other/spawner.tscn" id="3_hr28d"]
 [ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://scenes/entity/shadow.tscn" id="4_e2gtu"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anrrp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11sit"]
+albedo_texture = ExtResource("2_e2gtu")
 
 [node name="Corridor" type="Node3D"]
 script = ExtResource("1_jm2rx")
 metadata/_custom_type_script = "uid://dg0fdhchjs2xg"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-material_override = SubResource("StandardMaterial3D_anrrp")
+material_override = SubResource("StandardMaterial3D_11sit")
 use_collision = true
 size = Vector3(10, 10, 10)
 

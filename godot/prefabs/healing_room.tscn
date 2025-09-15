@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3dglyqlcv3ns"]
+[gd_scene load_steps=9 format=3 uid="uid://d3dglyqlcv3ns"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_so222"]
+[ext_resource type="Texture2D" uid="uid://ded3kvbcp2s6c" path="res://assets/textures/rock_gray/Rock002_1K-JPG_Roughness.jpg" id="2_dpx2w"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_j0a7j"]
-[ext_resource type="Script" uid="uid://c7k7nrhp3yjhd" path="res://prefabs/omni_light_3d.gd" id="3_dpx2w"]
-[ext_resource type="Script" uid="uid://jxx8suhd7ebh" path="res://prefabs/healing_area.gd" id="4_0l74w"]
+[ext_resource type="Script" uid="uid://c7k7nrhp3yjhd" path="res://scripts/omni_light_3d.gd" id="3_dpx2w"]
+[ext_resource type="Script" uid="uid://jxx8suhd7ebh" path="res://scripts/healing_area.gd" id="4_0l74w"]
+[ext_resource type="AudioStream" uid="uid://bun75tc667bq3" path="res://assets/sfx/healing/sparkle.mp3" id="5_j0a7j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anrrp"]
+albedo_color = Color(0.67, 0.67, 0.67, 1)
+albedo_texture = ExtResource("2_dpx2w")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wkgr2"]
 
@@ -34,9 +38,9 @@ script = ExtResource("2_j0a7j")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0.1875, 1, 0, 1)
-light_volumetric_fog_energy = 2.0
+light_bake_mode = 1
 shadow_enabled = true
-omni_range = 10.9537
+omni_range = 5.78384
 script = ExtResource("3_dpx2w")
 
 [node name="HealingArea" type="Area3D" parent="."]
@@ -45,6 +49,10 @@ script = ExtResource("4_0l74w")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HealingArea"]
 transform = Transform3D(9.26314, 0, 0, 0, 9.26314, 0, 0, 0, 9.26314, 0, 0, 0)
 shape = SubResource("BoxShape3D_wkgr2")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_j0a7j")
+volume_db = -6.0
 
 [connection signal="body_entered" from="HealingArea" to="HealingArea" method="_on_body_entered"]
 [connection signal="body_exited" from="HealingArea" to="HealingArea" method="_on_body_exited"]

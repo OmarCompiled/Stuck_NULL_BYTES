@@ -1,12 +1,19 @@
 extends CharacterBody3D
 class_name Player
 
-@onready var sanity_bar: Node = $SanityBar
-@onready var sfxWalk = $sfxWalk
 @export var health_component: HealthComponent
 
+@onready var sanity_bar: Node = $SanityBar
+@onready var sfxWalk = $sfxWalk
+@onready var dash_player: AudioStreamPlayer3D = $DashPlayer
+@onready var land_player: AudioStreamPlayer3D = $LandPlayer
+@onready var jump_player: AudioStreamPlayer3D = $JumpPlayer
+
+@onready var head = $Head
+@onready var camera = $Head/Camera3D
+
 # Sanity
-const SANITY_LOST_PER_SECOND = 1
+const SANITY_LOST_PER_SECOND = 2
 var is_losing_sanity = true
 
 # Movement
@@ -40,15 +47,20 @@ var last_bob_cycle_pos = 0.0
 const BASE_FOV = 75.0
 const FOV_CHANGE = 2
 
+# Knockback
 var knockback_force = 17
 
-@onready var head = $Head
-@onready var camera = $Head/Camera3D
+# Air
+var was_in_air: bool = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GameManager.player = self
-
+	SanityEffectsManager.set_player_health_component(health_component)
+	HitEffectsManager.set_player_health_component(health_component)
+	HealEffectsManager.set_player_health_component(health_component)
+	
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
@@ -65,6 +77,8 @@ func _process(delta: float) -> void:
 		$DashCooldownBar.value = 100
 
 func start_dash():
+	dash_player.stop()
+	dash_player.play()
 	dash_cooldown_timer = get_tree().create_timer(DASH_COOLDOWN)
 	can_dash = false
 	is_dashing = true
@@ -109,6 +123,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
+	_check_landing()
+	
 	speed = SPRINT_SPEED if is_sprinting else WALK_SPEED
 	
 	if not is_on_floor():
@@ -117,6 +133,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		jump_player.play()
 		
 	if Input.is_action_pressed("Sprint"):
 		is_sprinting = true
@@ -160,6 +177,7 @@ func _physics_process(delta: float) -> void:
 	# FOV
 	_fov(delta)
 
+	was_in_air = not is_on_floor()
 	move_and_slide()
 	
 func die():
@@ -172,3 +190,22 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 		var knockback_dir = enemy.global_position - global_position
 		health_component.take_damage(enemy.dmg)
 		enemy.apply_knockback(knockback_dir * knockback_force)
+		enemy.hit()
+		
+		
+func _check_landing() -> void:
+	if is_on_floor() and was_in_air:
+		_play_land_sound()
+		
+		
+func _play_land_sound():
+	var fall_strength = clamp(abs(velocity.y) / JUMP_VELOCITY, 1.0, 5.0)
+	
+	var target_pitch = lerp(1.2, 0.8, fall_strength / 2.0)
+	var target_volume = lerp(-50.0, -30.0, fall_strength / 2.0)
+	
+	land_player.pitch_scale = target_pitch * randf_range(0.9, 1.1)
+	land_player.volume_db = target_volume * randf_range(0.9, 1.1)
+	
+	land_player.stop()
+	land_player.play()

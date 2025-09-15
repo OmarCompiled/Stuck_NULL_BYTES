@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://f8mp43vqb13f"]
+[gd_scene load_steps=11 format=3 uid="uid://f8mp43vqb13f"]
 
 [ext_resource type="Script" uid="uid://dnayske5ek28m" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://fg0xg2wcui3q" path="res://scenes/asset/flashlight.tscn" id="2_onrkg"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://scenes/other/health_component.tscn" id="3_sweqy"]
 [ext_resource type="Script" uid="uid://xws3v0ou7h4d" path="res://scripts/sanity_bar.gd" id="4_2hs0m"]
 [ext_resource type="AudioStream" uid="uid://drx8tsfyjehx" path="res://assets/sfx/Audio/footstep02.ogg" id="6_2hs0m"]
+[ext_resource type="AudioStream" uid="uid://cgpo6tvpujy6b" path="res://assets/sfx/player/dash.wav" id="7_j8jve"]
+[ext_resource type="AudioStream" uid="uid://dx2nd6acpg2oh" path="res://assets/sfx/enemy/land.wav" id="8_k4nkw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -97,7 +99,19 @@ script = ExtResource("3_i3pqv")
 
 [node name="sfxWalk" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_2hs0m")
-volume_db = -50.0
+volume_db = -40.0
+
+[node name="DashPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_j8jve")
+volume_db = 80.0
+pitch_scale = 0.5
+
+[node name="LandPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_k4nkw")
+
+[node name="JumpPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_j8jve")
+pitch_scale = 1.1
 
 [connection signal="area_entered" from="PlayerHitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="health_changed" from="HealthComponent" to="SanityBar" method="_on_health_changed"]

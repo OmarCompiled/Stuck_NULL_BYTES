@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://caslnr2cd6agv"]
+[gd_scene load_steps=10 format=3 uid="uid://caslnr2cd6agv"]
 
 [ext_resource type="Script" uid="uid://deiluidkv07ux" path="res://scripts/world.gd" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dd2sht8icfr86" path="res://scenes/other/prototype_level_generator.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://scenes/other/fade_scene.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://btt5y2vnaetr8" path="res://scenes/shaders/sanity_overlay.tscn" id="4_lx57m"]
+[ext_resource type="PackedScene" uid="uid://bakrsbnb6kyij" path="res://scenes/shaders/hit_canvas_layer.tscn" id="5_6qbqy"]
+[ext_resource type="PackedScene" uid="uid://da2g1rbpceyls" path="res://scenes/shaders/heal_canvas_layer.tscn" id="6_nsc2l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -13,12 +16,13 @@ sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
 
 [sub_resource type="Environment" id="Environment_aqk2v"]
 background_mode = 2
-background_energy_multiplier = 0.32
+background_energy_multiplier = 0.4
 sky = SubResource("Sky_tlwt5")
 tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.1
+volumetric_fog_length = 128.0
 
 [node name="World" type="Node"]
 script = ExtResource("1_f3sb7")
@@ -32,5 +36,11 @@ visible = false
 visibility_layer = 2
 
 [node name="fade_timer" type="Timer" parent="FadeTransition"]
+
+[node name="SanityOverlay" parent="." groups=["sanity_canvas"] instance=ExtResource("4_lx57m")]
+
+[node name="HitCanvasLayer" parent="." groups=["hit_canvas"] instance=ExtResource("5_6qbqy")]
+
+[node name="HealCanvasLayer" parent="." groups=["heal_canvas"] instance=ExtResource("6_nsc2l")]
 
 [connection signal="timeout" from="FadeTransition/fade_timer" to="." method="_on_fade_timer_timeout"]

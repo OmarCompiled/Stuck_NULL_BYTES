@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfykysdqk34bh"]
+[gd_scene load_steps=7 format=3 uid="uid://dfykysdqk34bh"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_fy8ru"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_iopjx"]
+[ext_resource type="Texture2D" uid="uid://wenhmqi17l0q" path="res://assets/textures/rock/Rock031_1K-JPG_Color.jpg" id="2_th8mx"]
 [ext_resource type="PackedScene" uid="uid://cudookqy5hwk7" path="res://scenes/other/spawner.tscn" id="3_th8mx"]
 [ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://scenes/entity/shadow.tscn" id="4_fy8ru"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stqen"]
+albedo_texture = ExtResource("2_th8mx")
 
 [node name="ChestRoom" type="Node3D"]
 script = ExtResource("1_fy8ru")
@@ -38,3 +40,9 @@ entity_scene = ExtResource("4_fy8ru")
 [node name="Spawner3" parent="." instance=ExtResource("3_th8mx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22212, -1.70567, 0)
 entity_scene = ExtResource("4_fy8ru")
+
+[node name="Light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.22275, 0)
+light_color = Color(1, 0, 0, 1)
+spot_range = 7.03634
+spot_angle = 25.96

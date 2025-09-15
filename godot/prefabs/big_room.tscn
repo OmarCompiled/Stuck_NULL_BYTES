@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cosd0okx85u28"]
+[gd_scene load_steps=7 format=3 uid="uid://cosd0okx85u28"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_jh716"]
+[ext_resource type="Texture2D" uid="uid://wenhmqi17l0q" path="res://assets/textures/rock/Rock031_1K-JPG_Color.jpg" id="2_g1wuo"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_stqen"]
 [ext_resource type="PackedScene" uid="uid://cudookqy5hwk7" path="res://scenes/other/spawner.tscn" id="3_a6ukv"]
 [ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://scenes/entity/shadow.tscn" id="3_x4dnl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stqen"]
+albedo_texture = ExtResource("2_g1wuo")
 
 [node name="BigRoom" type="Node3D"]
 script = ExtResource("1_jh716")
@@ -41,6 +43,20 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.
 light_color = Color(1, 0, 0, 1)
 spot_range = 25.515
 spot_angle = 25.96
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.11055, 11.5938)
+light_color = Color(1, 0, 0, 1)
+light_energy = 3.0
+shadow_enabled = true
+omni_range = 3.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.11055, -11.5293)
+light_color = Color(1, 0, 0, 1)
+light_energy = 3.0
+shadow_enabled = true
+omni_range = 3.0
 
 [node name="Spawner" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9647, -13.3259, 8.41283)

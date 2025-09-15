@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bakrsbnb6kyij"]
+
+[ext_resource type="Shader" uid="uid://b8fpapilow1m4" path="res://scenes/shaders/hit_overlay.gdshader" id="1_ykbgk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qae1h"]
+shader = ExtResource("1_ykbgk")
+shader_parameter/hit_intensity = 0.0
+shader_parameter/hit_time = 0.0
+
+[node name="HitCanvasLayer" type="CanvasLayer"]
+
+[node name="HitOverlay" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 4096
+material = SubResource("ShaderMaterial_qae1h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

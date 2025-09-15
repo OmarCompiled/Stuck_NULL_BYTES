@@ -20,6 +20,8 @@ func play(
 	_max_volume: float = max_volume, 
 	_stop: bool = true
 ):
+	if not player.is_inside_tree():
+		return
 
 	if _stop:
 		player.stop()

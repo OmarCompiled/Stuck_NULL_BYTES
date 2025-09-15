@@ -6,11 +6,8 @@ func _ready() -> void:
 	var_to_str(GameManager.enemies_killed)
 	
 	$ColorRect/MarginContainer/HBoxContainer/MemoryFragments.text = "Memory Shards Collected: " + \
-	var_to_str(GameManager.currency)
+	var_to_str(GameManager.current_run_currency)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_menu_button_pressed() -> void:
 	GameManager.end_game()

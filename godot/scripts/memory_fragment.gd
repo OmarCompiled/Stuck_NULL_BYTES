@@ -69,7 +69,7 @@ func _idle(delta: float) -> void:
 		
 		
 func _get_collected() -> void:
-	GameManager.currency += 1
+	GameManager.current_run_currency += 1
 	_play_sound()
 	collect_sound_component.kill()
 	queue_free()

@@ -177,6 +177,7 @@ func _physics_process(delta: float) -> void:
 	
 func die():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	await get_tree().physics_frame
 	get_tree().change_scene_to_file("res://scenes/menu/death_screen.tscn")
 	
 func _on_hitbox_area_entered(area: Area3D) -> void:

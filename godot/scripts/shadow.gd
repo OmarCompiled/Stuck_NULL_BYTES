@@ -173,6 +173,8 @@ func _play_death_woosh():
 
 
 func _reset_whoosh_timer():
+	if not chase_timer: 
+		return
 	chase_timer.wait_time = randf_range(min_whoosh_interval, max_whoosh_interval)
 	chase_timer.start()
 

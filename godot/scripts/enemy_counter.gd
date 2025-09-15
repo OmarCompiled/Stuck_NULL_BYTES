@@ -6,4 +6,5 @@ func _process(_delta: float) -> void:
 	var to_kill = GameManager.total_enemies / 2
 	text = "Kills: " + str(GameManager.enemies_killed) + "/" + str(to_kill)
 	if (GameManager.enemies_killed == to_kill):
-		GameManager.end_game()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://scenes/menu/win_screen.tscn")

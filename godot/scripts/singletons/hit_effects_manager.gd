@@ -59,7 +59,8 @@ func _process(delta):
 	
 	if trauma > 0:
 		trauma = max(trauma - delta * 1.5, 0.0)
-		apply_screen_shake()
+		if GameManager.player:
+			apply_screen_shake()
 
 func apply_screen_shake():
 	if trauma <= 0:

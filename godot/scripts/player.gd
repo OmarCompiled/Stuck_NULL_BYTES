@@ -13,7 +13,7 @@ class_name Player
 @onready var camera = $Head/Camera3D
 
 # Sanity
-const SANITY_LOST_PER_SECOND = 2
+const SANITY_LOST_PER_SECOND = 1 # 2 was unplayable
 var is_losing_sanity = true
 
 # Movement
@@ -59,7 +59,6 @@ func _ready():
 	SanityEffectsManager.set_player_health_component(health_component)
 	HitEffectsManager.set_player_health_component(health_component)
 	HealEffectsManager.set_player_health_component(health_component)
-	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -178,8 +177,8 @@ func _physics_process(delta: float) -> void:
 	
 func die():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	GameManager.end_game()
-
+	get_tree().change_scene_to_file("res://scenes/menu/death_screen.tscn")
+	
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	if area.name == "ShadowHitbox":
 		var enemy = area.get_parent()

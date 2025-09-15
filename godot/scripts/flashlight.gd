@@ -36,7 +36,7 @@ func _turn_flashlight_on():
 	on_sound_component.play()
 	
 	is_flashlight_on = true
-	spot_light.light_energy = 16
+	spot_light.light_energy = 120
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
 		

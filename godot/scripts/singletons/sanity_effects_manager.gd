@@ -65,7 +65,6 @@ func _process(delta):
 		sanity_overlay.material.set_shader_parameter("sanity_intensity", current_sanity_intensity)
 		sanity_overlay.material.set_shader_parameter("time", Time.get_ticks_msec() / 1000.0)
 	
-	# Update laugh cooldown
 	if laugh_cooldown > 0:
 		laugh_cooldown = max(laugh_cooldown - delta, 0.0)
 
@@ -77,14 +76,15 @@ func _try_play_laugh_sound(health_percent: float):
 		if randf() < dynamic_chance:
 			_play_laugh_sound()
 			
-			var min_delay = remap(health_percent, 0.0, LAUGH_THRESHOLD, 15.0, 30.0)
-			var max_delay = remap(health_percent, 0.0, LAUGH_THRESHOLD, 25.0, 45.0)
+			var min_delay = remap(health_percent, 0.0, LAUGH_THRESHOLD, 10.0, 20.0)
+			var max_delay = remap(health_percent, 0.0, LAUGH_THRESHOLD, 30.0, 45.0)
 			laugh_cooldown = randf_range(min_delay, max_delay)
 
 
 func _play_laugh_sound():
 	if laugh_sound and laugh_player:
 		laugh_player.stream = laugh_sound
+		laugh_player.pitch_scale = randf_range(0.8, 1.2)
 		laugh_player.play()
 		
 func clear_player_health_component():

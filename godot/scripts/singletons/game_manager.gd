@@ -10,6 +10,7 @@ func reset():
 	total_enemies = 0
 	player = null
 	HitEffectsManager.cleanup()
+	HealEffectsManager.cleanup()
 
 func end_game():
 	# Show cursor

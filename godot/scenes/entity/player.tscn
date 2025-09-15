@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://f8mp43vqb13f"]
+[gd_scene load_steps=14 format=3 uid="uid://f8mp43vqb13f"]
 
 [ext_resource type="Script" uid="uid://dnayske5ek28m" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://fg0xg2wcui3q" path="res://scenes/asset/flashlight.tscn" id="2_onrkg"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://drx8tsfyjehx" path="res://assets/sfx/Audio/footstep02.ogg" id="6_2hs0m"]
 [ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_bee8u"]
 [ext_resource type="AudioStream" uid="uid://cgpo6tvpujy6b" path="res://assets/sfx/player/dash.wav" id="7_j8jve"]
+[ext_resource type="Script" uid="uid://br1ffti3jh1ai" path="res://scenes/entity/currency_counter.gd" id="7_lo118"]
 [ext_resource type="AudioStream" uid="uid://dx2nd6acpg2oh" path="res://assets/sfx/enemy/land.wav" id="8_k4nkw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
@@ -53,9 +54,9 @@ shape = SubResource("ConvexPolygonShape3D_4flbx")
 
 [node name="SanityBar" type="ProgressBar" parent="."]
 offset_left = 47.0
-offset_top = 47.0
+offset_top = 45.0
 offset_right = 317.0
-offset_bottom = 87.0
+offset_bottom = 85.0
 size_flags_horizontal = 0
 value = 100.0
 show_percentage = false
@@ -75,9 +76,9 @@ vertical_alignment = 1
 
 [node name="DashCooldownBar" type="ProgressBar" parent="."]
 offset_left = 47.0
-offset_top = 129.0
+offset_top = 127.0
 offset_right = 317.0
-offset_bottom = 169.0
+offset_bottom = 167.0
 size_flags_horizontal = 0
 value = 100.0
 show_percentage = false
@@ -105,6 +106,20 @@ text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_i3pqv")
+
+[node name="CurrencyCounter" type="RichTextLabel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -289.0
+offset_top = 85.0
+offset_bottom = 125.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("5_ksla3")
+text = "Collected Shards:"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_lo118")
 
 [node name="WalkSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_bee8u")]
 player = NodePath("WalkPlayer")

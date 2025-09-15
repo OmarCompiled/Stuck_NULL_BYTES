@@ -39,6 +39,7 @@ theme_override_constants/separation = 36
 
 [node name="YouDied" type="RichTextLabel" parent="ColorRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_fonts/normal_font = ExtResource("2_7nuyu")
 theme_override_font_sizes/normal_font_size = 60
 text = "You Escaped...
@@ -64,7 +65,7 @@ fit_content = true
 [node name="MenuButton" type="MenuButton" parent="ColorRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_7nuyu")
 theme_override_font_sizes/font_size = 60

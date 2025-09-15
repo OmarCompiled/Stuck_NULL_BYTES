@@ -16,15 +16,14 @@ sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
 
 [sub_resource type="Environment" id="Environment_aqk2v"]
 background_mode = 2
-background_energy_multiplier = 0.45
+background_energy_multiplier = 0.63
 sky = SubResource("Sky_tlwt5")
 tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.15
-volumetric_fog_emission = Color(0.0313726, 0.0313726, 0.0313726, 1)
-volumetric_fog_emission_energy = 8.0
-volumetric_fog_length = 160.0
+volumetric_fog_density = 0.096
+volumetric_fog_emission_energy = 7.0
+volumetric_fog_length = 128.0
 
 [node name="World" type="Node"]
 script = ExtResource("1_f3sb7")

@@ -3,10 +3,6 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform float sanity_intensity : hint_range(0, 1) = 0.0;
 uniform float time : hint_range(0, 100) = 0.0;
 
-float rand(vec2 co) {
-    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
-}
-
 void fragment() {
     vec2 base_uv = UV;
     vec4 screen_color = texture(SCREEN_TEXTURE, base_uv);

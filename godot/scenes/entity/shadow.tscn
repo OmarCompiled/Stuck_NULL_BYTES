@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dv8swrx0043i6" path="res://scenes/asset/memory_fragment.tscn" id="4_eeawa"]
 [ext_resource type="AudioStream" uid="uid://n1dxrlknm13u" path="res://assets/sfx/enemy/whoosh.wav" id="6_61amk"]
 [ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_mk1n8"]
-[ext_resource type="AudioStream" uid="uid://dmuomtawumhik" path="res://assets/sfx/enemy/boom.mp3" id="7_61amk"]
+[ext_resource type="AudioStream" uid="uid://b4kp5xt14f4kd" path="res://assets/sfx/enemy/boom.mp3" id="7_61amk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n2o5g"]
 

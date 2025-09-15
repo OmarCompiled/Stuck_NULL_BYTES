@@ -59,7 +59,7 @@ func _on_health_changed(_new_health: float):
 		
 		
 func _process(delta):
-	current_sanity_intensity = lerp(current_sanity_intensity, intensity_target, delta * 5.0)
+	current_sanity_intensity = lerp(current_sanity_intensity, intensity_target, delta * 10.0)
 	
 	if sanity_overlay and is_instance_valid(sanity_overlay) and sanity_overlay.material:
 		sanity_overlay.material.set_shader_parameter("sanity_intensity", current_sanity_intensity)

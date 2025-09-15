@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dijywxr5vrrpq"]
 
 [ext_resource type="Script" uid="uid://b004xknhfy13j" path="res://scripts/main_menu.gd" id="1_247la"]
-[ext_resource type="Texture2D" uid="uid://dn2rqrne2orfx" path="res://assets/textures/Gemini_Generated_Image_52qkus52qkus52qk.png" id="2_kiqgm"]
+[ext_resource type="Texture2D" uid="uid://cp4btomhpb1c3" path="res://assets/stuck_bg.png" id="2_247la"]
 [ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://scenes/other/fade_scene.tscn" id="3_hj162"]
 
 [sub_resource type="SystemFont" id="SystemFont_fu7sn"]
@@ -24,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_kiqgm")
+texture = ExtResource("2_247la")
 expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

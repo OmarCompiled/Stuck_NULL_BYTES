@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bro1rtrb6v5rb"]
+
+[ext_resource type="PackedScene" uid="uid://d1ls8k74fy3ey" path="res://scenes/asset/foggy_shard.tscn" id="1_oabld"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7s6n"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xehqc"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.194145, 0.186395, 0.177395, 1)
+ground_horizon_color = Color(0.194145, 0.186395, 0.177395, 1)
+
+[sub_resource type="Sky" id="Sky_splo0"]
+sky_material = SubResource("ProceduralSkyMaterial_xehqc")
+
+[sub_resource type="Environment" id="Environment_eq6nc"]
+background_mode = 2
+sky = SubResource("Sky_splo0")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.502022, 0.554306, 0.725449, 1)
+fog_sun_scatter = 0.13
+fog_density = 0.1363
+fog_depth_end = 1020.5
+volumetric_fog_density = 1.0
+volumetric_fog_emission_energy = 10.0
+
+[node name="CSGBox3D" type="CSGBox3D"]
+flip_faces = true
+size = Vector3(3, 3, 3)
+material = SubResource("StandardMaterial3D_i7s6n")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_eq6nc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.934826, -0.230623, 0.270025, 0, 0.760406, 0.649448, -0.355107, 0.607121, -0.710847, 0, 0, 0)
+light_color = Color(0.737193, 0.737193, 0.737193, 1)
+shadow_enabled = true
+
+[node name="MemoryFragment" parent="." instance=ExtResource("1_oabld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61598, -1.13327, 0.549269)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, -1, 0)

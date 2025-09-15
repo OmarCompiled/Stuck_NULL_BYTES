@@ -21,7 +21,7 @@ void fragment() {
     color = mix(color, warped_color, sanity_intensity);
 
     // 2. Dark vignette
-    float vignette = 1.0 - (dot(center_vec, center_vec) * 3.0 * sanity_intensity);
+    float vignette = 1.0 - (dot(center_vec, center_vec) * sanity_intensity);
     vignette = pow(vignette, 2.0); // Make the falloff sharper
     color *= vignette;
 
@@ -34,11 +34,11 @@ void fragment() {
 
     // 4. Color distortion
     // Shift toward sickly yellow-green and deep crimson
-    vec3 nightmare_tint = mix(vec3(1.0), vec3(0.7, 0.4, 0.3), sanity_intensity * 0.6);
+    vec3 nightmare_tint = mix(vec3(1.0), vec3(0.75, 0.3, 0.15), sanity_intensity * 0.75);
     color *= nightmare_tint;
 
     // Boost red channel
-    color.r *= (1.0 + sanity_intensity * 0.6);
+    color.r *= (1.0 + sanity_intensity * 0.7);
 
     COLOR = vec4(color, screen_color.a);
 }

@@ -53,13 +53,13 @@ func _on_health_changed(_new_health: float):
 		intensity_target = 0.0
 	else:
 		var remapped_value = remap(health_percent, 0.0, SANITY_START_PERCENT, 1.0, 0.0)
-		intensity_target = pow(remapped_value, 2.0)
+		intensity_target = pow(remapped_value, 3.0)
 		
 	_try_play_laugh_sound(health_percent)
 		
 		
 func _process(delta):
-	current_sanity_intensity = lerp(current_sanity_intensity, intensity_target, delta * 2.0)
+	current_sanity_intensity = lerp(current_sanity_intensity, intensity_target, delta * 5.0)
 	
 	if sanity_overlay and is_instance_valid(sanity_overlay) and sanity_overlay.material:
 		sanity_overlay.material.set_shader_parameter("sanity_intensity", current_sanity_intensity)

@@ -7,6 +7,7 @@ class_name Shadow
 @export var death_sound_component: SoundComponent
 @export var hit_sound_component: SoundComponent
 @export var detection_component: DetectionComponent
+@export var loot_component: LootComponent
 
 @export var damage_particles: PackedScene
 @export var death_light_scene: PackedScene
@@ -83,8 +84,7 @@ func _die():
 		
 	_spawn_death_light()
 	
-	for i in range(shard_count):
-		_spawn_shard()
+	loot_component.drop_loot()
 		
 	_play_death_woosh()
 	chase_sound_component.kill()
@@ -110,19 +110,6 @@ func _spawn_death_light():
 		get_parent().add_child(death_light)
 		death_light.global_position = global_position
 		death_light.base_y = global_position.y
-
-
-func _spawn_shard():
-	var shard = memory_fragment.instantiate()
-	get_parent().add_child(shard)
-	
-	var offset = Vector3(
-		randf_range(-0.5, 0.5),
-		0.2,
-		randf_range(-0.5, 0.5)
-	)
-	
-	shard.global_position = global_position + offset
 
 
 func _on_player_spotted(_player: Player):

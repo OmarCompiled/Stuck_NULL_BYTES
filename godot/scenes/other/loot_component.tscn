@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://boclr665vn6fm"]
+
+[ext_resource type="Script" uid="uid://b0ks0gq1x8bt7" path="res://scripts/loot_component.gd" id="1_gcef1"]
+
+[node name="LootComponent" type="Node3D"]
+script = ExtResource("1_gcef1")

@@ -2,14 +2,14 @@ extends Node
 
 var hit_overlay: ColorRect
 var trauma: float = 0.0
-var max_shake: float = 15.0
+var max_shake: float = 20.0
 var player_health_component: HealthComponent
 
 var current_hit_intensity: float = 0.0
 var hit_intensity_target: float = 0.0
 var hit_effect_timer: float = 0.0
 
-const TRAUMA_LOST_PER_SECOND: float = 1.0
+const TRAUMA_LOST_PER_SECOND: float = 0.75
 
 
 func find_hit_overlay():

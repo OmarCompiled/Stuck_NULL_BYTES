@@ -1,6 +1,7 @@
 extends Node
 
 signal death_sequence_finished()
+signal win_sequence_finished()
 
 var sanity_overlay: ColorRect # Process mode set to `always`
 var player_health_component: HealthComponent
@@ -18,7 +19,10 @@ var laugh_chance: float = 0.2
 var min_laugh_delay: float = 15.0 
 var max_laugh_delay: float = 45.0 
 
-var death_sequence_duration: float = 1.5 # In seconds
+ # In seconds
+var death_sequence_duration: float = 1.5
+var win_sequence_duration: float = 1.5
+
 
 func _ready():	
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -73,11 +77,11 @@ func _process(delta):
 	if sanity_overlay and is_instance_valid(sanity_overlay) and sanity_overlay.material:
 		sanity_overlay.material.set_shader_parameter("sanity_intensity", current_sanity_intensity)
 		sanity_overlay.material.set_shader_parameter("time", Time.get_ticks_msec() / 1000.0)
-	
+		
 	if laugh_cooldown > 0:
 		laugh_cooldown = max(laugh_cooldown - delta, 0.0)
-
-
+		
+		
 func _try_play_laugh_sound(health_percent: float):
 	if health_percent <= LAUGH_THRESHOLD and laugh_cooldown <= 0:
 		var dynamic_chance = remap(health_percent, 0.0, LAUGH_THRESHOLD, 0.5, 0.2)
@@ -115,7 +119,7 @@ func play_death_sequence():
 	# Spike intensity
 	tween.tween_property(self, "current_sanity_intensity", 2, death_sequence_duration)
 
-	# Fade shader to black
+	# Fade to black
 	tween.tween_method(
 		func(value: float): 
 			mat.set_shader_parameter("death_fade", value),
@@ -123,3 +127,27 @@ func play_death_sequence():
 	)
 
 	tween.finished.connect(death_sequence_finished.emit)
+
+
+func play_win_sequence():
+	get_tree().paused = true
+	
+	var mat: ShaderMaterial = sanity_overlay.material
+
+	var tween = create_tween()
+	tween.set_parallel(true)
+
+	# Clear sanity intensity
+	tween.tween_property(self, "current_sanity_intensity", 0.0, 0.3)
+	
+	# Clear hit intensity
+	tween.tween_property(HitEffectsManager, "current_hit_intensity", 0.0, 0.3)
+
+	# Fade to white
+	tween.tween_method(
+		func(value: float): 
+			mat.set_shader_parameter("win_fade", value),
+		0.0, 0.8, win_sequence_duration
+	)
+
+	tween.finished.connect(win_sequence_finished.emit)

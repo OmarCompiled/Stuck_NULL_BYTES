@@ -1,10 +1,9 @@
 extends RichTextLabel
 
 func _process(_delta: float) -> void:
-	# NOTE: Only require half the enemies to be killed,
+	# NOTE: Only require a fraction of the enemies to be killed,
 	# since killing 100% is too difficult without a map.
-	var to_kill = GameManager.total_enemies / 2
+	var to_kill = int(GameManager.total_enemies / 2.5)
 	text = "Kills: " + str(GameManager.enemies_killed) + "/" + str(to_kill)
 	if (GameManager.enemies_killed == to_kill):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().change_scene_to_file("res://scenes/menu/win_screen.tscn")
+		GameManager.handle_player_win()

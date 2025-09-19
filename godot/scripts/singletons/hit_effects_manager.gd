@@ -12,6 +12,10 @@ var hit_effect_timer: float = 0.0
 const TRAUMA_LOST_PER_SECOND: float = 0.75
 
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	
 func find_hit_overlay():
 	var hit_canvas = get_tree().get_first_node_in_group("hit_canvas")
 	if not hit_canvas:

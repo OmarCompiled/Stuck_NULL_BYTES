@@ -1,10 +1,13 @@
 extends Node
 
+var can_quit = false
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Quit"):
+	if Input.is_action_just_pressed("Quit") and can_quit:
+		can_quit = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		GameManager.end_game()
 		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")

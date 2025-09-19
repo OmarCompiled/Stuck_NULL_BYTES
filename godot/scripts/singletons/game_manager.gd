@@ -34,11 +34,25 @@ func end_game():
 	
 func handle_player_death():
 	get_tree().paused = true
+	InputManager.can_quit = false
 	SanityEffectsManager.death_sequence_finished.connect(_on_death_sequence_finished, CONNECT_ONE_SHOT)
 	SanityEffectsManager.play_death_sequence()	
 	
 
+func handle_player_win():
+	get_tree().paused = true
+	InputManager.can_quit = false
+	SanityEffectsManager.win_sequence_finished.connect(_on_win_sequence_finished, CONNECT_ONE_SHOT)
+	SanityEffectsManager.play_win_sequence()	
+
+
 func _on_death_sequence_finished():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file.bind("res://scenes/menu/death_screen.tscn").call_deferred()
+	get_tree().paused = false
+	
+	
+func _on_win_sequence_finished():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().change_scene_to_file.bind("res://scenes/menu/win_screen.tscn").call_deferred()
 	get_tree().paused = false

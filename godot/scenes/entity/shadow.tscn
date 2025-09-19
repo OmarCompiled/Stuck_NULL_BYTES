@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqagwekx7o53h"]
+[gd_scene load_steps=16 format=3 uid="uid://cqagwekx7o53h"]
 
 [ext_resource type="Script" uid="uid://b5x3d1pweoiom" path="res://scripts/shadow.gd" id="1_n2o5g"]
 [ext_resource type="PackedScene" uid="uid://bkjsh3itjc877" path="res://scenes/other/DamageParticles.tscn" id="2_n2o5g"]
 [ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://scenes/other/health_component.tscn" id="3_icb2k"]
 [ext_resource type="PackedScene" uid="uid://cgyspg16rbl4q" path="res://scenes/other/death_light.tscn" id="3_ov1mx"]
 [ext_resource type="PackedScene" uid="uid://dv8swrx0043i6" path="res://scenes/asset/memory_fragment.tscn" id="4_eeawa"]
+[ext_resource type="PackedScene" uid="uid://dnjh7yer2evms" path="res://scenes/other/detection_component.tscn" id="5_wq651"]
 [ext_resource type="AudioStream" uid="uid://n1dxrlknm13u" path="res://assets/sfx/enemy/whoosh.wav" id="6_61amk"]
 [ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_mk1n8"]
 [ext_resource type="AudioStream" uid="uid://b4kp5xt14f4kd" path="res://assets/sfx/enemy/boom.mp3" id="7_61amk"]
@@ -26,7 +27,7 @@ radius = 4.97867
 [sub_resource type="SphereShape3D" id="SphereShape3D_ov1mx"]
 radius = 0.825561
 
-[node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "chase_sound_component", "close_sound_component", "death_sound_component", "hit_sound_component")]
+[node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "chase_sound_component", "close_sound_component", "death_sound_component", "hit_sound_component", "detection_component")]
 collision_layer = 8
 script = ExtResource("1_n2o5g")
 health_component = NodePath("HealthComponent")
@@ -34,6 +35,7 @@ chase_sound_component = NodePath("ChaseSoundComponent")
 close_sound_component = NodePath("CloseSoundComponent2")
 death_sound_component = NodePath("DeathSoundComponent")
 hit_sound_component = NodePath("HitSoundComponent")
+detection_component = NodePath("DetectionComponent")
 damage_particles = ExtResource("2_n2o5g")
 death_light_scene = ExtResource("3_ov1mx")
 memory_fragment = ExtResource("4_eeawa")
@@ -48,14 +50,19 @@ transform = Transform3D(1.46441, 0, 0, 0, 1.46441, 0, 0, 0, 1.46441, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_n2o5g")
 mesh = SubResource("SphereMesh_icb2k")
 
-[node name="DetectionArea" type="Area3D" parent="."]
+[node name="DetectionComponent" parent="." node_paths=PackedStringArray("detection_area", "close_area", "owner_body") instance=ExtResource("5_wq651")]
+detection_area = NodePath("DetectionArea")
+close_area = NodePath("CloseDetectionArea")
+owner_body = NodePath("..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+[node name="DetectionArea" type="Area3D" parent="DetectionComponent"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionComponent/DetectionArea"]
 shape = SubResource("SphereShape3D_icb2k")
 
-[node name="CloseDetectionArea" type="Area3D" parent="."]
+[node name="CloseDetectionArea" type="Area3D" parent="DetectionComponent"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CloseDetectionArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionComponent/CloseDetectionArea"]
 shape = SubResource("SphereShape3D_mk1n8")
 
 [node name="ShadowHitbox" type="Area3D" parent="."]
@@ -121,9 +128,6 @@ volume_db = 80.0
 max_db = 6.0
 max_distance = 35.0
 
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="CloseDetectionArea" to="." method="_on_close_detection_area_body_entered"]
 [connection signal="damage_taken" from="HealthComponent" to="." method="_on_damage_taken"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_depleted"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]

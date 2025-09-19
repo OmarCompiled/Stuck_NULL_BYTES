@@ -3,8 +3,9 @@ extends CharacterBody3D
 
 @export var acceleration: float = 45.0
 @export var max_speed: float = 200.0
-@export var collect_distance: float = 1.0
+@export var collect_distance: float = 2.0
 @export var idle_rotation_speed: float = 1.3  # radians per second
+@export var moving_rotation_speed: float = idle_rotation_speed * 2
 @export var collect_sound_component: SoundComponent
 @onready var light = $FragmentLight
 @onready var base_light = light.light_energy
@@ -36,7 +37,8 @@ func _physics_process(delta: float) -> void:
 		_chase(delta)
 	else:
 		_idle(delta)
-	
+		
+	rotate_y(idle_rotation_speed * delta)
 	move_and_slide()
 	
 func _start_chasing(body: Player):
@@ -64,7 +66,6 @@ func _chase(delta: float) -> void:
 		
 		
 func _idle(delta: float) -> void:
-	rotate_y(idle_rotation_speed * delta)
 	velocity += get_gravity() * 3 * delta
 		
 		

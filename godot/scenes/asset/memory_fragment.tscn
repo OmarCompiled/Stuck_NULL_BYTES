@@ -35,7 +35,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_67ejk"]
-radius = 0.879913
+radius = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aj08t"]
 radius = 0.120534

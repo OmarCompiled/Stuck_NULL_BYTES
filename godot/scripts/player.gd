@@ -175,9 +175,10 @@ func _physics_process(delta: float) -> void:
 	was_in_air = not is_on_floor()
 	move_and_slide()
 	
+	
 func die():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file.bind("res://scenes/menu/death_screen.tscn").call_deferred()
+	GameManager.handle_player_death()
+	
 	
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	if area.name == "ShadowHitbox":

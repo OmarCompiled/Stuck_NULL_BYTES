@@ -1,27 +1,36 @@
 extends Node
 
-var sanity_overlay: ColorRect
+signal death_sequence_finished()
+
+var sanity_overlay: ColorRect # Process mode set to `always`
 var player_health_component: HealthComponent
 
 var current_sanity_intensity: float = 0.0
 var intensity_target: float = 0.0
 const SANITY_START_PERCENT = 0.6
-const LAUGH_THRESHOLD = 0.4  # 40% sanity
 
 # Laugh sound variables
-var laugh_sound: AudioStream
+@onready var laugh_sound: AudioStream = preload("res://assets/sfx/general/laugh2.wav")
+const LAUGH_THRESHOLD = 0.4  # 40% sanity
 var laugh_player: AudioStreamPlayer
 var laugh_cooldown: float = 0.0
 var laugh_chance: float = 0.2  
 var min_laugh_delay: float = 15.0 
 var max_laugh_delay: float = 45.0 
 
-func _ready():
-	laugh_sound = preload("res://assets/sfx/general/laugh2.wav")
-	
+var death_sequence_duration: float = 1.5 # In seconds
+
+func _ready():	
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	_init_laugh_player()
+
+
+func _init_laugh_player():
 	laugh_player = AudioStreamPlayer.new()
+	laugh_player.stream = laugh_sound
 	laugh_player.volume_db = 10.0
 	add_child(laugh_player)
+
 
 func find_sanity_overlay():
 	var sanity_canvas = get_tree().get_first_node_in_group("sanity_canvas")
@@ -83,12 +92,34 @@ func _try_play_laugh_sound(health_percent: float):
 
 func _play_laugh_sound():
 	if laugh_sound and laugh_player:
-		laugh_player.stream = laugh_sound
 		laugh_player.pitch_scale = randf_range(0.8, 1.2)
 		laugh_player.play()
+		
 		
 func clear_player_health_component():
 	if player_health_component and player_health_component.health_changed.is_connected(_on_health_changed):
 		player_health_component.health_changed.disconnect(_on_health_changed)
 	player_health_component = null
 	intensity_target = 0.0
+	
+	
+func play_death_sequence():
+	get_tree().paused = true
+	_play_laugh_sound()
+	
+	var mat: ShaderMaterial = sanity_overlay.material
+
+	var tween = create_tween()
+	tween.set_parallel(true) # Run effects simultaneously
+
+	# Spike intensity
+	tween.tween_property(self, "current_sanity_intensity", 2, death_sequence_duration)
+
+	# Fade shader to black
+	tween.tween_method(
+		func(value: float): 
+			mat.set_shader_parameter("death_fade", value),
+		0.0, 1.0, death_sequence_duration
+	)
+
+	tween.finished.connect(death_sequence_finished.emit)

@@ -6,10 +6,12 @@
 shader = ExtResource("1_upnc7")
 shader_parameter/sanity_intensity = 0.0
 shader_parameter/time = 0.0
+shader_parameter/death_fade = 0.0
 
 [node name="SanityCanvasLayer" type="CanvasLayer"]
 
 [node name="SanityOverlay" type="ColorRect" parent="."]
+process_mode = 3
 self_modulate = Color(1, 1, 1, 0)
 z_index = 4096
 material = SubResource("ShaderMaterial_a6bi2")

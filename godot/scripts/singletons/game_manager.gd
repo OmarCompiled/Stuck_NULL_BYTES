@@ -32,3 +32,13 @@ func end_game():
 	get_tree().change_scene_to_file.bind("res://scenes/menu/main_menu.tscn").call_deferred()
 	
 	
+func handle_player_death():
+	get_tree().paused = true
+	SanityEffectsManager.death_sequence_finished.connect(_on_death_sequence_finished, CONNECT_ONE_SHOT)
+	SanityEffectsManager.play_death_sequence()	
+	
+
+func _on_death_sequence_finished():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().change_scene_to_file.bind("res://scenes/menu/death_screen.tscn").call_deferred()
+	get_tree().paused = false

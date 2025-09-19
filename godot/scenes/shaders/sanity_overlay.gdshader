@@ -2,6 +2,7 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform float sanity_intensity : hint_range(0, 1) = 0.0;
 uniform float time : hint_range(0, 100) = 0.0;
+uniform float death_fade : hint_range(0, 1) = 0.0;
 
 void fragment() {
     vec2 base_uv = UV;
@@ -37,6 +38,8 @@ void fragment() {
     color.r *= (1.0 + sanity_intensity * 0.7);
 	
 	color = (color - 0.5) * (1.0 + sanity_intensity * 0.025) + 0.5;
+	
+	color = mix(color, vec3(0.0), death_fade);
 
     COLOR = vec4(color, screen_color.a);
 }

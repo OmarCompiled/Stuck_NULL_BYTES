@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://ci7kfw5q5qn2k" path="res://scripts/enemy_counter.gd" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://scenes/other/health_component.tscn" id="3_sweqy"]
 [ext_resource type="Script" uid="uid://xws3v0ou7h4d" path="res://scripts/sanity_bar.gd" id="4_2hs0m"]
-[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="5_ksla3"]
+[ext_resource type="FontFile" uid="uid://cp1psb75615ws" path="res://assets/fonts/Stuck-Regular.ttf" id="5_lo118"]
 [ext_resource type="AudioStream" uid="uid://drx8tsfyjehx" path="res://assets/sfx/Audio/footstep02.ogg" id="6_2hs0m"]
 [ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_bee8u"]
 [ext_resource type="AudioStream" uid="uid://cgpo6tvpujy6b" path="res://assets/sfx/player/dash.wav" id="7_j8jve"]
@@ -57,9 +57,9 @@ shape = SubResource("ConvexPolygonShape3D_4flbx")
 
 [node name="SanityBar" type="ProgressBar" parent="."]
 offset_left = 47.0
-offset_top = 45.0
+offset_top = 83.0
 offset_right = 317.0
-offset_bottom = 85.0
+offset_bottom = 123.0
 size_flags_horizontal = 0
 value = 100.0
 show_percentage = false
@@ -72,16 +72,18 @@ layout_mode = 0
 offset_top = -42.0
 offset_right = 269.0
 offset_bottom = -2.0
-theme_override_fonts/normal_font = ExtResource("5_ksla3")
+theme_override_fonts/normal_font = ExtResource("5_lo118")
+theme_override_font_sizes/normal_font_size = 30
 text = "Sanity"
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DashCooldownBar" type="ProgressBar" parent="."]
 offset_left = 47.0
-offset_top = 127.0
+offset_top = 165.0
 offset_right = 317.0
-offset_bottom = 167.0
+offset_bottom = 205.0
 size_flags_horizontal = 0
 value = 100.0
 show_percentage = false
@@ -91,7 +93,8 @@ layout_mode = 0
 offset_top = -42.0
 offset_right = 269.0
 offset_bottom = -2.0
-theme_override_fonts/normal_font = ExtResource("5_ksla3")
+theme_override_fonts/normal_font = ExtResource("5_lo118")
+theme_override_font_sizes/normal_font_size = 30
 text = "Dash"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -100,12 +103,15 @@ vertical_alignment = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -289.0
-offset_top = 5.0
-offset_bottom = 45.0
+offset_left = -328.0
+offset_top = 43.0
+offset_right = -39.0
+offset_bottom = 85.0
 grow_horizontal = 0
-theme_override_fonts/normal_font = ExtResource("5_ksla3")
+theme_override_fonts/normal_font = ExtResource("5_lo118")
+theme_override_font_sizes/normal_font_size = 30
 text = "0/0"
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_i3pqv")
@@ -114,12 +120,15 @@ script = ExtResource("3_i3pqv")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -289.0
-offset_top = 85.0
-offset_bottom = 125.0
+offset_left = -328.0
+offset_top = 123.0
+offset_right = -39.0
+offset_bottom = 163.0
 grow_horizontal = 0
-theme_override_fonts/normal_font = ExtResource("5_ksla3")
+theme_override_fonts/normal_font = ExtResource("5_lo118")
+theme_override_font_sizes/normal_font_size = 30
 text = "Collected Shards:"
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_lo118")

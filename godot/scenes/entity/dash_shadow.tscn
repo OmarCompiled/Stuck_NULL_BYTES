@@ -154,8 +154,8 @@ max_distance = 35.0
 
 [node name="DashCommitSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_0hkmd")]
 player = NodePath("DashCommitPlayer")
-min_pitch = 0.5
-max_pitch = 0.5
+min_pitch = 0.45
+max_pitch = 0.45
 min_volume = 80.0
 max_volume = 80.0
 

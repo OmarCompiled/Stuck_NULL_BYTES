@@ -13,7 +13,7 @@ func _ready() -> void:
 	currency_label = $TextureRect/MarginContainer/VBoxContainer/CurrencyLabel
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	flash_button.text = "Flashlight: " + str(flash_upgrade_price)
 	sanity_button.text = "Sanity: " + str(sanity_upgrade_price)
 	currency_label.text = "Memory Shards: " + str(GameManager.currency)

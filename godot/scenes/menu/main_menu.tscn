@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b004xknhfy13j" path="res://scripts/main_menu.gd" id="1_247la"]
 [ext_resource type="Texture2D" uid="uid://cp4btomhpb1c3" path="res://assets/stuck_bg.png" id="2_247la"]
 [ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://scenes/other/fade_scene.tscn" id="3_hj162"]
-[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="3_kiqgm"]
+[ext_resource type="FontFile" uid="uid://cp1psb75615ws" path="res://assets/fonts/Stuck-Regular.ttf" id="3_kiqgm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kiqgm"]
 
@@ -65,19 +65,19 @@ mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("3_kiqgm")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiqgm")
 toggle_mode = false
-text = "Start"
+text = "START"
 flat = false
 
 [node name="Start2" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
@@ -88,19 +88,19 @@ mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("3_kiqgm")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiqgm")
 toggle_mode = false
-text = "Upgrades"
+text = "UPGRADES"
 flat = false
 
 [node name="Options" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
@@ -111,19 +111,19 @@ mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("3_kiqgm")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiqgm")
 toggle_mode = false
-text = "Options"
+text = "OPTIONS"
 flat = false
 
 [node name="Quit" type="MenuButton" parent="MarginContainer/VBoxContainer/ButtonContainer"]
@@ -134,19 +134,19 @@ mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("3_kiqgm")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiqgm")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kiqgm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiqgm")
 toggle_mode = false
-text = "Quit"
+text = "QUIT"
 flat = false
 
 [node name="FadeTransition" parent="." instance=ExtResource("3_hj162")]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cta32glpb8jih"]
+[gd_scene load_steps=4 format=3 uid="uid://cta32glpb8jih"]
 
-[ext_resource type="Script" uid="uid://c0p7gh47x30c8" path="res://scripts/upgrades_menu.gd" id="1_mc1nf"]
-[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="2_7kd37"]
+[ext_resource type="Script" uid="uid://ddp5jpmx8af2w" path="res://scenes/menu/upgrades_menu.gd" id="1_panm3"]
+[ext_resource type="Texture2D" uid="uid://cp4btomhpb1c3" path="res://assets/stuck_bg.png" id="2_7kd37"]
+[ext_resource type="FontFile" uid="uid://cp1psb75615ws" path="res://assets/fonts/Stuck-Regular.ttf" id="2_panm3"]
 
 [node name="UpgradesMenu" type="Control"]
 layout_mode = 3
@@ -10,9 +11,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mc1nf")
+script = ExtResource("1_panm3")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7kd37")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,43 +35,54 @@ theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 80
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
 layout_mode = 2
 
-[node name="BarsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_panm3")
+theme_override_font_sizes/normal_font_size = 100
+text = "UPGRADES"
+fit_content = true
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/BarsContainer"]
-custom_minimum_size = Vector2(400, 0)
+[node name="Upgrades" type="GridContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7kd37")
-placeholder_text = "Enter Cheat Code"
-max_length = 100
+size_flags_vertical = 3
+columns = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/BarsContainer"]
-custom_minimum_size = Vector2(500, 0)
+[node name="FlashlightUpgrade" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/normal_font = ExtResource("2_7kd37")
-text = "Currency"
-horizontal_alignment = 2
-vertical_alignment = 1
 
-[node name="UpgradesContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades/FlashlightUpgrade"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Price" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades/FlashlightUpgrade"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SanityUpgrade" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades"]
 layout_mode = 2
-size_flags_vertical = 6
 
-[node name="BackToMenu" type="MenuButton" parent="MarginContainer/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades/SanityUpgrade"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Price" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades/SanityUpgrade"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackButton" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("2_7kd37")
+theme_override_fonts/font = ExtResource("2_panm3")
 theme_override_font_sizes/font_size = 60
-toggle_mode = false
-action_mode = 1
-text = "Back"
-flat = false
+text = "BACK"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

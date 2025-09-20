@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ggwqpkdovs0n"
-path="res://.godot/imported/Roboto-Medium.ttf-9748f8b2533b612ee0027fa042f3fd2c.fontdata"
+uid="uid://cp1psb75615ws"
+path="res://.godot/imported/Stuck-Regular.ttf-b3b252dd39a193e314a3c9a388ee2ab0.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/static/Roboto-Medium.ttf"
-dest_files=["res://.godot/imported/Roboto-Medium.ttf-9748f8b2533b612ee0027fa042f3fd2c.fontdata"]
+source_file="res://assets/fonts/Stuck-Regular.ttf"
+dest_files=["res://.godot/imported/Stuck-Regular.ttf-b3b252dd39a193e314a3c9a388ee2ab0.fontdata"]
 
 [params]
 

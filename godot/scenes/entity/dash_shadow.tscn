@@ -37,8 +37,6 @@ item_scene = ExtResource("6_imeo8")
 chance = 1.0
 min_drop = 2
 max_drop = 4
-spawn_offset = Vector3(0, 0, 0)
-random_spread = 1.0
 metadata/_custom_type_script = "uid://fwwpsn2vg2g0"
 
 [node name="DashShadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "detection_component", "loot_component", "chase_sound_component", "dash_sound_component", "death_sound_component", "hit_sound_component", "dash_commit_sound_component")]
@@ -93,7 +91,6 @@ monitoring = false
 shape = SubResource("SphereShape3D_6dm4o")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_2krnx")]
-max_health = 300.0
 invincibility_time = 0.0
 
 [node name="Glow" type="OmniLight3D" parent="."]

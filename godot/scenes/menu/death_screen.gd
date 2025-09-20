@@ -10,4 +10,5 @@ func _ready() -> void:
 
 
 func _on_menu_button_pressed() -> void:
+	GameManager.consecutive_wins = 0
 	GameManager.end_game()

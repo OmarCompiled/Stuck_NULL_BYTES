@@ -96,7 +96,6 @@ func _ready() -> void:
 		},
 		charge_down: {
 			AI.Events.FINISHED: chase,  
-			AI.Events.PLAYER_CLOSE: charge_up,  
 		},
 		stagger: {
 			AI.Events.FINISHED: chase,  

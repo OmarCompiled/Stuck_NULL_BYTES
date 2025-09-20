@@ -67,6 +67,8 @@ mesh = SubResource("ArrayMesh_aj08t")
 skeleton = NodePath("")
 
 [node name="DetectionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
 transform = Transform3D(1.5255, 0, 0, 0, 1.5255, 0, 0, 0, 1.5255, 0, 0, 0)
@@ -92,6 +94,10 @@ draw_pass_1 = SubResource("SphereMesh_jtv2d")
 
 [node name="CollectSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_vrk4c")]
 player = NodePath("CollectPlayer")
+min_pitch = 1.3
+max_pitch = 1.5
+min_volume = 80.0
+max_volume = 80.0
 
 [node name="CollectPlayer" type="AudioStreamPlayer3D" parent="CollectSoundComponent"]
 stream = ExtResource("2_il870")

@@ -186,7 +186,6 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 		var knockback_dir = enemy.global_position - global_position
 		health_component.take_damage(enemy.dmg)
 		enemy.apply_knockback(knockback_dir * knockback_force)
-		enemy.hit()
 		
 		
 func _check_landing() -> void:

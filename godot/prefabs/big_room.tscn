@@ -1,13 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://cosd0okx85u28"]
+[gd_scene load_steps=12 format=3 uid="uid://cosd0okx85u28"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_jh716"]
 [ext_resource type="Texture2D" uid="uid://wenhmqi17l0q" path="res://assets/textures/rock/Rock031_1K-JPG_Color.jpg" id="2_g1wuo"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_stqen"]
 [ext_resource type="PackedScene" uid="uid://cudookqy5hwk7" path="res://scenes/other/spawner.tscn" id="3_a6ukv"]
-[ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://scenes/entity/shadow.tscn" id="3_x4dnl"]
+[ext_resource type="Resource" uid="uid://lblg84evtpvq" path="res://resources/big_room_regular_spawner_data.tres" id="5_gp2as"]
+[ext_resource type="Script" uid="uid://u8nmwtga82ga" path="res://resources/spawn_entity_data.gd" id="6_y1vf1"]
+[ext_resource type="PackedScene" uid="uid://dja5sfxq1rgxl" path="res://scenes/entity/dash_shadow.tscn" id="7_flroa"]
+[ext_resource type="Script" uid="uid://cudbusd7p5ifg" path="res://resources/spawn_data.gd" id="8_gm1ko"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stqen"]
 albedo_texture = ExtResource("2_g1wuo")
+
+[sub_resource type="Resource" id="Resource_oryam"]
+script = ExtResource("6_y1vf1")
+spawn_probability = 1.0
+entity_scene = ExtResource("7_flroa")
+metadata/_custom_type_script = "uid://u8nmwtga82ga"
+
+[sub_resource type="Resource" id="Resource_m0yh2"]
+script = ExtResource("8_gm1ko")
+overall_spawn_probability = 1.0
+spawn_offset_range = Vector3(0, 0, 0)
+entities = Array[ExtResource("6_y1vf1")]([SubResource("Resource_oryam")])
+metadata/_custom_type_script = "uid://cudbusd7p5ifg"
 
 [node name="BigRoom" type="Node3D"]
 script = ExtResource("1_jh716")
@@ -60,16 +76,20 @@ omni_range = 3.0
 
 [node name="Spawner" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9647, -13.3259, 8.41283)
-entity_scene = ExtResource("3_x4dnl")
+spawner_data = ExtResource("5_gp2as")
 
 [node name="Spawner2" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9647, -13.3259, -9.67047)
-entity_scene = ExtResource("3_x4dnl")
+spawner_data = ExtResource("5_gp2as")
 
 [node name="Spawner3" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1784, -13.3259, -9.67047)
-entity_scene = ExtResource("3_x4dnl")
+spawner_data = ExtResource("5_gp2as")
 
 [node name="Spawner4" parent="." instance=ExtResource("3_a6ukv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1784, -13.3259, 10.6858)
-entity_scene = ExtResource("3_x4dnl")
+spawner_data = ExtResource("5_gp2as")
+
+[node name="Spawner5" parent="." instance=ExtResource("3_a6ukv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.80688, 0)
+spawner_data = SubResource("Resource_m0yh2")

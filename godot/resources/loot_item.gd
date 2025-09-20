@@ -1,5 +1,4 @@
-class_name LootItem
-extends Resource
+class_name LootItem extends Resource
 
 @export var item_scene: PackedScene
 @export_range(0.0, 1.0) var chance: float = 0.5

@@ -1,16 +1,16 @@
 [gd_scene load_steps=19 format=3 uid="uid://cqagwekx7o53h"]
 
-[ext_resource type="Script" uid="uid://b5x3d1pweoiom" path="res://scripts/shadow.gd" id="1_n2o5g"]
-[ext_resource type="PackedScene" uid="uid://bkjsh3itjc877" path="res://scenes/other/DamageParticles.tscn" id="2_n2o5g"]
-[ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://scenes/other/health_component.tscn" id="3_icb2k"]
-[ext_resource type="PackedScene" uid="uid://cgyspg16rbl4q" path="res://scenes/other/death_light.tscn" id="3_ov1mx"]
-[ext_resource type="PackedScene" uid="uid://dv8swrx0043i6" path="res://scenes/asset/memory_fragment.tscn" id="4_eeawa"]
-[ext_resource type="PackedScene" uid="uid://dnjh7yer2evms" path="res://scenes/other/detection_component.tscn" id="5_wq651"]
-[ext_resource type="AudioStream" uid="uid://n1dxrlknm13u" path="res://assets/sfx/enemy/whoosh.wav" id="6_61amk"]
-[ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_mk1n8"]
-[ext_resource type="AudioStream" uid="uid://b4kp5xt14f4kd" path="res://assets/sfx/enemy/boom.mp3" id="7_61amk"]
-[ext_resource type="PackedScene" uid="uid://boclr665vn6fm" path="res://scenes/other/loot_component.tscn" id="10_h3j32"]
-[ext_resource type="Script" uid="uid://fwwpsn2vg2g0" path="res://resources/loot_item.gd" id="11_7bcsb"]
+[ext_resource type="Script" uid="uid://b5x3d1pweoiom" path="res://scripts/regular_shadow.gd" id="1_urynf"]
+[ext_resource type="PackedScene" uid="uid://bkjsh3itjc877" path="res://scenes/other/DamageParticles.tscn" id="2_3y4n3"]
+[ext_resource type="PackedScene" uid="uid://cgyspg16rbl4q" path="res://scenes/other/death_light.tscn" id="3_0s7fx"]
+[ext_resource type="PackedScene" uid="uid://dnjh7yer2evms" path="res://scenes/other/detection_component.tscn" id="4_apveg"]
+[ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://scenes/other/health_component.tscn" id="5_vp31a"]
+[ext_resource type="PackedScene" uid="uid://boclr665vn6fm" path="res://scenes/other/loot_component.tscn" id="6_454vq"]
+[ext_resource type="Script" uid="uid://fwwpsn2vg2g0" path="res://resources/loot_item.gd" id="7_4qfiq"]
+[ext_resource type="PackedScene" uid="uid://dv8swrx0043i6" path="res://scenes/asset/memory_fragment.tscn" id="8_7ita1"]
+[ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="9_umvt7"]
+[ext_resource type="AudioStream" uid="uid://n1dxrlknm13u" path="res://assets/sfx/enemy/whoosh.wav" id="10_b4vh6"]
+[ext_resource type="AudioStream" uid="uid://b4kp5xt14f4kd" path="res://assets/sfx/enemy/boom.mp3" id="11_e7kwh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n2o5g"]
 
@@ -30,8 +30,8 @@ radius = 4.97867
 radius = 0.825561
 
 [sub_resource type="Resource" id="Resource_r0kco"]
-script = ExtResource("11_7bcsb")
-item_scene = ExtResource("4_eeawa")
+script = ExtResource("7_4qfiq")
+item_scene = ExtResource("8_7ita1")
 chance = 1.0
 min_drop = 1
 max_drop = 3
@@ -39,19 +39,17 @@ spawn_offset = Vector3(0, 0, 0)
 random_spread = 1.0
 metadata/_custom_type_script = "uid://fwwpsn2vg2g0"
 
-[node name="Shadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "chase_sound_component", "close_sound_component", "death_sound_component", "hit_sound_component", "detection_component", "loot_component")]
+[node name="RegularShadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "detection_component", "loot_component", "chase_sound_component", "death_sound_component", "hit_sound_component")]
 collision_layer = 8
-script = ExtResource("1_n2o5g")
+script = ExtResource("1_urynf")
 health_component = NodePath("HealthComponent")
-chase_sound_component = NodePath("ChaseSoundComponent")
-close_sound_component = NodePath("CloseSoundComponent2")
-death_sound_component = NodePath("DeathSoundComponent")
-hit_sound_component = NodePath("HitSoundComponent")
 detection_component = NodePath("DetectionComponent")
 loot_component = NodePath("LootComponent")
-damage_particles = ExtResource("2_n2o5g")
-death_light_scene = ExtResource("3_ov1mx")
-memory_fragment = ExtResource("4_eeawa")
+chase_sound_component = NodePath("ChaseSoundComponent")
+death_sound_component = NodePath("DeathSoundComponent")
+hit_sound_component = NodePath("HitSoundComponent")
+damage_particles = ExtResource("2_3y4n3")
+death_light_scene = ExtResource("3_0s7fx")
 sanity_reward = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -63,17 +61,21 @@ transform = Transform3D(1.46441, 0, 0, 0, 1.46441, 0, 0, 0, 1.46441, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_n2o5g")
 mesh = SubResource("SphereMesh_icb2k")
 
-[node name="DetectionComponent" parent="." node_paths=PackedStringArray("detection_area", "close_area", "owner_body") instance=ExtResource("5_wq651")]
+[node name="DetectionComponent" parent="." node_paths=PackedStringArray("detection_area", "close_area", "owner_body") instance=ExtResource("4_apveg")]
 detection_area = NodePath("DetectionArea")
 close_area = NodePath("CloseDetectionArea")
 owner_body = NodePath("..")
 
 [node name="DetectionArea" type="Area3D" parent="DetectionComponent"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionComponent/DetectionArea"]
 shape = SubResource("SphereShape3D_icb2k")
 
 [node name="CloseDetectionArea" type="Area3D" parent="DetectionComponent"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionComponent/CloseDetectionArea"]
 shape = SubResource("SphereShape3D_mk1n8")
@@ -86,24 +88,22 @@ monitoring = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ShadowHitbox"]
 shape = SubResource("SphereShape3D_ov1mx")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_icb2k")]
+[node name="HealthComponent" parent="." instance=ExtResource("5_vp31a")]
 max_health = 150.0
 invincibility_time = 0.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Glow" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00469041, -4.76837e-07, -0.000295401)
 light_color = Color(0.163965, 0.0280897, 0.283854, 1)
 light_energy = 13.0
 light_volumetric_fog_energy = 3.0
-omni_range = 0.949455
+omni_range = 1.0
 
-[node name="ChaseTimer" type="Timer" parent="."]
-
-[node name="LootComponent" parent="." instance=ExtResource("10_h3j32")]
-loot_table = Array[ExtResource("11_7bcsb")]([SubResource("Resource_r0kco")])
+[node name="LootComponent" parent="." instance=ExtResource("6_454vq")]
+loot_table = Array[ExtResource("7_4qfiq")]([SubResource("Resource_r0kco")])
 global_random_spread = 0.5
 
-[node name="ChaseSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
+[node name="ChaseSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_umvt7")]
 player = NodePath("ChasePlayer")
 min_pitch = 0.5
 max_pitch = 0.8
@@ -111,19 +111,10 @@ min_volume = -20.0
 max_volume = -15.0
 
 [node name="ChasePlayer" type="AudioStreamPlayer3D" parent="ChaseSoundComponent"]
-stream = ExtResource("6_61amk")
+stream = ExtResource("10_b4vh6")
 max_distance = 35.0
 
-[node name="CloseSoundComponent2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
-player = NodePath("ClosePlayer")
-max_pitch = 1.2
-max_volume = 10.0
-
-[node name="ClosePlayer" type="AudioStreamPlayer3D" parent="CloseSoundComponent2"]
-stream = ExtResource("6_61amk")
-max_distance = 35.0
-
-[node name="DeathSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
+[node name="DeathSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_umvt7")]
 player = NodePath("DeathPlayer")
 min_pitch = 1.4
 max_pitch = 1.6
@@ -131,20 +122,19 @@ min_volume = 5.0
 max_volume = 15.0
 
 [node name="DeathPlayer" type="AudioStreamPlayer3D" parent="DeathSoundComponent"]
-stream = ExtResource("6_61amk")
+stream = ExtResource("10_b4vh6")
 max_distance = 35.0
 
-[node name="HitSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_mk1n8")]
+[node name="HitSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_umvt7")]
 player = NodePath("HitPlayer")
 min_pitch = 0.7
 max_pitch = 1.3
 
 [node name="HitPlayer" type="AudioStreamPlayer3D" parent="HitSoundComponent"]
-stream = ExtResource("7_61amk")
+stream = ExtResource("11_e7kwh")
 volume_db = 80.0
 max_db = 6.0
 max_distance = 35.0
 
 [connection signal="damage_taken" from="HealthComponent" to="." method="_on_damage_taken"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_depleted"]
-[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]

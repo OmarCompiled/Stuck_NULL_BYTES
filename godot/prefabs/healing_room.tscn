@@ -45,6 +45,7 @@ omni_range = 5.78384
 script = ExtResource("3_dpx2w")
 
 [node name="HealingArea" type="Area3D" parent="." node_paths=PackedStringArray("heal_sound_component")]
+collision_mask = 12
 script = ExtResource("4_0l74w")
 heal_sound_component = NodePath("../HealSoundComponent")
 
@@ -54,6 +55,8 @@ shape = SubResource("BoxShape3D_wkgr2")
 
 [node name="HealSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_0l74w")]
 player = NodePath("HealPlayer")
+min_volume = 20.0
+max_volume = 20.0
 
 [node name="HealPlayer" type="AudioStreamPlayer3D" parent="HealSoundComponent"]
 stream = ExtResource("5_j0a7j")

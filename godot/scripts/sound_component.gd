@@ -2,10 +2,10 @@ class_name SoundComponent
 extends Node
 
 @export var player: AudioStreamPlayer3D
-@export var min_pitch: float = 1.0
-@export var max_pitch: float = 1.0
-@export var min_volume: float = 0.0
-@export var max_volume: float = 0.0
+@export_range(0,1) var min_pitch: float = 1.0
+@export_range(0,1) var max_pitch: float = 1.0
+@export_range(0,80) var min_volume: float = 0.0
+@export_range(0,80) var max_volume: float = 0.0
 
 
 func _ready():

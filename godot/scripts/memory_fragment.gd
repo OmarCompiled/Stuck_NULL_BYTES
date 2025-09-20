@@ -82,4 +82,4 @@ func _update_light(delta: float) -> void:
 
 
 func _play_sound():
-	collect_sound_component.play(1.3, 1.5)	
+	collect_sound_component.play()	

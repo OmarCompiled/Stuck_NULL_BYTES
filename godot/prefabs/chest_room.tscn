@@ -1,13 +1,41 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfykysdqk34bh"]
+[gd_scene load_steps=13 format=3 uid="uid://dfykysdqk34bh"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_fy8ru"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_iopjx"]
 [ext_resource type="Texture2D" uid="uid://wenhmqi17l0q" path="res://assets/textures/rock/Rock031_1K-JPG_Color.jpg" id="2_th8mx"]
 [ext_resource type="PackedScene" uid="uid://cudookqy5hwk7" path="res://scenes/other/spawner.tscn" id="3_th8mx"]
-[ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://scenes/entity/shadow.tscn" id="4_fy8ru"]
+[ext_resource type="Script" uid="uid://u8nmwtga82ga" path="res://resources/spawn_entity_data.gd" id="5_fyw1l"]
+[ext_resource type="PackedScene" uid="uid://dja5sfxq1rgxl" path="res://scenes/entity/dash_shadow.tscn" id="6_gam1x"]
+[ext_resource type="Script" uid="uid://cudbusd7p5ifg" path="res://resources/spawn_data.gd" id="7_cimwo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stqen"]
 albedo_texture = ExtResource("2_th8mx")
+
+[sub_resource type="Resource" id="Resource_oycj2"]
+script = ExtResource("5_fyw1l")
+spawn_probability = 1.0
+entity_scene = ExtResource("6_gam1x")
+metadata/_custom_type_script = "uid://u8nmwtga82ga"
+
+[sub_resource type="Resource" id="Resource_kdy6o"]
+script = ExtResource("7_cimwo")
+overall_spawn_probability = 1.0
+spawn_offset_range = Vector3(0, 0, 0)
+entities = Array[ExtResource("5_fyw1l")]([SubResource("Resource_oycj2")])
+metadata/_custom_type_script = "uid://cudbusd7p5ifg"
+
+[sub_resource type="Resource" id="Resource_h8xa0"]
+script = ExtResource("5_fyw1l")
+spawn_probability = 1.0
+entity_scene = ExtResource("6_gam1x")
+metadata/_custom_type_script = "uid://u8nmwtga82ga"
+
+[sub_resource type="Resource" id="Resource_l7x5t"]
+script = ExtResource("7_cimwo")
+overall_spawn_probability = 1.0
+spawn_offset_range = Vector3(0, 0, 0)
+entities = Array[ExtResource("5_fyw1l")]([SubResource("Resource_h8xa0")])
+metadata/_custom_type_script = "uid://cudbusd7p5ifg"
 
 [node name="ChestRoom" type="Node3D"]
 script = ExtResource("1_fy8ru")
@@ -33,13 +61,13 @@ size = Vector3(0.9, 5.278, 3)
 [node name="RemoveUnusedDoors" type="Node" parent="."]
 script = ExtResource("2_iopjx")
 
-[node name="Spawner2" parent="." instance=ExtResource("3_th8mx")]
+[node name="Spawner" parent="." instance=ExtResource("3_th8mx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.24986, -1.70567, 0)
-entity_scene = ExtResource("4_fy8ru")
+spawner_data = SubResource("Resource_kdy6o")
 
-[node name="Spawner3" parent="." instance=ExtResource("3_th8mx")]
+[node name="Spawner2" parent="." instance=ExtResource("3_th8mx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22212, -1.70567, 0)
-entity_scene = ExtResource("4_fy8ru")
+spawner_data = SubResource("Resource_l7x5t")
 
 [node name="Light" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.22275, 0)

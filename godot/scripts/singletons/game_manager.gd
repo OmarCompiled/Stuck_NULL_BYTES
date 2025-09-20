@@ -2,7 +2,7 @@ extends Node
 
 var enemies_killed: int = 0
 var total_enemies: int = 0
-var currency: int = 0
+var currency: int = 20
 var current_run_currency: int = 0
 var player: Player
 

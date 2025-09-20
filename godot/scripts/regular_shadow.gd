@@ -99,3 +99,4 @@ func apply_knockback(force):
 	
 func _on_damage_taken(_damage: float):
 	_spawn_particles()
+	update_brightness_from_health(health_component.get_health_percentage())

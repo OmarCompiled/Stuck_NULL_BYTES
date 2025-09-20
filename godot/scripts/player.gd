@@ -54,8 +54,11 @@ var knockback_force = 17
 var was_in_air: bool = false
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)	
 	GameManager.player = self
+	health_component.max_health = UpgradesManager.upgrades.Sanity
+	health_component.current_health = health_component.max_health
+	
 	SanityEffectsManager.set_player_health_component(health_component)
 	HitEffectsManager.set_player_health_component(health_component)
 	HealEffectsManager.set_player_health_component(health_component)

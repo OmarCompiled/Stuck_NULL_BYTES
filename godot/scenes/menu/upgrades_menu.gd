@@ -24,7 +24,7 @@ func _on_back_button_pressed() -> void:
 
 func _on_flashlight_upgrade_pressed() -> void:
 	if GameManager.currency >= flash_upgrade_price:
-		UpgradesManager.upgrades.Flashlight += 30
+		UpgradesManager.upgrades.Flashlight += 15
 		GameManager.currency -= flash_upgrade_price
 		flash_upgrade_price += 20
 	return

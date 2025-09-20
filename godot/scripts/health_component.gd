@@ -8,19 +8,14 @@ signal health_depleted()
 signal damage_taken(amount: float)
 signal healing_received(amount: float)
 
+@export var max_health: float = 100.0
 @export var invincibility_time: float = 0.5
 
 var current_health: float
-var max_health: float
 var is_invincible: bool = false
 
 func _ready():
-	if get_parent() is Player:
-		max_health = UpgradesManager.upgrades.Sanity
-	else:
-		max_health = 100
 	current_health = max_health
-	health_changed.emit(current_health)
 
 # NOTE: ignore_invincibility is for the constant sanity loss
 # and potentially similar additions in the future (e.g. poison damage)

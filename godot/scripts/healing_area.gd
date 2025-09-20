@@ -49,7 +49,7 @@ func _handle_player_exited(player_body: Player) -> void:
 	
 	
 func _heal(delta) -> void:
-	var needed_health = UpgradesManager.upgrades.Sanity - player.health_component.current_health 
+	var needed_health = player.health_component.max_health - player.health_component.current_health 
 	if needed_health <= 0: return
 	var health = _calculate_transfer_amount(HEAL_PER_SECOND * delta, needed_health)
 	player.health_component.heal(health)

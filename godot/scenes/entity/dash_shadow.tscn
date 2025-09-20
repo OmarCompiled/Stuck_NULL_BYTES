@@ -91,6 +91,7 @@ monitoring = false
 shape = SubResource("SphereShape3D_6dm4o")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_2krnx")]
+max_health = 250.0
 invincibility_time = 0.0
 
 [node name="Glow" type="OmniLight3D" parent="."]

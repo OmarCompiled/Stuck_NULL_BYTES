@@ -13,6 +13,7 @@ var is_flashlight_on = false
 var enemies_in_area = []
 
 func _ready():
+	damage_per_second = UpgradesManager.upgrades.Flashlight
 	spot_light.light_energy = 0
 
 func _input(_event: InputEvent) -> void:

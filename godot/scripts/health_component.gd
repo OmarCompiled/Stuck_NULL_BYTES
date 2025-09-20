@@ -8,15 +8,13 @@ signal health_depleted()
 signal damage_taken(amount: float)
 signal healing_received(amount: float)
 
-
-@export var max_health: float = 100
 @export var invincibility_time: float = 0.5
 
 var current_health: float
 var is_invincible: bool = false
 
 func _ready():
-	current_health = max_health
+	current_health = UpgradesManager.upgrades.Sanity
 	health_changed.emit(current_health)
 
 # NOTE: ignore_invincibility is for the constant sanity loss
@@ -45,16 +43,16 @@ func take_damage(amount: float, ignore_invincibility: bool = false):
 
 
 func heal(amount: float):
-	if amount <= 0 or current_health >= max_health:
+	if amount <= 0 or current_health >= UpgradesManager.upgrades.Sanity:
 		return false
 	
-	current_health = min(current_health + amount, max_health)
+	current_health = min(current_health + amount, UpgradesManager.upgrades.Sanity)
 	health_changed.emit(current_health)
 	healing_received.emit(amount)
 	return true
 
 func get_health_percentage() -> float:
-	return current_health / max_health
+	return current_health / UpgradesManager.upgrades.Sanity
 
 func is_alive() -> bool:
 	return current_health > 0

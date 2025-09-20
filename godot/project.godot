@@ -25,6 +25,7 @@ SanityEffectsManager="*res://scripts/singletons/sanity_effects_manager.gd"
 InputManager="*res://scripts/singletons/input_manager.gd"
 HitEffectsManager="*res://scripts/singletons/hit_effects_manager.gd"
 HealEffectsManager="*res://scripts/singletons/heal_effects_manager.gd"
+UpgradesManager="*res://scripts/singletons/upgrades_manager.gd"
 
 [debug]
 

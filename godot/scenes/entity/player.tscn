@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://f8mp43vqb13f"]
+[gd_scene load_steps=15 format=3 uid="uid://f8mp43vqb13f"]
 
 [ext_resource type="Script" uid="uid://dnayske5ek28m" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://fg0xg2wcui3q" path="res://scenes/asset/flashlight.tscn" id="2_onrkg"]
 [ext_resource type="Script" uid="uid://ci7kfw5q5qn2k" path="res://scripts/enemy_counter.gd" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://dofngbvrqwqni" path="res://scenes/other/health_component.tscn" id="3_sweqy"]
 [ext_resource type="Script" uid="uid://xws3v0ou7h4d" path="res://scripts/sanity_bar.gd" id="4_2hs0m"]
-[ext_resource type="FontFile" uid="uid://cp1psb75615ws" path="res://assets/fonts/Stuck-Regular.ttf" id="5_lo118"]
+[ext_resource type="FontFile" uid="uid://gcgvrjt58408" path="res://assets/fonts/Spectral/Spectral-ExtraLight.ttf" id="5_7sfp8"]
 [ext_resource type="AudioStream" uid="uid://drx8tsfyjehx" path="res://assets/sfx/Audio/footstep02.ogg" id="6_2hs0m"]
 [ext_resource type="PackedScene" uid="uid://bt8isq1pq1xna" path="res://scenes/other/sound_component.tscn" id="6_bee8u"]
+[ext_resource type="Script" uid="uid://bu50jdot4cbor" path="res://scenes/entity/sanity_level.gd" id="6_r4rq5"]
 [ext_resource type="AudioStream" uid="uid://cgpo6tvpujy6b" path="res://assets/sfx/player/dash.wav" id="7_j8jve"]
 [ext_resource type="Script" uid="uid://br1ffti3jh1ai" path="res://scripts/currency_counter.gd" id="7_lo118"]
 [ext_resource type="AudioStream" uid="uid://dx2nd6acpg2oh" path="res://assets/sfx/enemy/land.wav" id="8_k4nkw"]
@@ -67,17 +68,18 @@ script = ExtResource("4_2hs0m")
 invincible_color = Color(2.00392, 0, 0, 1)
 normal_color = Color(0.266667, 0.556863, 0.192157, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="SanityBar"]
+[node name="SanityLevel" type="RichTextLabel" parent="SanityBar"]
 layout_mode = 0
 offset_top = -42.0
 offset_right = 269.0
 offset_bottom = -2.0
-theme_override_fonts/normal_font = ExtResource("5_lo118")
+theme_override_fonts/normal_font = ExtResource("5_7sfp8")
 theme_override_font_sizes/normal_font_size = 30
 text = "Sanity"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("6_r4rq5")
 
 [node name="DashCooldownBar" type="ProgressBar" parent="."]
 offset_left = 47.0
@@ -93,9 +95,10 @@ layout_mode = 0
 offset_top = -42.0
 offset_right = 269.0
 offset_bottom = -2.0
-theme_override_fonts/normal_font = ExtResource("5_lo118")
+theme_override_fonts/normal_font = ExtResource("5_7sfp8")
 theme_override_font_sizes/normal_font_size = 30
 text = "Dash"
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -108,7 +111,7 @@ offset_top = 43.0
 offset_right = -39.0
 offset_bottom = 85.0
 grow_horizontal = 0
-theme_override_fonts/normal_font = ExtResource("5_lo118")
+theme_override_fonts/normal_font = ExtResource("5_7sfp8")
 theme_override_font_sizes/normal_font_size = 30
 text = "0/0"
 fit_content = true
@@ -125,7 +128,7 @@ offset_top = 123.0
 offset_right = -39.0
 offset_bottom = 163.0
 grow_horizontal = 0
-theme_override_fonts/normal_font = ExtResource("5_lo118")
+theme_override_fonts/normal_font = ExtResource("5_7sfp8")
 theme_override_font_sizes/normal_font_size = 30
 text = "Collected Shards:"
 fit_content = true

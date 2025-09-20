@@ -5,6 +5,7 @@ extends ProgressBar
 
 func _ready():
 	self_modulate = normal_color
+	max_value = UpgradesManager.upgrades.Sanity
 
 func _on_invincibility_started():
 	self_modulate = invincible_color

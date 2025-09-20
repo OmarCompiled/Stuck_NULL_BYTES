@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cta32glpb8jih"]
+[gd_scene load_steps=7 format=3 uid="uid://cta32glpb8jih"]
 
 [ext_resource type="Script" uid="uid://ddp5jpmx8af2w" path="res://scenes/menu/upgrades_menu.gd" id="1_panm3"]
 [ext_resource type="Texture2D" uid="uid://cp4btomhpb1c3" path="res://assets/stuck_bg.png" id="2_7kd37"]
-[ext_resource type="FontFile" uid="uid://cp1psb75615ws" path="res://assets/fonts/Stuck-Regular.ttf" id="2_panm3"]
+[ext_resource type="FontFile" uid="uid://chx43th8hdejo" path="res://assets/fonts/Spectral/Spectral-Light.ttf" id="3_vsmgm"]
+[ext_resource type="FontFile" uid="uid://gcgvrjt58408" path="res://assets/fonts/Spectral/Spectral-ExtraLight.ttf" id="4_0a3hm"]
+[ext_resource type="Texture2D" uid="uid://c1eka3on3ijhi" path="res://assets/textures/icons8-flash-light-50.png" id="4_yij7h"]
+[ext_resource type="Texture2D" uid="uid://dsghhmva76g28" path="res://assets/textures/icons8-brain-50.png" id="5_q1e4u"]
 
 [node name="UpgradesMenu" type="Control"]
 layout_mode = 3
@@ -40,49 +43,75 @@ layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_panm3")
+theme_override_fonts/normal_font = ExtResource("3_vsmgm")
 theme_override_font_sizes/normal_font_size = 100
 text = "UPGRADES"
 fit_content = true
 
-[node name="Upgrades" type="GridContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
+[node name="CurrencyLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_0a3hm")
+theme_override_font_sizes/normal_font_size = 60
+text = "Memory Shards: "
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrades" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
-columns = 2
 
-[node name="FlashlightUpgrade" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades"]
+[node name="FlashlightUpgrade" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Upgrades"]
 layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_0a3hm")
+theme_override_font_sizes/font_size = 24
+toggle_mode = false
+text = "Flashlight"
+icon = ExtResource("4_yij7h")
+flat = false
+icon_alignment = 1
+vertical_icon_alignment = 0
 
-[node name="Icon" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades/FlashlightUpgrade"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Price" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades/FlashlightUpgrade"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SanityUpgrade" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades"]
+[node name="FlashlightLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Upgrades"]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_0a3hm")
+theme_override_font_sizes/normal_font_size = 24
+text = "Increase Flashlight Strength"
+fit_content = true
+autowrap_mode = 0
 
-[node name="Icon" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades/SanityUpgrade"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SanityUpgrade" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Upgrades"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0a3hm")
+theme_override_font_sizes/font_size = 24
+text = "Sanity"
+icon = ExtResource("5_q1e4u")
+flat = false
+icon_alignment = 1
+vertical_icon_alignment = 0
 
-[node name="Price" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/Upgrades/SanityUpgrade"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SanityLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Upgrades"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_0a3hm")
+theme_override_font_sizes/normal_font_size = 24
+text = "Increase Maximum Sanity"
+fit_content = true
+autowrap_mode = 0
 
 [node name="BackButton" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("2_panm3")
+theme_override_fonts/font = ExtResource("4_0a3hm")
 theme_override_font_sizes/font_size = 60
 text = "BACK"
 
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Upgrades/FlashlightUpgrade" to="." method="_on_flashlight_upgrade_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Upgrades/SanityUpgrade" to="." method="_on_sanity_upgrade_pressed"]
 [connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

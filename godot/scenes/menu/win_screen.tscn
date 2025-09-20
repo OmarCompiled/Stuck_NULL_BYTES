@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpw1bpu87jpyn"]
 
 [ext_resource type="Script" uid="uid://dutc6fth7ldd8" path="res://scenes/menu/win_screen.gd" id="1_dbu1v"]
-[ext_resource type="FontFile" uid="uid://18ohqxx0orng" path="res://assets/fonts/static/Roboto-Light.ttf" id="2_7nuyu"]
+[ext_resource type="FontFile" uid="uid://gcgvrjt58408" path="res://assets/fonts/Spectral/Spectral-ExtraLight.ttf" id="2_7nuyu"]
 
 [node name="WinScreen" type="Control"]
 layout_mode = 3

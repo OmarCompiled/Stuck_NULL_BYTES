@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dijywxr5vrrpq"]
+[gd_scene load_steps=7 format=3 uid="uid://dijywxr5vrrpq"]
 
 [ext_resource type="Script" uid="uid://b004xknhfy13j" path="res://scripts/main_menu.gd" id="1_247la"]
 [ext_resource type="Texture2D" uid="uid://cp4btomhpb1c3" path="res://assets/stuck_bg.png" id="2_247la"]
 [ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://scenes/other/fade_scene.tscn" id="3_hj162"]
-[ext_resource type="FontFile" uid="uid://cp1psb75615ws" path="res://assets/fonts/Stuck-Regular.ttf" id="3_kiqgm"]
+[ext_resource type="FontFile" uid="uid://chx43th8hdejo" path="res://assets/fonts/Spectral/Spectral-Light.ttf" id="3_xn6kt"]
+[ext_resource type="FontFile" uid="uid://gcgvrjt58408" path="res://assets/fonts/Spectral/Spectral-ExtraLight.ttf" id="4_isoef"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kiqgm"]
 
@@ -44,7 +45,7 @@ theme_override_constants/separation = 100
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("3_kiqgm")
+theme_override_fonts/normal_font = ExtResource("3_xn6kt")
 theme_override_font_sizes/normal_font_size = 100
 text = "STUCK"
 fit_content = true
@@ -63,7 +64,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("3_kiqgm")
+theme_override_fonts/font = ExtResource("4_isoef")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kiqgm")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
@@ -86,7 +87,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("3_kiqgm")
+theme_override_fonts/font = ExtResource("4_isoef")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kiqgm")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
@@ -109,7 +110,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("3_kiqgm")
+theme_override_fonts/font = ExtResource("4_isoef")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kiqgm")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")
@@ -132,7 +133,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("3_kiqgm")
+theme_override_fonts/font = ExtResource("4_isoef")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kiqgm")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kiqgm")

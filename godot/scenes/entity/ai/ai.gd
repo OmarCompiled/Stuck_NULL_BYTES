@@ -186,6 +186,9 @@ class StateChase extends State:
 		var dir = (player.global_position - mob.global_position).normalized()
 		mob.velocity = dir * speed
 		mob.move_and_slide()
+		
+		if mob.detection_component.close():
+			return Events.PLAYER_CLOSE
 
 		return Events.NONE
 

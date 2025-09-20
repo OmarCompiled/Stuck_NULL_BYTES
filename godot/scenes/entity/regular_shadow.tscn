@@ -24,7 +24,7 @@ metallic = 1.0
 radius = 30.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mk1n8"]
-radius = 4.97867
+radius = 0.001
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ov1mx"]
 radius = 0.825561

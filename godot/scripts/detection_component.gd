@@ -17,7 +17,7 @@ var player: Player = null
 var can_see_player := false
 var has_spotted_player := false
 var player_in_close_area := false
-var was_player_close := false  #
+var was_player_close := false
 
 func _ready():
 	if detection_area:
@@ -95,9 +95,15 @@ func _check_player_close_state():
 	elif not is_player_close_now and was_player_close:
 		player_left_close.emit(player)
 		was_player_close = false
-
+		
+		
 func detected() -> bool:
 	return player != null and can_see_player
-
+	
+	
+func close() -> bool:
+	return player != null and player_in_close_area and can_see_player
+	
+	
 func get_player() -> Player:
 	return player

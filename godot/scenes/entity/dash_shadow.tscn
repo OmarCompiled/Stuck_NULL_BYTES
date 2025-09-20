@@ -17,7 +17,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_fxwqn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aosgp"]
-albedo_color = Color(0.17, 0.17, 0.17, 1)
+albedo_color = Color(0.2, 0.2, 0.2, 1)
 metallic = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_jes47"]
@@ -151,10 +151,10 @@ max_distance = 35.0
 
 [node name="DashCommitSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_0hkmd")]
 player = NodePath("DashCommitPlayer")
-min_pitch = 0.45
-max_pitch = 0.45
-min_volume = 80.0
-max_volume = 80.0
+min_pitch = 0.6
+max_pitch = 0.6
+min_volume = 40.0
+max_volume = 40.0
 
 [node name="DashCommitPlayer" type="AudioStreamPlayer3D" parent="DashCommitSoundComponent"]
 stream = ExtResource("13_imeo8")

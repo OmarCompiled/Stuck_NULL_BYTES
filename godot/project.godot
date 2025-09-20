@@ -118,3 +118,7 @@ Fullscreen={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+anti_aliasing/quality/use_debanding=true

@@ -12,7 +12,5 @@ metadata/_custom_type_script = "uid://u8nmwtga82ga"
 
 [resource]
 script = ExtResource("3_bm1ko")
-overall_spawn_probability = 1.0
-spawn_offset_range = Vector3(0, 0, 0)
 entities = Array[ExtResource("1_f5rgu")]([SubResource("Resource_7xew0")])
 metadata/_custom_type_script = "uid://cudbusd7p5ifg"

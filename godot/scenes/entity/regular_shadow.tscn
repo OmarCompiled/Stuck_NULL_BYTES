@@ -33,14 +33,12 @@ radius = 0.825561
 script = ExtResource("7_4qfiq")
 item_scene = ExtResource("8_7ita1")
 chance = 1.0
-min_drop = 1
 max_drop = 3
-spawn_offset = Vector3(0, 0, 0)
-random_spread = 1.0
 metadata/_custom_type_script = "uid://fwwpsn2vg2g0"
 
 [node name="RegularShadow" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "detection_component", "loot_component", "chase_sound_component", "death_sound_component", "hit_sound_component")]
 collision_layer = 8
+collision_mask = 13
 script = ExtResource("1_urynf")
 health_component = NodePath("HealthComponent")
 detection_component = NodePath("DetectionComponent")
@@ -89,7 +87,6 @@ monitoring = false
 shape = SubResource("SphereShape3D_ov1mx")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_vp31a")]
-max_health = 150.0
 invincibility_time = 0.0
 
 [node name="Glow" type="OmniLight3D" parent="."]

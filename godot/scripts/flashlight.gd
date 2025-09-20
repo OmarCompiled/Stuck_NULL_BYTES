@@ -55,6 +55,10 @@ func _turn_flashlight_off():
 	
 	detection_area.body_entered.disconnect(_on_body_entered)
 	detection_area.body_exited.disconnect(_on_body_exited)
+	
+	for enemy in enemies_in_area:
+		if is_instance_valid(enemy):
+			enemy.set_highlighted(false)
 	enemies_in_area.clear()
 	
 func _on_body_entered(body: Node3D):
@@ -64,11 +68,15 @@ func _on_body_entered(body: Node3D):
 func _on_body_exited(body: Node3D):
 	if body is Shadow and enemies_in_area.has(body):
 		enemies_in_area.erase(body)
+		body.set_highlighted(false)
+
 
 func _damage_enemies_in_light(delta: float):
 	for enemy in enemies_in_area:
 		if is_instance_valid(enemy) and _check_ray(enemy):
 			enemy.health_component.take_damage(damage_per_second * delta)
+			enemy.set_highlighted(true)
+
 
 func _check_ray(body: Node3D):
 	var space_state = get_world_3d().direct_space_state

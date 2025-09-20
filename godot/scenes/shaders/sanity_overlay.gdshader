@@ -41,7 +41,7 @@ void fragment() {
 	color = (color - 0.5) * (1.0 + sanity_intensity * 0.025) + 0.5;
 	
 	color = mix(color, vec3(0.0), death_fade);
-	color = mix(color, vec3(0.425), win_fade);
+	color = mix(color, vec3(0.5), win_fade);
 
     COLOR = vec4(color, screen_color.a);
 }

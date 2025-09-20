@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://mo4d62qc6mn6"]
+[gd_scene load_steps=15 format=3 uid="uid://mo4d62qc6mn6"]
 
 [ext_resource type="Script" uid="uid://dg0fdhchjs2xg" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_jm2rx"]
 [ext_resource type="Script" uid="uid://b4avbg4f7ol2k" path="res://scripts/remove_unused_doors.gd" id="2_anrrp"]
@@ -14,40 +14,34 @@ albedo_texture = ExtResource("2_e2gtu")
 
 [sub_resource type="Resource" id="Resource_clf7l"]
 script = ExtResource("5_i8pc3")
-spawn_probability = 0.7
+spawn_probability = 0.8
 entity_scene = ExtResource("6_1tcka")
 metadata/_custom_type_script = "uid://u8nmwtga82ga"
 
 [sub_resource type="Resource" id="Resource_1tcka"]
 script = ExtResource("5_i8pc3")
-spawn_probability = 0.3
+spawn_probability = 0.2
 entity_scene = ExtResource("6_11sit")
 metadata/_custom_type_script = "uid://u8nmwtga82ga"
 
 [sub_resource type="Resource" id="Resource_y16hp"]
 script = ExtResource("7_uatc8")
-overall_spawn_probability = 0.2
+overall_spawn_probability = 0.12
 spawn_offset_range = Vector3(0, 0, 0)
 entities = Array[ExtResource("5_i8pc3")]([SubResource("Resource_clf7l"), SubResource("Resource_1tcka")])
 metadata/_custom_type_script = "uid://cudbusd7p5ifg"
 
 [sub_resource type="Resource" id="Resource_uatc8"]
 script = ExtResource("5_i8pc3")
-spawn_probability = 0.6
+spawn_probability = 1.0
 entity_scene = ExtResource("6_1tcka")
-metadata/_custom_type_script = "uid://u8nmwtga82ga"
-
-[sub_resource type="Resource" id="Resource_detg1"]
-script = ExtResource("5_i8pc3")
-spawn_probability = 0.4
-entity_scene = ExtResource("6_11sit")
 metadata/_custom_type_script = "uid://u8nmwtga82ga"
 
 [sub_resource type="Resource" id="Resource_as7sf"]
 script = ExtResource("7_uatc8")
-overall_spawn_probability = 0.1
+overall_spawn_probability = 0.12
 spawn_offset_range = Vector3(0, 0, 0)
-entities = Array[ExtResource("5_i8pc3")]([SubResource("Resource_uatc8"), SubResource("Resource_detg1")])
+entities = Array[ExtResource("5_i8pc3")]([SubResource("Resource_uatc8")])
 metadata/_custom_type_script = "uid://cudbusd7p5ifg"
 
 [node name="Corridor" type="Node3D"]

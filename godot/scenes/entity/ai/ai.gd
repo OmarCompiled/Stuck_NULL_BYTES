@@ -186,6 +186,9 @@ class StateChase extends State:
 		var dir = (player.global_position - mob.global_position).normalized()
 		mob.velocity = dir * speed
 		mob.move_and_slide()
+		
+		if mob.detection_component.close():
+			return Events.PLAYER_CLOSE
 
 		return Events.NONE
 
@@ -228,7 +231,7 @@ class StateCharge extends State:
 			ChargeType.UP:
 				charge_duration = 0.7
 			ChargeType.DOWN:
-				charge_duration = randf_range(1.0, 1.5)
+				charge_duration = 0.5
 			_:
 				push_error("Unknown charge type: " + ChargeType.keys()[type])
 

@@ -6,7 +6,7 @@ var buttons = ["start", "upgrades", "options"]
 # Template functions; leave as is; might need them later
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$MarginContainer/VBoxContainer/WinsCounter.text = "Consecutive Wins: " + str(GameManager.consecutive_wins)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

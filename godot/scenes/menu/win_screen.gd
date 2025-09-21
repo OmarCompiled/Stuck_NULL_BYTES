@@ -15,6 +15,7 @@ func _on_menu_button_pressed() -> void:
 
 func _on_continue_button_pressed() -> void:
 	GameManager.consecutive_wins += 1
+	GameManager.reset() 
 	$FadeTransition.show()
 	$FadeTransition/AnimationPlayer.play("fade_in")
 	$FadeTransition/fade_timer.start()

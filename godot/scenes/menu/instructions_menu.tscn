@@ -82,6 +82,7 @@ toggle_mode = false
 text = "Ready?"
 
 [node name="FadeTransition" parent="." instance=ExtResource("5_2ficn")]
+visible = false
 layout_mode = 1
 
 [node name="fade_timer" type="Timer" parent="FadeTransition"]

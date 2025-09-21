@@ -3,33 +3,31 @@
 [ext_resource type="Script" uid="uid://deiluidkv07ux" path="res://scripts/world.gd" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dd2sht8icfr86" path="res://scenes/other/prototype_level_generator.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://scenes/other/fade_scene.tscn" id="3_tlwt5"]
+[ext_resource type="Script" uid="uid://uhcksabcd2lp" path="res://scripts/minimap.gd" id="4_fyfp2"]
 [ext_resource type="PackedScene" uid="uid://btt5y2vnaetr8" path="res://scenes/shaders/sanity_overlay.tscn" id="4_lx57m"]
 [ext_resource type="PackedScene" uid="uid://bakrsbnb6kyij" path="res://scenes/shaders/hit_canvas_layer.tscn" id="5_6qbqy"]
 [ext_resource type="PackedScene" uid="uid://da2g1rbpceyls" path="res://scenes/shaders/heal_canvas_layer.tscn" id="6_nsc2l"]
-[ext_resource type="Script" uid="uid://uhcksabcd2lp" path="res://scripts/minimap.gd" id="7_fyfp2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_fyfp2"]
+[sub_resource type="Sky" id="Sky_tlwt5"]
 sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
 
 [sub_resource type="Environment" id="Environment_aqk2v"]
 background_mode = 2
 background_energy_multiplier = 1.11
-sky = SubResource("Sky_fyfp2")
-tonemap_mode = 1
-tonemap_exposure = 1.75
+sky = SubResource("Sky_tlwt5")
+tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.096
 volumetric_fog_length = 128.0
 
-[node name="World" type="Node" node_paths=PackedStringArray("minimap")]
+[node name="World" type="Node"]
 script = ExtResource("1_f3sb7")
 generator_scene = ExtResource("2_fj7yv")
-minimap = NodePath("minimap")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aqk2v")
@@ -40,26 +38,15 @@ visibility_layer = 2
 
 [node name="fade_timer" type="Timer" parent="FadeTransition"]
 
+[node name="Minimap" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_fyfp2")
+
 [node name="SanityOverlay" parent="." groups=["sanity_canvas"] instance=ExtResource("4_lx57m")]
 
 [node name="HitCanvasLayer" parent="." groups=["hit_canvas"] instance=ExtResource("5_6qbqy")]
 
 [node name="HealCanvasLayer" parent="." groups=["heal_canvas"] instance=ExtResource("6_nsc2l")]
-
-[node name="minimap" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("7_fyfp2")
 
 [connection signal="timeout" from="FadeTransition/fade_timer" to="." method="_on_fade_timer_timeout"]

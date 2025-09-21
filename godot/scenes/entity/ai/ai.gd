@@ -229,7 +229,7 @@ class StateCharge extends State:
 		
 		match type:
 			ChargeType.UP:
-				charge_duration = 0.7
+				charge_duration = 1.1
 			ChargeType.DOWN:
 				charge_duration = 0.5
 			_:

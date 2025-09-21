@@ -10,6 +10,8 @@ var dungeon_generator : DungeonGenerator3D :
 			return get_parent()
 		else: return dungeon_generator
 
+var visited: bool = false
+
 @export var size_in_voxels := Vector3i(1,1,1) :
 	set(v):
 		size_in_voxels = v.clamp(Vector3i(1,1,1),Vector3i(9999,9999,9999))

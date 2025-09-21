@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq44ndx7eb7yq"]
+
+[ext_resource type="PackedScene" uid="uid://cqagwekx7o53h" path="res://scenes/entity/regular_shadow.tscn" id="1_nwaph"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nwaph"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_jcbkg"]
+sky_material = SubResource("ProceduralSkyMaterial_nwaph")
+
+[sub_resource type="Environment" id="Environment_kxa56"]
+background_mode = 1
+sky = SubResource("Sky_jcbkg")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+
+[node name="tmp" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kxa56")
+
+[node name="RegularShadow" parent="." instance=ExtResource("1_nwaph")]
+
+[node name="Glow" parent="RegularShadow" index="5"]
+visible = false
+light_energy = 16.0
+omni_range = 5.944
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.0006948)
+current = true
+
+[node name="Glow" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00469041, -4.76837e-07, -2.5002954)
+light_color = Color(0.163965, 0.0280897, 0.283854, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 3.0
+omni_range = 3.0
+
+[editable path="RegularShadow"]

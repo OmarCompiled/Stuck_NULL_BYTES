@@ -45,6 +45,7 @@ current = true
 
 [node name="Flashlight" parent="Head/Camera3D" instance=ExtResource("2_onrkg")]
 transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 0.645148, -0.425091, -0.551973)
+visible = true
 damage_per_second = 200.0
 
 [node name="PlayerHitbox" type="Area3D" parent="."]
@@ -106,10 +107,10 @@ vertical_alignment = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -328.0
+offset_left = -688.0
 offset_top = 43.0
-offset_right = -39.0
-offset_bottom = 85.0
+offset_right = -399.0
+offset_bottom = 89.0
 grow_horizontal = 0
 theme_override_fonts/normal_font = ExtResource("5_7sfp8")
 theme_override_font_sizes/normal_font_size = 30
@@ -123,10 +124,10 @@ script = ExtResource("3_i3pqv")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -328.0
+offset_left = -688.0
 offset_top = 123.0
-offset_right = -39.0
-offset_bottom = 163.0
+offset_right = -399.0
+offset_bottom = 169.0
 grow_horizontal = 0
 theme_override_fonts/normal_font = ExtResource("5_7sfp8")
 theme_override_font_sizes/normal_font_size = 30

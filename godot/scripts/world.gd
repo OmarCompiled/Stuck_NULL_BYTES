@@ -1,12 +1,15 @@
+# world.gd
 extends Node
 
 @export var generator_scene: PackedScene
-var generator
+@export var minimap: Control
+
+var generator: DungeonGenerator3D
 
 func _ready() -> void:
 	_generate()
 	
-	$FadeTransition.show()	
+	$FadeTransition.show()    
 	$FadeTransition/AnimationPlayer.play("fade_out")
 	$FadeTransition/fade_timer.start()
 	
@@ -15,11 +18,9 @@ func _ready() -> void:
 	HealEffectsManager.find_heal_overlay()
 	
 	InputManager.can_quit = true
-	
-	
+
 func _on_fade_timer_timeout() -> void:
 	$FadeTransition.hide()
-
 
 func _generate():
 	generator = generator_scene.instantiate()
@@ -27,3 +28,8 @@ func _generate():
 	# NOTE: Without call deferred, the generator runs before some
 	# data from the old scene is freed.
 	generator.generate.call_deferred()
+	
+	generator.done_generating.connect(func() -> void:
+		minimap.init_minimap(generator)
+		GameManager.player.position_changed.connect(minimap.update)
+	)

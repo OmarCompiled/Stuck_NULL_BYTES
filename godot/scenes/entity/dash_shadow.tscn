@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://n1dxrlknm13u" path="res://assets/sfx/enemy/whoosh.wav" id="8_oqxfm"]
 [ext_resource type="AudioStream" uid="uid://b4kp5xt14f4kd" path="res://assets/sfx/enemy/boom.mp3" id="9_y276j"]
 [ext_resource type="AudioStream" uid="uid://cgpo6tvpujy6b" path="res://assets/sfx/player/dash.wav" id="11_xbrmd"]
-[ext_resource type="AudioStream" uid="uid://lo2qijxtfgyq" path="res://assets/sfx/enemy/commit.wav" id="13_imeo8"]
+[ext_resource type="AudioStream" uid="uid://tj0wwcfb7bxa" path="res://assets/sfx/enemy/charge.wav" id="13_imeo8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fxwqn"]
 
@@ -121,7 +121,8 @@ max_distance = 35.0
 player = NodePath("DashPlayer")
 min_pitch = 0.5
 max_pitch = 0.8
-max_volume = 10.0
+min_volume = 40.0
+max_volume = 40.0
 
 [node name="DashPlayer" type="AudioStreamPlayer3D" parent="DashSoundComponent2"]
 stream = ExtResource("11_xbrmd")
@@ -152,10 +153,8 @@ max_distance = 35.0
 
 [node name="DashCommitSoundComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_0hkmd")]
 player = NodePath("DashCommitPlayer")
-min_pitch = 0.6
-max_pitch = 0.6
-min_volume = 40.0
-max_volume = 40.0
+min_pitch = 0.73
+max_pitch = 0.73
 
 [node name="DashCommitPlayer" type="AudioStreamPlayer3D" parent="DashCommitSoundComponent"]
 stream = ExtResource("13_imeo8")

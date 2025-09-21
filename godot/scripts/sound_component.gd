@@ -4,8 +4,8 @@ extends Node
 @export var player: AudioStreamPlayer3D
 @export_range(0,1) var min_pitch: float = 1.0
 @export_range(0,1) var max_pitch: float = 1.0
-@export_range(0,80) var min_volume: float = 0.0
-@export_range(0,80) var max_volume: float = 0.0
+@export_range(-80,80) var min_volume: float = 0.0
+@export_range(-80,80) var max_volume: float = 0.0
 
 
 func _ready():

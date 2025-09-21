@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
+signal position_changed()
+
 @export var health_component: HealthComponent
 
 @export var walk_sound_component: SoundComponent 
@@ -22,6 +24,7 @@ var is_sprinting = false;
 const WALK_SPEED = 8.0
 const SPRINT_SPEED = 15.0
 const JUMP_VELOCITY = 12
+var last_position = position
 
 # Dash
 const DASH_SPEED = SPRINT_SPEED * 1.7
@@ -178,6 +181,9 @@ func _physics_process(delta: float) -> void:
 	was_in_air = not is_on_floor()
 	move_and_slide()
 	
+	if last_position and last_position != position:
+		position_changed.emit()
+	last_position = position
 	
 func die():
 	GameManager.handle_player_death()

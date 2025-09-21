@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://58d6ckt3s3nb"]
+[gd_scene load_steps=7 format=3 uid="uid://bludany367alv"]
 
-[ext_resource type="Script" uid="uid://dc5atfkm358a7" path="res://scenes/menu/instructions_menu.gd" id="1_0olb8"]
+[ext_resource type="Script" path="res://scenes/menu/instructions_menu.gd" id="1_0olb8"]
 [ext_resource type="Shader" uid="uid://vnfyab2y6jtj" path="res://scenes/menu/instructions_menu.gdshader" id="1_iqduw"]
 [ext_resource type="Texture2D" uid="uid://cp4btomhpb1c3" path="res://assets/stuck_bg.png" id="2_8am7x"]
 [ext_resource type="FontFile" uid="uid://gcgvrjt58408" path="res://assets/fonts/Spectral/Spectral-ExtraLight.ttf" id="3_8am7x"]
@@ -66,10 +66,10 @@ size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("3_8am7x")
 theme_override_font_sizes/normal_font_size = 45
 text = "Instructions:
-- Use your flashlight to kill the shadows.
-- Dead shadows will leave behind a light as a marker
-- Collect Shards to purchase upgrades
-- Collect 3 unique shards to end your run"
+- Shine your flashlight on the shadows to kill them
+- Collect Memory Shards to upgrade your powers
+- Kill the required number of enemies to escape
+- Do not go insane"
 
 [node name="ReadyButton" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2

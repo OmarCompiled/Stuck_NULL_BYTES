@@ -33,5 +33,5 @@ func _on_quit_pressed() -> void:
 func _on_fade_timer_timeout() -> void:
 	$FadeTransition.hide()
 	if button == buttons[0]:
-		get_tree().change_scene_to_file("res://scenes/other/world.tscn")
+		get_tree().change_scene_to_file("res://scenes/menu/instructions_menu.tscn")
 	

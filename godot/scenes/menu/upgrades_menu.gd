@@ -3,8 +3,6 @@ extends Control
 var flash_button: Node
 var sanity_button: Node
 var currency_label:Node
-var flash_upgrade_price = 20
-var sanity_upgrade_price = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,8 +12,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	flash_button.text = "Flashlight: " + str(flash_upgrade_price)
-	sanity_button.text = "Sanity: " + str(sanity_upgrade_price)
+	flash_button.text = "Flashlight: " + str(UpgradesManager.prices.Flashlight)
+	sanity_button.text = "Sanity: " + str(UpgradesManager.prices.Sanity)
 	currency_label.text = "Memory Shards: " + str(GameManager.currency)
 
 func _on_back_button_pressed() -> void:
@@ -23,14 +21,14 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_flashlight_upgrade_pressed() -> void:
-	if GameManager.currency >= flash_upgrade_price:
+	if GameManager.currency >= UpgradesManager.prices.Flashlight:
 		UpgradesManager.upgrades.Flashlight += 15
-		GameManager.currency -= flash_upgrade_price
-		flash_upgrade_price += 20
+		GameManager.currency -= UpgradesManager.prices.Flashlight
+		UpgradesManager.prices.Flashlight += 20
 	return
 
 func _on_sanity_upgrade_pressed() -> void:
-	if GameManager.currency >= sanity_upgrade_price:
+	if GameManager.currency >= UpgradesManager.prices.Sanity:
 		UpgradesManager.upgrades.Sanity += 20
-		GameManager.currency -= sanity_upgrade_price
-		sanity_upgrade_price += 20
+		GameManager.currency -= UpgradesManager.prices.Sanity
+		UpgradesManager.prices.Sanity += 20

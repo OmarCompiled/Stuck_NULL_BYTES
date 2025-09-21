@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://58d6ckt3s3nb"]
+
+[ext_resource type="Script" uid="uid://dc5atfkm358a7" path="res://scenes/menu/instructions_menu.gd" id="1_0olb8"]
+[ext_resource type="Shader" uid="uid://vnfyab2y6jtj" path="res://scenes/menu/instructions_menu.gdshader" id="1_iqduw"]
+[ext_resource type="Texture2D" uid="uid://cp4btomhpb1c3" path="res://assets/stuck_bg.png" id="2_8am7x"]
+[ext_resource type="FontFile" uid="uid://gcgvrjt58408" path="res://assets/fonts/Spectral/Spectral-ExtraLight.ttf" id="3_8am7x"]
+[ext_resource type="PackedScene" uid="uid://ddgr0fwaevyfi" path="res://scenes/other/fade_scene.tscn" id="5_2ficn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0olb8"]
+shader = ExtResource("1_iqduw")
+
+[node name="InstructionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0olb8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_0olb8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8am7x")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ControlsLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("3_8am7x")
+theme_override_font_sizes/normal_font_size = 45
+text = "Controls:
+Move: WASD
+Jump: Space
+Dash: E
+Flash: LMB
+Pause: Q"
+fit_content = true
+
+[node name="InstructionsLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("3_8am7x")
+theme_override_font_sizes/normal_font_size = 45
+text = "Instructions:
+- Use your flashlight to kill the shadows.
+- Dead shadows will leave behind a light as a marker
+- Collect Shards to purchase upgrades
+- Collect 3 unique shards to end your run"
+
+[node name="ReadyButton" type="MenuButton" parent="TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("3_8am7x")
+theme_override_font_sizes/font_size = 60
+text = "Ready?"
+
+[node name="FadeTransition" parent="." instance=ExtResource("5_2ficn")]
+layout_mode = 1
+
+[node name="fade_timer" type="Timer" parent="FadeTransition"]
+
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/ReadyButton" to="." method="_on_ready_button_pressed"]
+[connection signal="timeout" from="FadeTransition/fade_timer" to="." method="_on_fade_timer_timeout"]

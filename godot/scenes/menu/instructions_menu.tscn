@@ -75,8 +75,10 @@ text = "Instructions:
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("3_8am7x")
 theme_override_font_sizes/font_size = 60
+toggle_mode = false
 text = "Ready?"
 
 [node name="FadeTransition" parent="." instance=ExtResource("5_2ficn")]

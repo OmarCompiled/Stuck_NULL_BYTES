@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func _on_ready_button_pressed() -> void:
 	_ready_button_pressed = true;
+	$TextureRect/MarginContainer/VBoxContainer/ReadyButton.hide()
 	$FadeTransition.show()
 	$FadeTransition/AnimationPlayer.play("fade_in")
 	$FadeTransition/fade_timer.start()

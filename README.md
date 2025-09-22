@@ -26,19 +26,14 @@ The shadows that stalk him are those traumas given form. Only by confronting the
 
 ## Gameplay
 
-### How a Run Works
-- Enter a nightmare shaped by phobias and past trauma. Rooms are randomly assembled to keep each attempt fresh.  
-- Face waves of aggressive shadows that hunt you relentlessly.  
-- Collect **memory shards** dropped by enemies.  
-- Spend shards to unlock permanent upgrades for the next run.  
-
 ### Core Loop
 1. Start a run  
-2. Fight and evade shadows  
-3. Collect shards  
-4. Defeat all shadows  
-5. Spend shards on permanent upgrades  
-6. Repeat  
+2. Enter a randomly generated nightmare
+3. Fight and evade shadows  
+4. Collect shards  
+5. Defeat all shadows  
+6. Spend shards on permanent upgrades  
+7. Repeat  
 
 The first nightmare is **Nyctophobia**, a level of oppressive darkness where shadows close in and your vision warps as your sanity fades.
 

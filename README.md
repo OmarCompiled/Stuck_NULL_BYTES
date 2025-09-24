@@ -2,7 +2,7 @@
 
 ![STUCK Splash](docs/stuck_bg.png)
 
-[Play on itch.io](https://omarcompiled.itch.io/stuck)
+[Play on itch.io](https://omarcompiled.itch.io/stuck) | [Watch the demo](https://drive.google.com/file/d/1fWAS9_S3rbA53Xw18OyrQpjRvCe6ggFe/view)
 
 ---
 
